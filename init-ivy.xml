@@ -1,10 +1,10 @@
-<project name="com.example.get-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="init-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <description>
     Ensure that the Apache Ivy dependency manager is available
   </description>
 
-  <property file="get-ivy.properties"/>
+  <property file="init-ivy.properties"/>
 
   <target name="init-ivy" depends="download-ivy-jar"
           description="initialize Ivy tasks and settings">

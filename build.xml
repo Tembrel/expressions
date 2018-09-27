@@ -29,7 +29,7 @@
 
 
   <!-- Ensure Apache Ivy is available -->
-  <import file="get-ivy.xml"/>
+  <import file="init-ivy.xml"/>
 
 
   <target name="resolve" depends="init-ivy"

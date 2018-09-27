@@ -1,0 +1,6 @@
+<ivysettings>
+  <settings defaultResolver="public" defaultConflictManager="all" />
+    <resolvers>
+      <ibiblio name="public" m2compatible="true" usepoms="true" />
+    </resolvers>
+</ivysettings>

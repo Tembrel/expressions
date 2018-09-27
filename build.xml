@@ -1,0 +1,164 @@
+<project name="com.example.expr" default="run" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+  <description>
+    Double-precision expression framework
+  </description>
+
+
+  <!-- Common properties and paths -->
+
+  <property file="build.properties"/>
+
+  <path id="compile.classpath">
+    <fileset dir="${lib.dir}" includes="*.jar" />
+  </path>
+
+  <path id="runtime.classpath">
+    <path refid="compile.classpath" />
+    <path location="${classes.dir}" />
+  </path>
+
+  <path id="test.classpath">
+    <path refid="runtime.classpath" />
+    <path location="${test.classes.dir}" />
+  </path>
+
+  <path id="errorprone">
+    <fileset dir="${basedir}/lib" includes="com.google.errorprone-error_prone_*.jar"/>
+  </path>
+
+
+  <!-- Ensure Apache Ivy is available -->
+  <import file="get-ivy.xml"/>
+
+
+  <target name="resolve" depends="init-ivy"
+          description="resolve and retrieve dependencies with ivy">
+    <mkdir dir="${lib.dir}"/>
+    <ivy:retrieve pattern="${lib.dir}/[organisation]-[artifact].[ext]" type="jar, bundle" sync="true"/>
+  </target>
+
+
+  <!-- Main part of project build -->
+
+  <target name="compile" depends="resolve" >
+    <mkdir dir="${classes.dir}" />
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath"
+	   compiler="com.google.errorprone.ErrorProneAntCompilerAdapter" encoding="UTF-8"
+	   debug="${build.debug}" includeAntRuntime="false" verbose="${build.verbose}"
+    >
+      <compilerclasspath refid="errorprone"/>
+      <compilerarg value="-Xlint:deprecation"/>
+      <compilerarg value="-Xlint:unchecked"/>
+      <compilerarg value="-Xep:RemoveUnusedImports"/>
+      <compilerarg value="-Xep:ComparisonContractViolated"/>
+      <exclude name="**/package-info.java" />
+    </javac>
+  </target>
+
+  <target name="run" depends="compile"
+	  description="compile and run the project">
+    <java classpathref="runtime.classpath"
+	  classname="${main.class.name}"
+	  fork="true">
+      <assertions>
+	<enable />
+      </assertions>
+    </java>
+  </target>
+
+  <target name="test" depends="run-test-reports">
+  </target>
+
+  <target name="compile-tests" depends="compile">
+    <mkdir dir="${test.classes.dir}" />
+    <javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="runtime.classpath"
+	   compiler="com.google.errorprone.ErrorProneAntCompilerAdapter" encoding="UTF-8"
+	   debug="true" includeAntRuntime="false" >
+      <compilerclasspath refid="errorprone"/>
+      <compilerarg value="-Xlint:deprecation"/>
+      <compilerarg value="-Xlint:unchecked"/>
+      <compilerarg value="-Xep:RemoveUnusedImports"/>
+      <exclude name="**/package-info.java" />
+    </javac>
+  </target>
+
+  <target name="run-tests" depends="compile-tests">
+    <mkdir dir="${tests.dir}" />
+    <junit printsummary="true"
+	   showoutput="false"
+	   fork="true"
+	   haltonfailure="false"
+	   errorProperty="tests.failed"
+	   failureProperty="tests.failed" >
+      <assertions>
+	<enable />
+      </assertions>
+      <classpath refid="test.classpath"/>
+      <formatter type="xml"/>
+      <batchtest todir="${tests.dir}">
+	<fileset dir="${test.classes.dir}">
+	  <include name="**/*Test.class" />
+	</fileset>
+      </batchtest>
+    </junit>
+  </target>
+
+  <target name="run-test-reports" depends="run-tests">
+    <mkdir dir="${reports.dir}" />
+    <junitreport todir="${tests.dir}">
+	<fileset dir="${tests.dir}">
+	  <include name="TEST-*.xml"/>
+	</fileset>
+	<report todir="${reports.dir}"/>
+    </junitreport>
+    <fail if="tests.failed" message="Test(s) failed, see ${reports.dir}/index.html for details." />
+  </target>
+
+  <macrodef name="call-javadoc">
+      <attribute name="destdir"               default="${javadoc.dir}" />
+      <attribute name="windowtitle"           default="${doc.windowtitle}" />
+      <attribute name="access"                default="protected" />
+      <attribute name="classpathref"          default="compile.classpath" />
+      <attribute name="packagedir"            default="${src.dir}" />
+      <element name="javadoc-elements"        implicit="yes" optional="true" />
+      <sequential>
+	  <mkdir dir="${javadoc.dir}"/>
+	  <property name="pkg" location="${common.basedir}/packagelists" />
+	  <echo>Using package lists in ${pkg}</echo>
+
+	  <javadoc destdir="@{destdir}"
+		   classpathref="@{classpathref}"
+		   windowtitle="@{windowtitle}"
+		   access="@{access}"
+		   breakiterator="yes"
+		   linksource="yes" >
+
+	    <arg line="-Xdoclint:-missing"/>
+
+	    <packageset dir="@{packagedir}">
+	      <!-- Uncomment and modify for specific packages. -->
+	      <!-- <include name="com/example/cryptarithm"/> -->
+	    </packageset>
+
+	    <javadoc-elements />
+
+	  </javadoc>
+      </sequential>
+  </macrodef>
+
+  <target name="doc">
+    <call-javadoc/>
+  </target>
+
+  <target name="clean"
+	  description="Clean the build directories">
+    <delete dir="${build.dir}"/>
+  </target>
+
+  <target name="clean-dist"
+	  description="Clean the dist directory">
+    <delete dir="${dist.dir}"/>
+  </target>
+
+</project>

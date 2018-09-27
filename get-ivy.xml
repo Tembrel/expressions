@@ -1,0 +1,35 @@
+<project name="com.example.get-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+
+  <description>
+    Ensure that the Apache Ivy dependency manager is available
+  </description>
+
+  <property file="get-ivy.properties"/>
+
+  <target name="init-ivy" depends="download-ivy-jar"
+          description="initialize Ivy tasks and settings">
+    <path id="ivy.classpath">
+      <fileset dir="${ivy.jar.dir}" includes="${ivy.jar.name}"/>
+    </path>
+    <taskdef
+      resource="org/apache/ivy/ant/antlib.xml"
+      uri="antlib:org.apache.ivy.ant"
+      classpathref="ivy.classpath"
+    />
+    <ivy:settings file="ivysettings.xml"/>
+  </target>
+
+  <target name="download-ivy-jar" depends="check-ivy-jar" unless="${ivy.jar.exists}">
+    <echo message="Installing Ivy jar..."/>
+    <mkdir dir="${ivy.jar.dir}"/>
+    <get src="${ivy.jar.url}" dest="${ivy.jar}" usetimestamp="true" ignoreerrors="true"/>
+  </target>
+
+  <target name="check-ivy-jar">
+    <condition property="ivy.jar.exists">
+      <resourceexists>
+	<file file="${ivy.jar}"/>
+      </resourceexists>
+    </condition>
+  </target>
+</project>

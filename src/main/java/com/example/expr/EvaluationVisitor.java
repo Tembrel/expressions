@@ -46,11 +46,11 @@ class EvaluationVisitor implements Visitor<Double> {
     }
 
     @Override public Double visit(UnaryOperationExpression expr) {
-        return expr.operation().evaluate(expr.subExpression().accept(this));
+        return expr.operator().evaluate(expr.subExpression().accept(this));
     }
 
     @Override public Double visit(BinaryOperationExpression expr) {
-        return expr.operation().evaluate(
+        return expr.operator().evaluate(
             expr.leftExpression().accept(this),
             expr.rightExpression().accept(this)
         );

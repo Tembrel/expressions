@@ -1,7 +1,7 @@
 package com.example.expr;
 
 import static com.example.expr.Expression.*;
-import static com.example.expr.TrigonometricOperation.*;
+import static com.example.expr.TrigonometricOperator.*;
 
 
 /**
@@ -51,7 +51,7 @@ public class TrigonometricExpression extends Expression {
      * Returns a trigonometric expression representing the result of
      * applying the given unary operation to this expression.
      */
-    @Override public TrigonometricExpression apply(UnaryOperation op) {
+    @Override public TrigonometricExpression apply(UnaryOperator op) {
         return new TrigonometricExpression(expr.apply(op));
     }
 

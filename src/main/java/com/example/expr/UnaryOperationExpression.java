@@ -7,17 +7,17 @@ import java.util.Objects;
  * An expression representing the result of a unary operation on a subexpression.
  */
 public class UnaryOperationExpression extends Expression {
-    private final UnaryOperation operation;
+    private final UnaryOperator op;
     private final Expression expr;
 
-    UnaryOperationExpression(UnaryOperation operation, Expression expr) {
-        this.operation = operation;
+    UnaryOperationExpression(UnaryOperator op, Expression expr) {
+        this.op = op;
         this.expr = expr;
     }
 
     /** The unary operation used in thie expression. */
-    public UnaryOperation operation() {
-        return operation;
+    public UnaryOperator operator() {
+        return op;
     }
 
     /** The argument of this expression's unary operation. */
@@ -33,11 +33,11 @@ public class UnaryOperationExpression extends Expression {
         if (this == obj) return true;
         if (!(this instanceof UnaryOperationExpression)) return false;
         UnaryOperationExpression that = (UnaryOperationExpression) obj;
-        return this.operation == that.operation
+        return this.op == that.op
             && this.expr.equals(that.expr);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(operation, expr);
+        return Objects.hash(op, expr);
     }
 }

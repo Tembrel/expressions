@@ -7,19 +7,19 @@ import java.util.Objects;
  * An expression representing the result of a binary operation on two subexpressions.
  */
 public class BinaryOperationExpression extends Expression {
-    private final BinaryOperation operation;
+    private final BinaryOperator op;
     private final Expression left;
     private final Expression right;
 
-    BinaryOperationExpression(BinaryOperation operation, Expression left, Expression right) {
-        this.operation = operation;
+    BinaryOperationExpression(BinaryOperator op, Expression left, Expression right) {
+        this.op = op;
         this.left = left;
         this.right = right;
     }
 
     /** The binary operation used in thie expression. */
-    public BinaryOperation operation() {
-        return operation;
+    public BinaryOperator operator() {
+        return op;
     }
 
     /** The left argument of this expression's binary operation. */
@@ -40,12 +40,12 @@ public class BinaryOperationExpression extends Expression {
         if (this == obj) return true;
         if (!(this instanceof BinaryOperationExpression)) return false;
         BinaryOperationExpression that = (BinaryOperationExpression) obj;
-        return this.operation == that.operation
+        return this.op == that.op
             && this.left.equals(that.left)
             && this.right.equals(that.right);
     }
 
     @Override public int hashCode() {
-        return Objects.hash(operation, left, right);
+        return Objects.hash(op, left, right);
     }
 }

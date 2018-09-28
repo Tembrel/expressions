@@ -7,18 +7,24 @@ import java.util.function.DoubleBinaryOperator;
  * Basic binary operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum BasicBinaryOperation implements BinaryOperation {
+public enum BasicBinaryOperator implements BinaryOperator {
     PLUS((a, b) -> a + b, "(%s + %s)"),
     MINUS((a, b) -> a - b, "(%s - %s)"),
     TIMES((a, b) -> a * b, "%s %s"),
     DIVIDED_BY((a, b) -> divide(a, b), "(%s / %s)"),
+
     ;
+
     final DoubleBinaryOperator op;
     final String fmt;
-    BasicBinaryOperation(DoubleBinaryOperator op, String fmt) {
+
+    BasicBinaryOperator(DoubleBinaryOperator op, String fmt) {
         this.op = op;
         this.fmt = fmt;
     }
+
+    @Override public int precedence() { return 11; }
+
     @Override public double evaluate(double v1, double v2) { return op.applyAsDouble(v1, v2); }
     @Override public String format(String s1, String s2) { return String.format(fmt, s1, s2); }
 

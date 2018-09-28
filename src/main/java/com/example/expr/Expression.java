@@ -1,7 +1,7 @@
 package com.example.expr;
 
-import static com.example.expr.BasicBinaryOperation.*;
-import static com.example.expr.BasicUnaryOperation.*;
+import static com.example.expr.BasicBinaryOperator.*;
+import static com.example.expr.BasicUnaryOperator.*;
 
 import com.google.common.collect.ImmutableMap;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
@@ -100,15 +100,15 @@ public abstract class Expression {
     /**
      * Returns a unary operation expression on the given operation and subexpression.
      */
-    public Expression apply(UnaryOperation operation) {
-        return new UnaryOperationExpression(operation, this);
+    public Expression apply(UnaryOperator op) {
+        return new UnaryOperationExpression(op, this);
     }
 
     /**
      * Returns a binary operation expression on the given operation and left and right subexpressions.
      */
-    public Expression apply(BinaryOperation operation, Expression right) {
-        return new BinaryOperationExpression(operation, this, right);
+    public Expression apply(BinaryOperator op, Expression right) {
+        return new BinaryOperationExpression(op, this, right);
     }
 
 

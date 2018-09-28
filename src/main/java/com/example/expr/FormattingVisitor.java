@@ -20,11 +20,11 @@ class FormattingVisitor implements Visitor<String> {
     }
 
     @Override public String visit(UnaryOperationExpression expr) {
-        return expr.operation().format(expr.subExpression().accept(this));
+        return expr.operator().format(expr.subExpression().accept(this));
     }
 
     @Override public String visit(BinaryOperationExpression expr) {
-        return expr.operation().format(
+        return expr.operator().format(
             expr.leftExpression().accept(this),
             expr.rightExpression().accept(this)
         );

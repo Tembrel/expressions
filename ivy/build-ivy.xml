@@ -12,6 +12,11 @@
 
   <property file="${ivy.basedir}/build-ivy.properties"/>
 
+
+  <!--
+   ! Setting up Ivy
+   !-->
+
   <target name="init-ivy"
     depends="download-ivy-jar"
     description="initialize Ivy tasks and settings"
@@ -49,6 +54,11 @@
     </condition>
   </target>
 
+
+  <!--
+   ! Resolve dependencies
+   !-->
+
   <target name="resolve"
     depends="init-ivy"
     description="resolve and retrieve dependencies with ivy"
@@ -58,12 +68,16 @@
   </target>
 
 
+  <!--
+   ! Cleanup
+   !-->
+
   <target name="clean-lib"
     description="Clean the lib directory"
   >
     <delete dir="${lib.dir}"/>
   </target>
-  
+
   <target name="clean-ivy-cache"
     depends="init-ivy"
   >

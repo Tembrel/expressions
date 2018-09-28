@@ -1,8 +1,8 @@
 package com.example.expr;
 
-import static com.example.expr.Expression.expr;
-
-import java.util.function.DoubleUnaryOperator;
+import static com.example.expr.Operator.Associativity;
+import static com.example.expr.Operator.Fixity;
+import static com.example.expr.OperatorBuilder.op;
 
 
 /**
@@ -10,101 +10,54 @@ import java.util.function.DoubleUnaryOperator;
  */
 @SuppressWarnings("ImmutableEnumChecker")
 public enum TrigonometricOperator implements UnaryOperator {
-    SINE(Math::sin, "sin(%s)"),
-    COSINE(Math::cos, "cos(%s)"),
-    TANGENT(Math::tan, "tan(%s)"),
-    ARC_SINE(Math::asin, "asin(%s)"),
-    ARC_COSINE(Math::acos, "acos(%s)"),
-    ARC_TANGENT(Math::atan, "atan(%s)"),
+
+    SINE(make().unary("sin ", Math::sin)),
+    COSINE(make().unary("cos ", Math::cos)),
+    TANGENT(make().unary("tan ", Math::tan)),
+    ARC_SINE(make().unary("asin ", Math::asin)),
+    ARC_COSINE(make().unary("acos ", Math::acos)),
+    ARC_TANGENT(make().unary("atan ", Math::atan)),
 
     ;
 
-    final DoubleUnaryOperator eval;
-    final String fmt;
-
-    TrigonometricOperator(DoubleUnaryOperator eval, String fmt) {
-        this.eval = eval;
-        this.fmt = fmt;
+    private static final OperatorBuilder make() {
+        return op().precedence(15);
     }
 
-    @Override public int precedence() { return 12; }
+    UnaryOperator delegate;
 
-    @Override public double evaluate(double v) { return eval.applyAsDouble(v); }
-    @Override public String format(String s) { return String.format(fmt, s); }
+    TrigonometricOperator(UnaryOperator delegate) {
+        this.delegate = delegate;
+    }
+
+    @Override public Associativity associativity() { return delegate.associativity(); }
+    @Override public Fixity fixity() { return delegate.fixity(); }
+    @Override public int precedence() { return delegate.precedence(); }
+    @Override public double evaluate(double v) { return delegate.evaluate(v); }
+    @Override public String format(String s) { return delegate.format(s); }
 
 
-    public static Expression sin(Expression expr) {
+    public static UnaryOperationExpression sin(Expression expr) {
         return new UnaryOperationExpression(SINE, expr);
     }
 
-    public static Expression cos(Expression expr) {
+    public static UnaryOperationExpression cos(Expression expr) {
         return new UnaryOperationExpression(COSINE, expr);
     }
 
-    public static Expression tan(Expression expr) {
+    public static UnaryOperationExpression tan(Expression expr) {
         return new UnaryOperationExpression(TANGENT, expr);
     }
 
-    public static Expression asin(Expression expr) {
+    public static UnaryOperationExpression asin(Expression expr) {
         return new UnaryOperationExpression(ARC_SINE, expr);
     }
 
-    public static Expression acos(Expression expr) {
+    public static UnaryOperationExpression acos(Expression expr) {
         return new UnaryOperationExpression(ARC_COSINE, expr);
     }
 
-    public static Expression atan(Expression expr) {
+    public static UnaryOperationExpression atan(Expression expr) {
         return new UnaryOperationExpression(ARC_TANGENT, expr);
-    }
-
-
-
-    public static Expression sin(double val) {
-        return sin(expr(val));
-    }
-
-    public static Expression cos(double val) {
-        return cos(expr(val));
-    }
-
-    public static Expression tan(double val) {
-        return tan(expr(val));
-    }
-
-    public static Expression asin(double val) {
-        return asin(expr(val));
-    }
-
-    public static Expression acos(double val) {
-        return acos(expr(val));
-    }
-
-    public static Expression atan(double val) {
-        return atan(expr(val));
-    }
-
-
-    public static Expression sin(String varName) {
-        return sin(expr(varName));
-    }
-
-    public static Expression cos(String varName) {
-        return cos(expr(varName));
-    }
-
-    public static Expression tan(String varName) {
-        return tan(expr(varName));
-    }
-
-    public static Expression asin(String varName) {
-        return asin(expr(varName));
-    }
-
-    public static Expression acos(String varName) {
-        return acos(expr(varName));
-    }
-
-    public static Expression atan(String varName) {
-        return atan(expr(varName));
     }
 }

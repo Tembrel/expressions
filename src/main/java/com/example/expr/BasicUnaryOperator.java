@@ -1,6 +1,9 @@
 package com.example.expr;
 
-import java.util.function.DoubleUnaryOperator;
+import static com.example.expr.Operator.Associativity;
+import static com.example.expr.Operator.Fixity;
+import static com.example.expr.Operator.Fixity.POSTFIX;
+import static com.example.expr.OperatorBuilder.op;
 
 
 /**
@@ -8,22 +11,22 @@ import java.util.function.DoubleUnaryOperator;
  */
 @SuppressWarnings("ImmutableEnumChecker")
 public enum BasicUnaryOperator implements UnaryOperator {
-    NEGATED(a -> -a, "-%s"),
-    SQUARED(a -> a * a, "%s^2"),
-    SQUARE_ROOT(Math::sqrt, "sqrt(%s)"),
+
+    NEGATED(op().precedence(14).unary("-", a -> -a)),
+    SQUARED(op().precedence(15).fixity(POSTFIX).unary("^2", a -> a * a)),
+    SQUARE_ROOT(op().precedence(15).unary("sqrt ", Math::sqrt)),
 
     ;
 
-    final DoubleUnaryOperator op;
-    final String fmt;
+    UnaryOperator delegate;
 
-    BasicUnaryOperator(DoubleUnaryOperator op, String fmt) {
-        this.op = op;
-        this.fmt = fmt;
+    BasicUnaryOperator(UnaryOperator delegate) {
+        this.delegate = delegate;
     }
 
-    @Override public int precedence() { return 13; }
-
-    @Override public double evaluate(double v) { return op.applyAsDouble(v); }
-    @Override public String format(String s) { return String.format(fmt, s); }
+    @Override public Associativity associativity() { return delegate.associativity(); }
+    @Override public Fixity fixity() { return delegate.fixity(); }
+    @Override public int precedence() { return delegate.precedence(); }
+    @Override public double evaluate(double v) { return delegate.evaluate(v); }
+    @Override public String format(String s) { return delegate.format(s); }
 }

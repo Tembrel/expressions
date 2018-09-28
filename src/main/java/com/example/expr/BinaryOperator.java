@@ -7,11 +7,6 @@ package com.example.expr;
 public interface BinaryOperator extends Operator {
 
     /**
-     * Binary operators default to infix.
-     */
-    @Override default Fixity fixity() { return Fixity.INFIX; }
-
-    /**
      * Binary operators have arity 2. Don't override this.
      */
     @Override default int arity() { return 2; }

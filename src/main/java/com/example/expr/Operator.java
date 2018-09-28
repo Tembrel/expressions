@@ -19,7 +19,28 @@ public interface Operator {
      * The associativity of this operator.
      */
     default Associativity associativity() {
-        return Associativity.LEFT_TO_RIGHT;
+        switch (arity()) {
+            case 1:
+                switch (fixity()) {
+                    case PREFIX:
+                        return Associativity.RIGHT_TO_LEFT;
+                    case INFIX:
+                    case POSTFIX:
+                    default:
+                        return Associativity.NOT_ASSOCIATIVE;
+                }
+            case 2:
+                switch (fixity()) {
+                    case INFIX:
+                        return Associativity.LEFT_TO_RIGHT;
+                    case PREFIX:
+                    case POSTFIX:
+                    default:
+                        return Associativity.NOT_ASSOCIATIVE;
+                }
+            default:
+                return Associativity.NOT_ASSOCIATIVE;
+        }
     }
 
 
@@ -35,7 +56,15 @@ public interface Operator {
     /**
      * The fixity of this operator.
      */
-    Fixity fixity();
+    default Fixity fixity() {
+        switch (arity()) {
+            case 1:
+            default:
+                return Fixity.PREFIX;
+            case 2:
+                return Fixity.INFIX;
+        }
+    }
 
 
     /**

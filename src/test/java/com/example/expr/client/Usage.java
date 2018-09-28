@@ -38,7 +38,7 @@ public class Usage {
 
         // usage 3
 
-        Expression expr3 = expr(2).times(trigExpr(expr("a")).sine())
+        Expression expr3 = expr(2).times(trigExpr(expr("a")).sin())
             .where("a", 1);
 
         double value3 = expr3.evaluate();

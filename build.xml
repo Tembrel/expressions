@@ -40,7 +40,7 @@
   </path>
 
   <path id="errorprone.classpath">
-    <fileset dir="${basedir}/lib" includes="com.google.errorprone-error_prone_*.jar"/>
+    <fileset dir="${lib.dir}" includes="com.google.errorprone-error_prone_*.jar"/>
   </path>
 
 
@@ -48,11 +48,19 @@
    ! Compilation
    !-->
 
-  <target name="compile" depends="resolve" >
+  <target name="compile"
+    depends="resolve"
+  >
     <mkdir dir="${classes.dir}" />
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath"
-	   compiler="com.google.errorprone.ErrorProneAntCompilerAdapter" encoding="UTF-8"
-	   debug="${build.debug}" includeAntRuntime="false" verbose="${build.verbose}"
+    <javac
+      srcdir="${src.dir}"
+      destdir="${classes.dir}"
+      classpathref="compile.classpath"
+      compiler="${errorprone.adapter}"
+      encoding="UTF-8"
+      debug="${build.debug}"
+      includeAntRuntime="false"
+      verbose="${build.verbose}"
     >
       <compilerclasspath refid="errorprone.classpath"/>
       <compilerarg value="-Xlint:deprecation"/>
@@ -68,15 +76,26 @@
    ! Testing
    !-->
 
-  <target name="test" depends="run-test-reports">
+  <target name="test"
+    depends="run-test-reports"
+  >
     <echo>Finished tests</echo>
   </target>
 
-  <target name="compile-tests" depends="compile">
+  <target name="compile-tests"
+    depends="compile"
+  >
     <mkdir dir="${test.classes.dir}" />
-    <javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="runtime.classpath"
-	   compiler="com.google.errorprone.ErrorProneAntCompilerAdapter" encoding="UTF-8"
-	   debug="true" includeAntRuntime="false" >
+    <javac
+      srcdir="${test.src.dir}"
+      destdir="${test.classes.dir}"
+      classpathref="runtime.classpath"
+      compiler="${errorprone.adapter}"
+      encoding="UTF-8"
+      debug="true"
+      includeAntRuntime="false"
+      verbose="${build.verbose}"
+    >
       <compilerclasspath refid="errorprone.classpath"/>
       <compilerarg value="-Xlint:deprecation"/>
       <compilerarg value="-Xlint:unchecked"/>
@@ -85,14 +104,18 @@
     </javac>
   </target>
 
-  <target name="run-tests" depends="compile-tests">
+  <target name="run-tests"
+    depends="compile-tests"
+  >
     <mkdir dir="${tests.dir}" />
-    <junit printsummary="true"
-	   showoutput="false"
-	   fork="true"
-	   haltonfailure="false"
-	   errorProperty="tests.failed"
-	   failureProperty="tests.failed" >
+    <junit
+      printsummary="true"
+      showoutput="false"
+      fork="true"
+      haltonfailure="false"
+      errorProperty="tests.errors"
+      failureProperty="tests.failed"
+    >
       <assertions>
 	<enable />
       </assertions>
@@ -106,7 +129,9 @@
     </junit>
   </target>
 
-  <target name="run-test-reports" depends="run-tests">
+  <target name="run-test-reports"
+    depends="run-tests"
+  >
     <mkdir dir="${reports.dir}" />
     <junitreport todir="${tests.dir}">
 	<fileset dir="${tests.dir}">
@@ -114,6 +139,7 @@
 	</fileset>
 	<report todir="${reports.dir}"/>
     </junitreport>
+    <fail if="tests.errors" message="Test(s) had errors, see ${reports.dir}/index.html for details." />
     <fail if="tests.failed" message="Test(s) failed, see ${reports.dir}/index.html for details." />
   </target>
 
@@ -122,11 +148,15 @@
    ! Run a sample program (given by the main.class.name property)
    !-->
 
-  <target name="run" depends="compile-tests"
-	  description="compile and run the project">
-    <java classpathref="test.classpath"
-	  classname="${main.class.name}"
-	  fork="true">
+  <target name="run"
+    depends="compile-tests"
+    description="compile and run the project"
+  >
+    <java
+      classpathref="test.classpath"
+      classname="${main.class.name}"
+      fork="true"
+    >
       <assertions>
 	<enable />
       </assertions>
@@ -138,40 +168,20 @@
    ! Javadocs
    !-->
 
-  <macrodef name="call-javadoc">
-      <attribute name="destdir"               default="${javadoc.dir}" />
-      <attribute name="windowtitle"           default="${doc.windowtitle}" />
-      <attribute name="access"                default="protected" />
-      <attribute name="classpathref"          default="compile.classpath" />
-      <attribute name="packagedir"            default="${src.dir}" />
-      <element name="javadoc-elements"        implicit="yes" optional="true" />
-      <sequential>
-	  <mkdir dir="${javadoc.dir}"/>
-	  <property name="pkg" location="${common.basedir}/packagelists" />
-	  <echo>Using package lists in ${pkg}</echo>
-
-	  <javadoc destdir="@{destdir}"
-		   classpathref="@{classpathref}"
-		   windowtitle="@{windowtitle}"
-		   access="@{access}"
-		   breakiterator="yes"
-		   linksource="yes" >
-
-	    <arg line="-Xdoclint:-missing"/>
-
-	    <packageset dir="@{packagedir}">
-	      <!-- Uncomment and modify for specific packages. -->
-	      <!-- <include name="com/example/cryptarithm"/> -->
-	    </packageset>
-
-	    <javadoc-elements />
-
-	  </javadoc>
-      </sequential>
-  </macrodef>
-
   <target name="doc">
-    <call-javadoc/>
+    <mkdir dir="${javadoc.dir}"/>
+    <javadoc
+      destdir="${javadoc.dir}"
+      classpathref="compile.classpath"
+      windowtitle="${doc.windowtitle}"
+      access="protected"
+      breakiterator="yes"
+      linksource="yes"
+    >
+      <arg line="-Xdoclint:-missing"/>
+      <packageset dir="${src.dir}" />
+      <javadoc-elements />
+    </javadoc>
   </target>
 
 
@@ -180,13 +190,17 @@
    !-->
 
   <target name="clean"
-	  description="Clean the build directories">
+    description="Clean the build directories"
+  >
     <delete dir="${build.dir}"/>
   </target>
 
   <target name="clean-dist"
-	  description="Clean the dist directory">
+    description="Clean the dist directory"
+  >
     <delete dir="${dist.dir}"/>
   </target>
+  
+  <target name="clean-all" depends="clean, clean-lib, clean-dist" />
 
 </project>

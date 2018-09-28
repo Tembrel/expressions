@@ -12,8 +12,10 @@
 
   <property file="${ivy.basedir}/build-ivy.properties"/>
 
-  <target name="init-ivy" depends="download-ivy-jar"
-          description="initialize Ivy tasks and settings">
+  <target name="init-ivy"
+    depends="download-ivy-jar"
+    description="initialize Ivy tasks and settings"
+  >
     <path id="ivy.classpath">
       <fileset dir="${ivy.jar.dir}" includes="${ivy.jar.name}"/>
     </path>
@@ -25,10 +27,18 @@
     <ivy:settings file="${ivy.basedir}/ivysettings.xml"/>
   </target>
 
-  <target name="download-ivy-jar" depends="check-ivy-jar" unless="${ivy.jar.exists}">
+  <target name="download-ivy-jar"
+    depends="check-ivy-jar"
+    unless="${ivy.jar.exists}"
+  >
     <echo message="Getting Ivy jar..."/>
     <mkdir dir="${ivy.jar.dir}"/>
-    <get src="${ivy.jar.url}" dest="${ivy.jar}" usetimestamp="true" ignoreerrors="true"/>
+    <get
+      src="${ivy.jar.url}"
+      dest="${ivy.jar}"
+      usetimestamp="true"
+      ignoreerrors="true"
+    />
   </target>
 
   <target name="check-ivy-jar">
@@ -39,19 +49,24 @@
     </condition>
   </target>
 
-  <target name="resolve" depends="init-ivy"
-          description="resolve and retrieve dependencies with ivy">
+  <target name="resolve"
+    depends="init-ivy"
+    description="resolve and retrieve dependencies with ivy"
+  >
     <mkdir dir="${lib.dir}"/>
     <ivy:retrieve type="jar" sync="true"/>
   </target>
 
 
   <target name="clean-lib"
-	  description="Clean the lib directory">
+    description="Clean the lib directory"
+  >
     <delete dir="${lib.dir}"/>
   </target>
   
-  <target name="clean-ivy-cache" depends="init-ivy">
+  <target name="clean-ivy-cache"
+    depends="init-ivy"
+  >
     <ivy:cleancache />
   </target>
 

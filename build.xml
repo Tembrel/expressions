@@ -168,7 +168,9 @@
    ! Javadocs
    !-->
 
-  <target name="doc">
+  <target name="doc"
+    depends="resolve"
+  >
     <mkdir dir="${javadoc.dir}"/>
     <javadoc
       destdir="${javadoc.dir}"
@@ -180,7 +182,6 @@
     >
       <arg line="-Xdoclint:-missing"/>
       <packageset dir="${src.dir}" />
-      <javadoc-elements />
     </javadoc>
   </target>
 

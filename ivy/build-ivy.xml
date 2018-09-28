@@ -1,10 +1,16 @@
-<project name="init-ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="ivy" xmlns:ivy="antlib:org.apache.ivy.ant">
 
   <description>
     Ensure that the Apache Ivy dependency manager is available
+    and provide targets for build files that import this file:
+    - resolve
+    - clean-lib
+    - clean-ivy-cache
   </description>
 
-  <property file="init-ivy.properties"/>
+  <dirname property="ivy.basedir" file="${ant.file.ivy}" />
+
+  <property file="${ivy.basedir}/build-ivy.properties"/>
 
   <target name="init-ivy" depends="download-ivy-jar"
           description="initialize Ivy tasks and settings">
@@ -16,11 +22,11 @@
       uri="antlib:org.apache.ivy.ant"
       classpathref="ivy.classpath"
     />
-    <ivy:settings file="ivysettings.xml"/>
+    <ivy:settings file="${ivy.basedir}/ivysettings.xml"/>
   </target>
 
   <target name="download-ivy-jar" depends="check-ivy-jar" unless="${ivy.jar.exists}">
-    <echo message="Installing Ivy jar..."/>
+    <echo message="Getting Ivy jar..."/>
     <mkdir dir="${ivy.jar.dir}"/>
     <get src="${ivy.jar.url}" dest="${ivy.jar}" usetimestamp="true" ignoreerrors="true"/>
   </target>
@@ -32,4 +38,21 @@
       </resourceexists>
     </condition>
   </target>
+
+  <target name="resolve" depends="init-ivy"
+          description="resolve and retrieve dependencies with ivy">
+    <mkdir dir="${lib.dir}"/>
+    <ivy:retrieve type="jar" sync="true"/>
+  </target>
+
+
+  <target name="clean-lib"
+	  description="Clean the lib directory">
+    <delete dir="${lib.dir}"/>
+  </target>
+  
+  <target name="clean-ivy-cache" depends="init-ivy">
+    <ivy:cleancache />
+  </target>
+
 </project>

@@ -5,9 +5,25 @@
   </description>
 
 
-  <!-- Common properties and paths -->
+  <!--
+   ! Common properties defined before importing the Ivy
+   ! initialization build file.
+   !-->
 
   <property file="build.properties"/>
+
+
+  <!--
+   ! Define "resolve", "clean-lib", and "clean-ivy-cache" targets,
+   ! downloading the Apache Ivy jar, if necessary.
+   !-->
+
+  <import file="ivy/build-ivy.xml"/>
+
+
+  <!--
+   ! Common paths
+   !-->
 
   <path id="compile.classpath">
     <fileset dir="${lib.dir}" includes="*.jar" />
@@ -23,23 +39,14 @@
     <path location="${test.classes.dir}" />
   </path>
 
-  <path id="errorprone">
+  <path id="errorprone.classpath">
     <fileset dir="${basedir}/lib" includes="com.google.errorprone-error_prone_*.jar"/>
   </path>
 
 
-  <!-- Ensure Apache Ivy is available -->
-  <import file="init-ivy.xml"/>
-
-
-  <target name="resolve" depends="init-ivy"
-          description="resolve and retrieve dependencies with ivy">
-    <mkdir dir="${lib.dir}"/>
-    <ivy:retrieve pattern="${lib.dir}/[organisation]-[artifact].[ext]" type="jar, bundle" sync="true"/>
-  </target>
-
-
-  <!-- Main part of project build -->
+  <!--
+   ! Compilation
+   !-->
 
   <target name="compile" depends="resolve" >
     <mkdir dir="${classes.dir}" />
@@ -47,7 +54,7 @@
 	   compiler="com.google.errorprone.ErrorProneAntCompilerAdapter" encoding="UTF-8"
 	   debug="${build.debug}" includeAntRuntime="false" verbose="${build.verbose}"
     >
-      <compilerclasspath refid="errorprone"/>
+      <compilerclasspath refid="errorprone.classpath"/>
       <compilerarg value="-Xlint:deprecation"/>
       <compilerarg value="-Xlint:unchecked"/>
       <compilerarg value="-Xep:RemoveUnusedImports"/>
@@ -56,18 +63,13 @@
     </javac>
   </target>
 
-  <target name="run" depends="compile-tests"
-	  description="compile and run the project">
-    <java classpathref="test.classpath"
-	  classname="${main.class.name}"
-	  fork="true">
-      <assertions>
-	<enable />
-      </assertions>
-    </java>
-  </target>
+
+  <!--
+   ! Testing
+   !-->
 
   <target name="test" depends="run-test-reports">
+    <echo>Finished tests</echo>
   </target>
 
   <target name="compile-tests" depends="compile">
@@ -75,7 +77,7 @@
     <javac srcdir="${test.src.dir}" destdir="${test.classes.dir}" classpathref="runtime.classpath"
 	   compiler="com.google.errorprone.ErrorProneAntCompilerAdapter" encoding="UTF-8"
 	   debug="true" includeAntRuntime="false" >
-      <compilerclasspath refid="errorprone"/>
+      <compilerclasspath refid="errorprone.classpath"/>
       <compilerarg value="-Xlint:deprecation"/>
       <compilerarg value="-Xlint:unchecked"/>
       <compilerarg value="-Xep:RemoveUnusedImports"/>
@@ -115,6 +117,27 @@
     <fail if="tests.failed" message="Test(s) failed, see ${reports.dir}/index.html for details." />
   </target>
 
+
+  <!--
+   ! Run a sample program (given by the main.class.name property)
+   !-->
+
+  <target name="run" depends="compile-tests"
+	  description="compile and run the project">
+    <java classpathref="test.classpath"
+	  classname="${main.class.name}"
+	  fork="true">
+      <assertions>
+	<enable />
+      </assertions>
+    </java>
+  </target>
+
+
+  <!--
+   ! Javadocs
+   !-->
+
   <macrodef name="call-javadoc">
       <attribute name="destdir"               default="${javadoc.dir}" />
       <attribute name="windowtitle"           default="${doc.windowtitle}" />
@@ -150,6 +173,11 @@
   <target name="doc">
     <call-javadoc/>
   </target>
+
+
+  <!--
+   ! Cleanup
+   !-->
 
   <target name="clean"
 	  description="Clean the build directories">

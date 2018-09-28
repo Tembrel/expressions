@@ -1,7 +1,6 @@
 package com.example.expr;
 
 import static com.example.expr.Expression.*;
-import static com.example.expr.TrigonometricExpression.*;
 
 import com.google.common.collect.*;
 
@@ -29,11 +28,12 @@ public class ExpressionTest {
         assertEquals(value, bound.evaluate(), 0);
         assertEquals(var, e.format());
     }
-    
-    @Test public void sinArcSinIsNoOp() {
-        double val = 1;
-        TrigonometricExpression sin = trigExpr(val).sine();
-        TrigonometricExpression asin = sin.arcSine();
-        assertEquals(val, asin.evaluate(), 0.0001);
+
+    @Test(expected=UnreferencedVariableException.class) public void unreferencedVariable() {
+        Expression expr = expr(1).where("a", 2);
+    }
+
+    @Test(expected=SelfReferenceException.class) public void selfReferencedVariable() {
+        Expression expr = expr("a").plus(1).where("a", expr("b").plus("a"));
     }
 }

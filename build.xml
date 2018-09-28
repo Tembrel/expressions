@@ -56,9 +56,9 @@
     </javac>
   </target>
 
-  <target name="run" depends="compile"
+  <target name="run" depends="compile-tests"
 	  description="compile and run the project">
-    <java classpathref="runtime.classpath"
+    <java classpathref="test.classpath"
 	  classname="${main.class.name}"
 	  fork="true">
       <assertions>

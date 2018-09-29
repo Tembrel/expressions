@@ -72,12 +72,14 @@ public class OperatorBuilder {
         final Associativity associativity;
         final Fixity fixity;
         final int precedence;
+        final int arity;
 
-        OperatorImpl(String symbol, Associativity associativity, Fixity fixity, int precedence) {
+        OperatorImpl(String symbol, Associativity associativity, Fixity fixity, int precedence, int arity) {
             this.symbol = symbol;
             this.associativity = associativity;
             this.fixity = fixity;
             this.precedence = precedence;
+            this.arity = arity;
         }
 
         @Override public Associativity associativity() {
@@ -90,6 +92,10 @@ public class OperatorBuilder {
 
         @Override public int precedence() {
             return precedence;
+        }
+
+        @Override public int arity() {
+            return arity;
         }
     }
 
@@ -111,7 +117,7 @@ public class OperatorBuilder {
 
         UnaryOperatorImpl(String symbol, DoubleUnaryOperator op,
                 Associativity associativity, Fixity fixity, int precedence) {
-            super(symbol, associativity, fixity, precedence);
+            super(symbol, associativity, fixity, precedence, 1);
             this.op = op;
         }
 
@@ -150,7 +156,7 @@ public class OperatorBuilder {
 
         BinaryOperatorImpl(String symbol, DoubleBinaryOperator op,
                 Associativity associativity, Fixity fixity, int precedence) {
-            super(symbol, associativity, fixity, precedence);
+            super(symbol, associativity, fixity, precedence, 2);
             this.op = op;
         }
 

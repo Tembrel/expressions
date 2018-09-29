@@ -4,6 +4,7 @@ import com.example.expr.Expression;
 import com.example.expr.VariableExpression;
 import static com.example.expr.Expression.expr;
 import static com.example.expr.TrigonometricExpression.trigExpr;
+import static com.example.expr.LogPowerOperator.pow;
 
 
 /**
@@ -62,5 +63,13 @@ public class Usage {
             .evaluate();
 
         System.out.printf("expr4 = %s%nvalue4 = %f%n", expr4, value4);
+
+
+        // usage 5
+
+        Expression expr5 = pow(expr("x"), expr("y"));
+        double value5 = expr5.where("x", 3, "y", 4).evaluate();
+
+        System.out.printf("expr5 = %s, where x=3, y=4%nvalue5 = %f%n", expr5, value5);
     }
 }

@@ -7,11 +7,6 @@ package com.example.expr;
 public interface UnaryOperator extends Operator {
 
     /**
-     * Unary operators have arity 1. Don't override this.
-     */
-    @Override default int arity() { return 1; }
-
-    /**
      * Apply this operation to a double value.
      */
     double evaluate(double v);

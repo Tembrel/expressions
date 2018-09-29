@@ -7,11 +7,6 @@ package com.example.expr;
 public interface BinaryOperator extends Operator {
 
     /**
-     * Binary operators have arity 2. Don't override this.
-     */
-    @Override default int arity() { return 2; }
-
-    /**
      * Apply this operation to a double value.
      */
     double evaluate(double v1, double v2);

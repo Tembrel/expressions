@@ -80,5 +80,13 @@ public interface Operator {
     /**
      * The arity of this operator.
      */
-    int arity();
+    default int arity() {
+        if (this instanceof UnaryOperator) {
+            return 1;
+        }
+        if (this instanceof BinaryOperator) {
+            return 2;
+        }
+        throw new IllegalStateException("Unknown arity operator");
+    }
 }

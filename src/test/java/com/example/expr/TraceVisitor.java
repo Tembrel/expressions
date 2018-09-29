@@ -53,13 +53,12 @@ public class TraceVisitor implements Visitor<Stream<String>> {
 
     @Override public Stream<String> visit(BoundExpression expr) {
         TraceVisitor child = child();
-        TraceVisitor grandchild = child.child();
         return StreamEx.of(expr.subExpression().accept(this))
             .append(
                 EntryStream.of(expr.bindings())
                     .flatMapKeyValue((varName, boundExpr) ->
-                        child.add("where " + varName)
-                            .append(boundExpr.accept(grandchild))
+                        add("where " + varName + " is bound to:")
+                            .append(boundExpr.accept(child))
                     )
             );
     }

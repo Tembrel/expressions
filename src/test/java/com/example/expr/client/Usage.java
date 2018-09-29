@@ -36,7 +36,7 @@ public class Usage {
 
         double value2 = expr2.evaluate();
 
-        System.out.printf("expr2 = %s%nvalue2 = %f%n", expr2, value2);
+        System.out.printf("expr2 = %s%nvalue2 = %f%ntrace expr2:%n%s%n", expr2, value2, trace(expr2));
 
         System.out.println();
 

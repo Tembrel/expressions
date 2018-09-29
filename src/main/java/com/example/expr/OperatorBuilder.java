@@ -34,7 +34,7 @@ public class OperatorBuilder implements UnaryOperator, BinaryOperator {
     /**
      * Creates a builder for a unary operator.
      */
-    public static OperatorBuilder unary(String symbol, DoubleUnaryOperator unaryOp) {
+    public static OperatorBuilder op(String symbol, DoubleUnaryOperator unaryOp) {
         if (unaryOp == null) {
             throw new IllegalArgumentException("operator argument must not be null");
         }
@@ -45,7 +45,7 @@ public class OperatorBuilder implements UnaryOperator, BinaryOperator {
     /**
      * Creates a builder for a binary operator.
      */
-    public static OperatorBuilder binary(String symbol, DoubleBinaryOperator binaryOp) {
+    public static OperatorBuilder op(String symbol, DoubleBinaryOperator binaryOp) {
         if (binaryOp == null) {
             throw new IllegalArgumentException("operator argument must not be null");
         }

@@ -2,36 +2,31 @@ package com.example.expr;
 
 import static com.example.expr.Operator.Associativity;
 import static com.example.expr.Operator.Fixity;
-import static com.example.expr.OperatorBuilder.unary;
+import static com.example.expr.OperatorBuilder.op;
 
 
 /**
  * Trigonometric operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum TrigonometricOperator implements UnaryOperator {
+public enum TrigonometricOperator implements DelegatingOperator {
 
-    SINE        (unary("sin ", Math::sin)       .precedence(15)),
-    COSINE      (unary("cos ", Math::cos)       .precedence(15)),
-    TANGENT     (unary("tan ", Math::tan)       .precedence(15)),
-    ARC_SINE    (unary("asin ", Math::asin)     .precedence(15)),
-    ARC_COSINE  (unary("acos ", Math::acos)     .precedence(15)),
-    ARC_TANGENT (unary("atan ", Math::atan)     .precedence(15)),
+    SINE        (op("sin ", Math::sin)       .precedence(15)),
+    COSINE      (op("cos ", Math::cos)       .precedence(15)),
+    TANGENT     (op("tan ", Math::tan)       .precedence(15)),
+    ARC_SINE    (op("asin ", Math::asin)     .precedence(15)),
+    ARC_COSINE  (op("acos ", Math::acos)     .precedence(15)),
+    ARC_TANGENT (op("atan ", Math::atan)     .precedence(15)),
 
     ;
 
-    UnaryOperator delegate;
+    Operator delegate;
 
-    TrigonometricOperator(UnaryOperator delegate) {
+    TrigonometricOperator(Operator delegate) {
         this.delegate = delegate;
     }
 
-    @Override public int precedence() { return delegate.precedence(); }
-    @Override public Fixity fixity() { return delegate.fixity(); }
-    @Override public Associativity associativity() { return delegate.associativity(); }
-
-    @Override public double evaluate(double v) { return delegate.evaluate(v); }
-    @Override public String format(String s) { return delegate.format(s); }
+    @Override public Operator delegate() { return delegate; }
 
 
     public static UnaryOperationExpression sin(Expression expr) {

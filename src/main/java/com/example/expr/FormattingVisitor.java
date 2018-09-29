@@ -52,6 +52,10 @@ class FormattingVisitor implements Visitor<String> {
             if (leftExpr instanceof OperationExpression) {
                 Operator leftOp = ((OperationExpression) leftExpr).operator();
                 if (op.isLeftToRight()) {
+                    if (leftOp.precedence() < op.precedence()) {
+                        leftFmt = String.format("(%s)", leftFmt);
+                    }
+                } else if (op.isRightToLeft()) {
                     if (leftOp.precedence() > op.precedence()) {
                         leftFmt = String.format("(%s)", leftFmt);
                     }
@@ -61,6 +65,10 @@ class FormattingVisitor implements Visitor<String> {
                 Operator rightOp = ((OperationExpression) rightExpr).operator();
                 if (op.isRightToLeft()) {
                     if (rightOp.precedence() > op.precedence()) {
+                        rightFmt = String.format("(%s)", rightFmt);
+                    }
+                } else if (op.isLeftToRight()) {
+                    if (rightOp.precedence() < op.precedence()) {
                         rightFmt = String.format("(%s)", rightFmt);
                     }
                 }

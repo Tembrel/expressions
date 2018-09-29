@@ -3,6 +3,7 @@ package com.example.expr.client;
 import com.example.expr.Expression;
 import com.example.expr.VariableExpression;
 import static com.example.expr.Expression.expr;
+import static com.example.expr.TraceVisitor.trace;
 import static com.example.expr.TrigonometricExpression.trigExpr;
 import static com.example.expr.LogPowerOperator.pow;
 
@@ -62,7 +63,7 @@ public class Usage {
             .where("a", 1, "b", 1, "c", -2)
             .evaluate();
 
-        System.out.printf("expr4 = %s%nvalue4 = %f%n", expr4, value4);
+        System.out.printf("expr4 = %s%nvalue4 = %f%ntrace expr4:%n%s%n", expr4, value4, trace(expr4));
 
 
         // usage 5

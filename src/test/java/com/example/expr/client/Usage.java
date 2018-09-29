@@ -24,6 +24,7 @@ public class Usage {
 
         System.out.printf("expr1 = %s%nvalue1 = %f%n", expr1, value1);
 
+        System.out.println();
 
         // usage 2
 
@@ -37,6 +38,8 @@ public class Usage {
 
         System.out.printf("expr2 = %s%nvalue2 = %f%n", expr2, value2);
 
+        System.out.println();
+
 
         // usage 3
 
@@ -46,6 +49,8 @@ public class Usage {
         double value3 = expr3.evaluate();
 
         System.out.printf("expr3 = %s%nvalue3 = %f%n", expr3, value3);
+
+        System.out.println();
 
 
         // usage 4
@@ -65,6 +70,8 @@ public class Usage {
 
         System.out.printf("expr4 = %s%nvalue4 = %f%ntrace expr4:%n%s%n", expr4, value4, trace(expr4));
 
+        System.out.println();
+
 
         // usage 5
 
@@ -72,5 +79,7 @@ public class Usage {
         double value5 = expr5.where("x", 3, "y", 4).evaluate();
 
         System.out.printf("expr5 = %s, where x=3, y=4%nvalue5 = %f%n", expr5, value5);
+
+        System.out.println();
     }
 }

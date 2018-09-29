@@ -41,42 +41,42 @@ public class TrigonometricExpression extends ExtendedExpression<TrigonometricExp
     /**
      * Returns a trigonometric expression representing the sine of this expression.
      */
-    public final TrigonometricExpression sin() {
+    public TrigonometricExpression sin() {
         return apply(SINE);
     }
 
     /**
      * Returns a trigonometric expression representing the cosine of this expression.
      */
-    public final TrigonometricExpression cos() {
+    public TrigonometricExpression cos() {
         return apply(COSINE);
     }
 
     /**
      * Returns a trigonometric expression representing the tangent of this expression.
      */
-    public final TrigonometricExpression tan() {
+    public TrigonometricExpression tan() {
         return apply(TANGENT);
     }
 
     /**
      * Returns a trigonometric expression representing the arc sine of this expression.
      */
-    public final TrigonometricExpression asin() {
+    public TrigonometricExpression asin() {
         return apply(ARC_SINE);
     }
 
     /**
      * Returns a trigonometric expression representing the arc cosine of this expression.
      */
-    public final TrigonometricExpression acos() {
+    public TrigonometricExpression acos() {
         return apply(ARC_COSINE);
     }
 
     /**
      * Returns a trigonometric expression representing the arc tangent of this expression.
      */
-    public final TrigonometricExpression atan() {
+    public TrigonometricExpression atan() {
         return apply(ARC_TANGENT);
     }
 }

@@ -48,6 +48,7 @@ public enum LogPowerOperator implements UnaryOperator, BinaryOperator {
     @Override public double evaluate(double v1, double v2) { return binaryOp().evaluate(v1, v2); }
     @Override public String format(String s1, String s2) { return binaryOp().format(s1, s2); }
 
+
     public static UnaryOperationExpression ln(Expression expr) {
         return new UnaryOperationExpression(NATURAL_LOG, expr);
     }

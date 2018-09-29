@@ -12,14 +12,14 @@ import static com.example.expr.OperatorBuilder.unary;
 @SuppressWarnings("ImmutableEnumChecker")
 public enum BasicOperator implements UnaryOperator, BinaryOperator {
 
-    NEGATED     (unary("-", a -> -a)                     .precedence(14)),
-    SQUARED     (unary("^2", a -> a * a).fixity(POSTFIX) .precedence(15)),
-    SQUARE_ROOT (unary("sqrt ", Math::sqrt)              .precedence(15)),
+    NEGATED     (unary("-", a -> -a)                      .precedence(14)),
+    SQUARED     (unary("^2", a -> a * a) .fixity(POSTFIX) .precedence(15)),
+    SQUARE_ROOT (unary("sqrt ", Math::sqrt)               .precedence(15)),
 
-    PLUS        (binary(" + ", (a, b) -> a + b)          .precedence(11)),
-    MINUS       (binary(" - ", (a, b) -> a - b)          .precedence(11)),
-    TIMES       (binary(" ", (a, b) -> a * b)            .precedence(13)),
-    DIVIDED_BY  (binary(" / ", (a, b) -> divide(a, b))   .precedence(12)),
+    PLUS        (binary(" + ", (a, b) -> a + b)           .precedence(11)),
+    MINUS       (binary(" - ", (a, b) -> a - b)           .precedence(11)),
+    TIMES       (binary(" ", (a, b) -> a * b)             .precedence(13)),
+    DIVIDED_BY  (binary(" / ", (a, b) -> divide(a, b))    .precedence(12)),
 
     ;
 

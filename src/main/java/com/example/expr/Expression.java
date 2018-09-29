@@ -1,7 +1,6 @@
 package com.example.expr;
 
-import static com.example.expr.BasicBinaryOperator.*;
-import static com.example.expr.BasicUnaryOperator.*;
+import static com.example.expr.BasicOperator.*;
 
 import com.google.common.collect.ImmutableMap;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;

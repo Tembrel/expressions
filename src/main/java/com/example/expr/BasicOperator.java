@@ -1,5 +1,7 @@
 package com.example.expr;
 
+import static com.example.expr.Operator.Fixity.POSTFIX;
+
 import static com.example.expr.OperatorBuilder.binary;
 import static com.example.expr.OperatorBuilder.unary;
 
@@ -8,18 +10,22 @@ import static com.example.expr.OperatorBuilder.unary;
  * Logarithmic and exponential (power) operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum LogPowerOperator implements UnaryOperator, BinaryOperator {
+public enum BasicOperator implements UnaryOperator, BinaryOperator {
 
-    NATURAL_LOG (unary("ln ", Math::log)        .precedence(15)),
-    LOG_BASE_10 (unary("log ", Math::log10)     .precedence(15)),
+    NEGATED     (unary("-", a -> -a)                     .precedence(14)),
+    SQUARED     (unary("^2", a -> a * a).fixity(POSTFIX) .precedence(15)),
+    SQUARE_ROOT (unary("sqrt ", Math::sqrt)              .precedence(15)),
 
-    POW         (binary("^", Math::pow)         .precedence(15)),
+    PLUS        (binary(" + ", (a, b) -> a + b)          .precedence(11)),
+    MINUS       (binary(" - ", (a, b) -> a - b)          .precedence(11)),
+    TIMES       (binary(" ", (a, b) -> a * b)            .precedence(13)),
+    DIVIDED_BY  (binary(" / ", (a, b) -> divide(a, b))   .precedence(12)),
 
     ;
 
     Operator delegate;
 
-    LogPowerOperator(Operator delegate) {
+    BasicOperator(Operator delegate) {
         this.delegate = delegate;
     }
 
@@ -48,15 +54,11 @@ public enum LogPowerOperator implements UnaryOperator, BinaryOperator {
     @Override public double evaluate(double v1, double v2) { return binaryOp().evaluate(v1, v2); }
     @Override public String format(String s1, String s2) { return binaryOp().format(s1, s2); }
 
-    public static UnaryOperationExpression ln(Expression expr) {
-        return new UnaryOperationExpression(NATURAL_LOG, expr);
-    }
-
-    public static UnaryOperationExpression log10(Expression expr) {
-        return new UnaryOperationExpression(LOG_BASE_10, expr);
-    }
-
-    public static BinaryOperationExpression pow(Expression e1, Expression e2) {
-        return new BinaryOperationExpression(POW, e1, e2);
+    private static double divide(double a, double b) {
+        double c = a / b;
+        if (Double.isFinite(c)) {
+            return c;
+        }
+        throw new DivisionByZeroException(a, b);
     }
 }

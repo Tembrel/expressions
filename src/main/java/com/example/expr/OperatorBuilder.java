@@ -8,215 +8,123 @@ import java.util.function.DoubleUnaryOperator;
 /**
  *
  */
-public class OperatorBuilder {
+public class OperatorBuilder implements UnaryOperator, BinaryOperator {
 
-    final Associativity associativity;
-    final Fixity fixity;
-    final int precedence;
     final int arity;
+    final DoubleUnaryOperator unaryOp;
+    final DoubleBinaryOperator binaryOp;
+    final String symbol;
+    final int precedence;
+    final Fixity fixity;
+    final Associativity associativity;
 
 
-    OperatorBuilder() {
-        this.associativity = null;
-        this.fixity = null;
-        this.precedence = 0;
-        this.arity = 0;
-    }
-
-    OperatorBuilder(Associativity associativity, Fixity fixity, int precedence, int arity) {
-        this.associativity = associativity;
-        this.fixity = fixity;
-        this.precedence = precedence;
+    OperatorBuilder(int arity, DoubleUnaryOperator unaryOp, DoubleBinaryOperator binaryOp,
+            String symbol, int precedence, Fixity fixity, Associativity associativity) {
         this.arity = arity;
+        this.unaryOp = unaryOp;
+        this.binaryOp = binaryOp;
+        this.symbol = symbol;
+        this.precedence = precedence;
+        this.fixity = fixity;
+        this.associativity = associativity;
     }
 
 
     /**
-     * Creates a vanilla operator builder.
+     * Creates a builder for a unary operator.
      */
-    public static OperatorBuilder op() {
-        return new OperatorBuilder();
+    public static OperatorBuilder unary(String symbol, DoubleUnaryOperator unaryOp) {
+        if (unaryOp == null) {
+            throw new IllegalArgumentException("operator argument must not be null");
+        }
+        // XXX ensure valid symbol
+        return new OperatorBuilder(1, unaryOp, null, symbol, 0, Fixity.PREFIX, Associativity.RIGHT_TO_LEFT);
     }
 
     /**
-     * Sets the associativity of this operator.
+     * Creates a builder for a binary operator.
      */
-    public OperatorBuilder associativity(Associativity associativity) {
-        return new OperatorBuilder(associativity, this.fixity, this.precedence, this.arity);
-    }
-
-    /**
-     * Sets the fixity of this operator.
-     */
-    public OperatorBuilder fixity(Fixity fixity) {
-        return new OperatorBuilder(this.associativity, fixity, this.precedence, this.arity);
+    public static OperatorBuilder binary(String symbol, DoubleBinaryOperator binaryOp) {
+        if (binaryOp == null) {
+            throw new IllegalArgumentException("operator argument must not be null");
+        }
+        // XXX ensure valid symbol
+        return new OperatorBuilder(2, null, binaryOp, symbol, 0, Fixity.INFIX, Associativity.LEFT_TO_RIGHT);
     }
 
     /**
      * Sets the precedence of this operator.
      */
     public OperatorBuilder precedence(int precedence) {
-        return new OperatorBuilder(this.associativity, this.fixity, precedence, this.arity);
+        return new OperatorBuilder(this.arity, this.unaryOp, this.binaryOp, this.symbol, precedence, this.fixity, this.associativity);
     }
 
     /**
-     * Sets the arity of this operator.
+     * Sets the fixity of this operator.
      */
-    OperatorBuilder arity(int arity) {
-        return new OperatorBuilder(this.associativity, this.fixity, this.precedence, arity);
+    public OperatorBuilder fixity(Fixity fixity) {
+        if (this.arity == 1 && fixity == Fixity.INFIX) {
+            throw new IllegalArgumentException("unary operators must be either prefix or postfix");
+        } else if (this.arity == 2 && fixity != Fixity.INFIX) {
+            throw new IllegalArgumentException("binary operators must be infix");
+        }
+        return new OperatorBuilder(this.arity, this.unaryOp, this.binaryOp, this.symbol, this.precedence, fixity, this.associativity);
     }
-
-
-    static abstract class OperatorImpl implements Operator {
-        final String symbol;
-        final Associativity associativity;
-        final Fixity fixity;
-        final int precedence;
-        final int arity;
-
-        OperatorImpl(String symbol, Associativity associativity, Fixity fixity, int precedence, int arity) {
-            this.symbol = symbol;
-            this.associativity = associativity;
-            this.fixity = fixity;
-            this.precedence = precedence;
-            this.arity = arity;
-        }
-
-        @Override public Associativity associativity() {
-            return associativity;
-        }
-
-        @Override public Fixity fixity() {
-            return fixity;
-        }
-
-        @Override public int precedence() {
-            return precedence;
-        }
-
-        @Override public int arity() {
-            return arity;
-        }
-    }
-
 
     /**
-     * Builds a unary operator with the given symbol and evaluation function.
+     * Sets the associativity of this operator.
      */
-    public UnaryOperator unary(String symbol, DoubleUnaryOperator op) {
-        return arity(1).newUnary(symbol, op);
-    }
-
-    private UnaryOperator newUnary(String symbol, DoubleUnaryOperator op) {
-        return new UnaryOperatorImpl(symbol, op, associativity(), fixity(), precedence);
-    }
-
-    static class UnaryOperatorImpl extends OperatorImpl implements UnaryOperator {
-
-        final DoubleUnaryOperator op;
-
-        UnaryOperatorImpl(String symbol, DoubleUnaryOperator op,
-                Associativity associativity, Fixity fixity, int precedence) {
-            super(symbol, associativity, fixity, precedence, 1);
-            this.op = op;
-        }
-
-        @Override public double evaluate(double v) {
-            return op.applyAsDouble(v);
-        }
-
-        @Override public String format(String s) {
-            switch (fixity()) {
-                case PREFIX:
-                    return String.format("%s%s", symbol, s);
-                case POSTFIX:
-                    return String.format("%s%s", s, symbol);
-                case INFIX:
-                default:
-                    return "?";
-            }
-        }
+    public OperatorBuilder associativity(Associativity associativity) {
+        return new OperatorBuilder(this.arity, this.unaryOp, this.binaryOp, this.symbol, this.precedence, this.fixity, associativity);
     }
 
 
-    /**
-     * Builds a binary operator with the given symbol and evaluation function.
-     */
-    public BinaryOperator binary(String symbol, DoubleBinaryOperator op) {
-        return arity(2).newBinary(symbol, op);
+    @Override public int arity() {
+        return arity;
     }
 
-    private BinaryOperator newBinary(String symbol, DoubleBinaryOperator op) {
-        return new BinaryOperatorImpl(symbol, op, associativity(), fixity(), precedence);
+    @Override public int precedence() {
+        return precedence;
     }
 
-    static class BinaryOperatorImpl extends OperatorImpl implements BinaryOperator {
+    @Override public Fixity fixity() {
+        return fixity;
+    }
 
-        final DoubleBinaryOperator op;
-
-        BinaryOperatorImpl(String symbol, DoubleBinaryOperator op,
-                Associativity associativity, Fixity fixity, int precedence) {
-            super(symbol, associativity, fixity, precedence, 2);
-            this.op = op;
-        }
-
-        @Override public double evaluate(double v1, double v2) {
-            return op.applyAsDouble(v1, v2);
-        }
-
-        @Override public String format(String s1, String s2) {
-            switch (fixity()) {
-                case INFIX:
-                    return String.format("%s%s%s", s1, symbol, s2);
-                case PREFIX:
-                case POSTFIX:
-                default:
-                    return "?";
-            }
-        }
+    @Override public Associativity associativity() {
+        return associativity;
     }
 
 
-    private Associativity associativity() {
-        if (associativity == null) {
-            switch (arity) {
-                case 1:
-                    switch (fixity()) {
-                        case PREFIX:
-                            return Associativity.RIGHT_TO_LEFT;
-                        case INFIX:
-                        case POSTFIX:
-                        default:
-                            return Associativity.NOT_ASSOCIATIVE;
-                    }
-                case 2:
-                    switch (fixity()) {
-                        case INFIX:
-                            return Associativity.LEFT_TO_RIGHT;
-                        case PREFIX:
-                        case POSTFIX:
-                        default:
-                            return Associativity.NOT_ASSOCIATIVE;
-                    }
-                default:
-                    return Associativity.NOT_ASSOCIATIVE;
-            }
-        } else {
-            return associativity;
+    @Override public double evaluate(double v) {
+        return unaryOp.applyAsDouble(v);
+    }
+
+    @Override public String format(String s) {
+        switch (fixity()) {
+            case PREFIX:
+                return String.format("%s%s", symbol, s);
+            case POSTFIX:
+                return String.format("%s%s", s, symbol);
+            case INFIX:
+            default:
+                return "?";
         }
     }
 
-    private Fixity fixity() {
-        if (fixity == null) {
-            switch (arity) {
-                case 1:
-                default:
-                    return Fixity.PREFIX;
-                case 2:
-                    return Fixity.INFIX;
-            }
-        } else {
-            return fixity;
+    @Override public double evaluate(double v1, double v2) {
+        return binaryOp.applyAsDouble(v1, v2);
+    }
+
+    @Override public String format(String s1, String s2) {
+        switch (fixity()) {
+            case INFIX:
+                return String.format("%s%s%s", s1, symbol, s2);
+            case PREFIX:
+            case POSTFIX:
+            default:
+                return "?";
         }
     }
 }

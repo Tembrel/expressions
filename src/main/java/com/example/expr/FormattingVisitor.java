@@ -20,14 +20,53 @@ class FormattingVisitor implements Visitor<String> {
     }
 
     @Override public String visit(UnaryOperationExpression expr) {
-        return expr.operator().format(expr.subExpression().accept(this));
+        UnaryOperator op = expr.operator();
+        Expression subExpr = expr.subExpression();
+        String subFmt = subExpr.accept(this);
+        if (subExpr instanceof OperationExpression) {
+            Operator subOp = ((OperationExpression) subExpr).operator();
+            if (op.isPrefix()) {
+                if (op.isLeftToRight()) {
+                    if (subOp.precedence() > op.precedence()) {
+                        subFmt = String.format("(%s)", subFmt);
+                    }
+                }
+            } else if (op.isPostfix()) {
+                if (op.isRightToLeft()) {
+                    if (subOp.precedence() > op.precedence()) {
+                        subFmt = String.format("(%s)", subFmt);
+                    }
+                }
+            }
+        }
+        return op.format(subFmt);
     }
 
     @Override public String visit(BinaryOperationExpression expr) {
-        return expr.operator().format(
-            expr.leftExpression().accept(this),
-            expr.rightExpression().accept(this)
-        );
+        BinaryOperator op = expr.operator();
+        Expression leftExpr = expr.leftExpression();
+        Expression rightExpr = expr.rightExpression();
+        String leftFmt = leftExpr.accept(this);
+        String rightFmt = rightExpr.accept(this);
+        if (op.isInfix()) {
+            if (leftExpr instanceof OperationExpression) {
+                Operator leftOp = ((OperationExpression) leftExpr).operator();
+                if (op.isLeftToRight()) {
+                    if (leftOp.precedence() > op.precedence()) {
+                        leftFmt = String.format("(%s)", leftFmt);
+                    }
+                }
+            }
+            if (rightExpr instanceof OperationExpression) {
+                Operator rightOp = ((OperationExpression) rightExpr).operator();
+                if (op.isRightToLeft()) {
+                    if (rightOp.precedence() > op.precedence()) {
+                        rightFmt = String.format("(%s)", rightFmt);
+                    }
+                }
+            }
+        }
+        return op.format(leftFmt, rightFmt);
     }
 
     @Override public String visit(BoundExpression expr) {

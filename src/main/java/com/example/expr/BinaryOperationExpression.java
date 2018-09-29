@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * An expression representing the result of a binary operation on two subexpressions.
  */
-public class BinaryOperationExpression extends Expression {
+public class BinaryOperationExpression extends OperationExpression {
     private final BinaryOperator op;
     private final Expression left;
     private final Expression right;
@@ -18,7 +18,7 @@ public class BinaryOperationExpression extends Expression {
     }
 
     /** The binary operation used in thie expression. */
-    public BinaryOperator operator() {
+    @Override public BinaryOperator operator() {
         return op;
     }
 

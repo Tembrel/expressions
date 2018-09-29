@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  * An expression representing the result of a unary operation on a subexpression.
  */
-public class UnaryOperationExpression extends Expression {
+public class UnaryOperationExpression extends OperationExpression {
     private final UnaryOperator op;
     private final Expression expr;
 
@@ -16,7 +16,7 @@ public class UnaryOperationExpression extends Expression {
     }
 
     /** The unary operation used in thie expression. */
-    public UnaryOperator operator() {
+    @Override public UnaryOperator operator() {
         return op;
     }
 

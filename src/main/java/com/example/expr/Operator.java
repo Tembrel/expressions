@@ -89,4 +89,11 @@ public interface Operator {
         }
         throw new IllegalStateException("Unknown arity operator");
     }
+
+
+    default boolean isLeftToRight() { return associativity() == Associativity.LEFT_TO_RIGHT; }
+    default boolean isRightToLeft() { return associativity() == Associativity.RIGHT_TO_LEFT; }
+    default boolean isPrefix() { return fixity() == Fixity.PREFIX; }
+    default boolean isPostfix() { return fixity() == Fixity.POSTFIX; }
+    default boolean isInfix() { return fixity() == Fixity.INFIX; }
 }

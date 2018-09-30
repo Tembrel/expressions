@@ -214,7 +214,7 @@ public abstract class Expression {
 
 
     /**
-     * Returns expression representing the sum of this
+     * Returns an expression representing the sum of this
      * expression and the given argument expression.
      */
     public final Expression plus(Expression that) {
@@ -222,7 +222,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the sum of this
+     * Returns an expression representing the sum of this
      * expression and the given constant.
      */
     public final Expression plus(double that) {
@@ -230,7 +230,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the sum of this
+     * Returns an expression representing the sum of this
      * expression and the given variable.
      */
     public final Expression plus(String that) {
@@ -239,7 +239,7 @@ public abstract class Expression {
 
 
     /**
-     * Returns expression representing the difference between
+     * Returns an expression representing the difference between
      * this expression and the given argument expression.
      */
     public final Expression minus(Expression that) {
@@ -247,7 +247,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the difference between
+     * Returns an expression representing the difference between
      * this expression and the given constant.
      */
     public final Expression minus(double that) {
@@ -255,7 +255,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the difference between
+     * Returns an expression representing the difference between
      * this expression and the given variable.
      */
     public final Expression minus(String that) {
@@ -264,7 +264,7 @@ public abstract class Expression {
 
 
     /**
-     * Returns expression representing the product of
+     * Returns an expression representing the product of
      * this expression and the given argument expression.
      */
     public final Expression times(Expression that) {
@@ -272,7 +272,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the product of
+     * Returns an expression representing the product of
      * this expression and the given constant.
      */
     public final Expression times(double that) {
@@ -280,7 +280,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the product of
+     * Returns an expression representing the product of
      * this expression and the given variable.
      */
     public final Expression times(String that) {
@@ -289,7 +289,7 @@ public abstract class Expression {
 
 
     /**
-     * Returns expression representing the quotient of
+     * Returns an expression representing the quotient of
      * this expression with the given argument expression.
      */
     public final Expression dividedBy(Expression that) {
@@ -297,7 +297,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the quotient of
+     * Returns an expression representing the quotient of
      * this expression with the given constant.
      */
     public final Expression dividedBy(double that) {
@@ -305,7 +305,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the quotient of
+     * Returns an expression representing the quotient of
      * this expression with the given variable.
      */
     public final Expression dividedBy(String that) {
@@ -314,7 +314,7 @@ public abstract class Expression {
 
 
     /**
-     * Returns expression representing the negation
+     * Returns an expression representing the negation
      * of this expression.
      */
     public final Expression negated() {
@@ -322,7 +322,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the square
+     * Returns an expression representing the square
      * of this expression.
      */
     public final Expression squared() {
@@ -330,7 +330,7 @@ public abstract class Expression {
     }
 
     /**
-     * Returns expression representing the square root
+     * Returns an expression representing the square root
      * of this expression.
      */
     public final Expression squareRoot() {

@@ -102,7 +102,8 @@ public class ExpressionParser {
         }
 
         public Parser<Expression> build() {
-            return exprParser(ATOM).from(TOKENIZER, IGNORED);
+            return exprParser(ATOM)
+                .from(TOKENIZER, IGNORED.skipMany());
         }
     }
 

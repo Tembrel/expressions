@@ -25,15 +25,15 @@ public enum LogPowerOperator implements DelegatingOp {
     @Override public Operator delegate() { return delegate; }
 
 
-    public static UnaryOperationExpression ln(Expression expr) {
-        return new UnaryOperationExpression(NATURAL_LOG, expr);
+    public static UnaryOpExpression ln(Expression expr) {
+        return new UnaryOpExpression(NATURAL_LOG, expr);
     }
 
-    public static UnaryOperationExpression log10(Expression expr) {
-        return new UnaryOperationExpression(LOG_BASE_10, expr);
+    public static UnaryOpExpression log10(Expression expr) {
+        return new UnaryOpExpression(LOG_BASE_10, expr);
     }
 
-    public static BinaryOperationExpression pow(Expression e1, Expression e2) {
-        return new BinaryOperationExpression(POW, e1, e2);
+    public static BinaryOpExpression pow(Expression e1, Expression e2) {
+        return new BinaryOpExpression(POW, e1, e2);
     }
 }

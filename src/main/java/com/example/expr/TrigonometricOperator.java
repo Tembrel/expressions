@@ -29,27 +29,27 @@ public enum TrigonometricOperator implements DelegatingOp {
     @Override public Operator delegate() { return delegate; }
 
 
-    public static UnaryOperationExpression sin(Expression expr) {
-        return new UnaryOperationExpression(SINE, expr);
+    public static UnaryOpExpression sin(Expression expr) {
+        return new UnaryOpExpression(SINE, expr);
     }
 
-    public static UnaryOperationExpression cos(Expression expr) {
-        return new UnaryOperationExpression(COSINE, expr);
+    public static UnaryOpExpression cos(Expression expr) {
+        return new UnaryOpExpression(COSINE, expr);
     }
 
-    public static UnaryOperationExpression tan(Expression expr) {
-        return new UnaryOperationExpression(TANGENT, expr);
+    public static UnaryOpExpression tan(Expression expr) {
+        return new UnaryOpExpression(TANGENT, expr);
     }
 
-    public static UnaryOperationExpression asin(Expression expr) {
-        return new UnaryOperationExpression(ARC_SINE, expr);
+    public static UnaryOpExpression asin(Expression expr) {
+        return new UnaryOpExpression(ARC_SINE, expr);
     }
 
-    public static UnaryOperationExpression acos(Expression expr) {
-        return new UnaryOperationExpression(ARC_COSINE, expr);
+    public static UnaryOpExpression acos(Expression expr) {
+        return new UnaryOpExpression(ARC_COSINE, expr);
     }
 
-    public static UnaryOperationExpression atan(Expression expr) {
-        return new UnaryOperationExpression(ARC_TANGENT, expr);
+    public static UnaryOpExpression atan(Expression expr) {
+        return new UnaryOpExpression(ARC_TANGENT, expr);
     }
 }

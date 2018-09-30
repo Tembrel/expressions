@@ -22,11 +22,11 @@ class FreeVariablesVisitor implements Visitor<Stream<String>> {
         return Stream.of(expr.varName());
     }
 
-    @Override public Stream<String> visit(UnaryOperationExpression expr) {
+    @Override public Stream<String> visit(UnaryOpExpression expr) {
         return expr.subExpression().accept(this);
     }
 
-    @Override public Stream<String> visit(BinaryOperationExpression expr) {
+    @Override public Stream<String> visit(BinaryOpExpression expr) {
         return Stream.concat(
             expr.leftExpression().accept(this),
             expr.rightExpression().accept(this)

@@ -6,11 +6,11 @@ import java.util.Objects;
 /**
  * An expression representing the result of a unary operation on a subexpression.
  */
-public class UnaryOperationExpression extends OperationExpression {
+public class UnaryOpExpression extends OperationExpression {
     private final UnaryOp op;
     private final Expression expr;
 
-    UnaryOperationExpression(UnaryOp op, Expression expr) {
+    UnaryOpExpression(UnaryOp op, Expression expr) {
         this.op = op;
         this.expr = expr;
     }
@@ -31,8 +31,8 @@ public class UnaryOperationExpression extends OperationExpression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof UnaryOperationExpression)) return false;
-        UnaryOperationExpression that = (UnaryOperationExpression) obj;
+        if (!(this instanceof UnaryOpExpression)) return false;
+        UnaryOpExpression that = (UnaryOpExpression) obj;
         return this.op == that.op
             && this.expr.equals(that.expr);
     }

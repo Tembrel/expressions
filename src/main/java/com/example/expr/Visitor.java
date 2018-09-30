@@ -13,10 +13,10 @@ public interface Visitor<R> {
     R visit(VariableExpression expr);
 
     /** Visit a unary operation expression. */
-    R visit(UnaryOperationExpression expr);
+    R visit(UnaryOpExpression expr);
 
     /** Visit a binary operation expression. */
-    R visit(BinaryOperationExpression expr);
+    R visit(BinaryOpExpression expr);
 
     /** Visit a bound expression. */
     R visit(BoundExpression expr);

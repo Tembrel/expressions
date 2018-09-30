@@ -6,12 +6,12 @@ import java.util.Objects;
 /**
  * An expression representing the result of a binary operation on two subexpressions.
  */
-public class BinaryOperationExpression extends OperationExpression {
+public class BinaryOpExpression extends OperationExpression {
     private final BinaryOp op;
     private final Expression left;
     private final Expression right;
 
-    BinaryOperationExpression(BinaryOp op, Expression left, Expression right) {
+    BinaryOpExpression(BinaryOp op, Expression left, Expression right) {
         this.op = op;
         this.left = left;
         this.right = right;
@@ -38,8 +38,8 @@ public class BinaryOperationExpression extends OperationExpression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof BinaryOperationExpression)) return false;
-        BinaryOperationExpression that = (BinaryOperationExpression) obj;
+        if (!(this instanceof BinaryOpExpression)) return false;
+        BinaryOpExpression that = (BinaryOpExpression) obj;
         return this.op == that.op
             && this.left.equals(that.left)
             && this.right.equals(that.right);

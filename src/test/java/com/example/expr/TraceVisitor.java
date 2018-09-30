@@ -32,7 +32,7 @@ public class TraceVisitor implements Visitor<Stream<String>> {
         return add("variable " + expr.varName());
     }
 
-    @Override public Stream<String> visit(UnaryOperationExpression expr) {
+    @Override public Stream<String> visit(UnaryOpExpression expr) {
         UnaryOp op = expr.operator();
         Expression subExpr = expr.subExpression();
         return add(String.format("unary %s assoc=%s fix=%s prec=%s arity=%s",
@@ -40,7 +40,7 @@ public class TraceVisitor implements Visitor<Stream<String>> {
             .append(subExpr.accept(child()));
     }
 
-    @Override public Stream<String> visit(BinaryOperationExpression expr) {
+    @Override public Stream<String> visit(BinaryOpExpression expr) {
         BinaryOp op = expr.operator();
         Expression leftExpr = expr.leftExpression();
         Expression rightExpr = expr.rightExpression();

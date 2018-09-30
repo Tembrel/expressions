@@ -19,7 +19,7 @@ class FormattingVisitor implements Visitor<String> {
         return expr.varName();
     }
 
-    @Override public String visit(UnaryOperationExpression expr) {
+    @Override public String visit(UnaryOpExpression expr) {
         UnaryOp op = expr.operator();
         Expression subExpr = expr.subExpression();
         String subFmt = subExpr.accept(this);
@@ -42,7 +42,7 @@ class FormattingVisitor implements Visitor<String> {
         return op.format(subFmt);
     }
 
-    @Override public String visit(BinaryOperationExpression expr) {
+    @Override public String visit(BinaryOpExpression expr) {
         BinaryOp op = expr.operator();
         Expression leftExpr = expr.leftExpression();
         Expression rightExpr = expr.rightExpression();

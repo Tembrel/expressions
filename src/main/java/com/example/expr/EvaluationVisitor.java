@@ -45,11 +45,11 @@ class EvaluationVisitor implements Visitor<Double> {
         throw new UnboundVariableException(varName);
     }
 
-    @Override public Double visit(UnaryOperationExpression expr) {
+    @Override public Double visit(UnaryOpExpression expr) {
         return expr.operator().evaluate(expr.subExpression().accept(this));
     }
 
-    @Override public Double visit(BinaryOperationExpression expr) {
+    @Override public Double visit(BinaryOpExpression expr) {
         return expr.operator().evaluate(
             expr.leftExpression().accept(this),
             expr.rightExpression().accept(this)

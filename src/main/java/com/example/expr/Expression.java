@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.Set;
 
 import one.util.streamex.EntryStream;
+import one.util.streamex.StreamEx;
+
+import org.jparsec.Parser;
 
 
 /**
@@ -33,9 +36,27 @@ public abstract class Expression {
     /**
      * Turn a string representation of an expression into an Expression instance.
      */
-    //public static Expression valueOf(String exprString) {
-    //    throw new UnsupportedOperationException("Parsing not yet supported");
-    //}
+    public static Expression parse(String exprString) {
+        return BASIC_PARSER.parse(exprString);
+    }
+
+    /**
+     * Returns a parser builder on basic operators to which
+     * more operators can be added fluently.
+     */
+    @SuppressWarnings("unchecked")
+    public static Parser<Expression> parserFor(Class<? extends Enum<? extends Operator>>... operatorTypes) {
+        return ExpressionParser.parserFor(
+            StreamEx.of(operatorTypes)
+                .prepend(LogPowerOperator.class)
+                .prepend(TrigonometricOperator.class)
+                .prepend(BasicOperator.class)
+                .toList()
+        );
+    }
+
+    @SuppressWarnings("unchecked")
+    private static final Parser<Expression> BASIC_PARSER = parserFor();
 
 
     /**
@@ -100,14 +121,14 @@ public abstract class Expression {
      * Returns a unary operation expression on the given operation and subexpression.
      */
     public Expression apply(UnaryOp op) {
-        return new UnaryOperationExpression(op, this);
+        return new UnaryOpExpression(op, this);
     }
 
     /**
      * Returns a binary operation expression on the given operation and left and right subexpressions.
      */
     public Expression apply(BinaryOp op, Expression right) {
-        return new BinaryOperationExpression(op, this, right);
+        return new BinaryOpExpression(op, this, right);
     }
 
 

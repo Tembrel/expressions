@@ -31,11 +31,13 @@ public enum BasicOperator implements DelegatingOp {
     @Override public Operator delegate() { return delegate; }
 
     @Override public String format(String s1, String s2) {
+        /*
         if (this == TIMES) {
             if (s1.matches("(^|[-A-Za-z0-9])[0-9]+") && !s2.matches("^[0-9]")) {
                 return s1 + s2;
             }
         }
+        */
         return DelegatingOp.super.format(s1, s2);
     }
 

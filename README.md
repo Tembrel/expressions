@@ -22,7 +22,7 @@ Intended use cases and how the API can be applied to meet them.
 
 ## Building
 
-Compilation dependencies: Guava, StreamEx, ErrorProne.
+Compilation dependencies: Guava, StreamEx, ErrorProne, JParsec.
 
 Runtime dependencies: Guava, StreamEx.
 

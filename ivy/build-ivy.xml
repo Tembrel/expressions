@@ -64,7 +64,7 @@
     description="resolve and retrieve dependencies with ivy"
   >
     <mkdir dir="${lib.dir}"/>
-    <ivy:retrieve type="jar" sync="true"/>
+    <ivy:retrieve type="jar, bundle" sync="true"/>
   </target>
 
 

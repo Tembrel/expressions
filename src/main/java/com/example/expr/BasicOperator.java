@@ -30,6 +30,15 @@ public enum BasicOperator implements DelegatingOperator {
 
     @Override public Operator delegate() { return delegate; }
 
+    @Override public String format(String s1, String s2) {
+        if (this == TIMES) {
+            if (s1.matches("(^|[-A-Za-z0-9])[0-9]+") && !s2.matches("^[0-9]")) {
+                return s1 + s2;
+            }
+        }
+        return DelegatingOperator.super.format(s1, s2);
+    }
+
     private static double divide(double a, double b) {
         double c = a / b;
         if (Double.isFinite(c)) {

@@ -11,12 +11,12 @@ import static com.example.expr.OperatorBuilder.op;
 @SuppressWarnings("ImmutableEnumChecker")
 public enum TrigonometricOperator implements DelegatingOp {
 
-    SINE        (op("sin ", Math::sin)       .precedence(15)),
-    COSINE      (op("cos ", Math::cos)       .precedence(15)),
-    TANGENT     (op("tan ", Math::tan)       .precedence(15)),
-    ARC_SINE    (op("asin ", Math::asin)     .precedence(15)),
-    ARC_COSINE  (op("acos ", Math::acos)     .precedence(15)),
-    ARC_TANGENT (op("atan ", Math::atan)     .precedence(15)),
+    SINE        (op("sin ", Math::sin)       .precedence(100)),
+    COSINE      (op("cos ", Math::cos)       .precedence(100)),
+    TANGENT     (op("tan ", Math::tan)       .precedence(100)),
+    ARC_SINE    (op("asin ", Math::asin)     .precedence(100)),
+    ARC_COSINE  (op("acos ", Math::acos)     .precedence(100)),
+    ARC_TANGENT (op("atan ", Math::atan)     .precedence(100)),
 
     ;
 

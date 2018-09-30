@@ -20,11 +20,7 @@ public interface Operator {
 
 
     /**
-     * The precedence of this operator. Higher numbers
-     * bind more tightly. The standard range of values
-     * is 16 (for highest precedence) to 1 (lowest precedence).
-     *
-     * @see <a href="https://introcs.cs.princeton.edu/java/11precedence/">Java operator precedence table</a>
+     * The precedence of this operator. Higher numbers bind more tightly.
      */
     int precedence();
 

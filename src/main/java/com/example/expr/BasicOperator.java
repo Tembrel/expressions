@@ -11,14 +11,14 @@ import static com.example.expr.OperatorBuilder.op;
 @SuppressWarnings("ImmutableEnumChecker")
 public enum BasicOperator implements DelegatingOp {
 
-    NEGATED     (op("-", a -> -a)                      .precedence(14)),
-    SQUARED     (op("^2", a -> a * a) .fixity(POSTFIX) .precedence(15)),
-    SQUARE_ROOT (op("sqrt ", Math::sqrt)               .precedence(15)),
+    NEGATED     (op("-", a -> -a)                      .precedence(100)),
+    SQUARED     (op("^2", a -> a * a) .fixity(POSTFIX) .precedence(100)),
+    SQUARE_ROOT (op("sqrt ", Math::sqrt)               .precedence(100)),
 
-    PLUS        (op(" + ", (a, b) -> a + b)            .precedence(11)),
-    MINUS       (op(" - ", (a, b) -> a - b)            .precedence(11)),
-    TIMES       (op(" ", (a, b) -> a * b)              .precedence(13)),
-    DIVIDED_BY  (op(" / ", (a, b) -> divide(a, b))     .precedence(12)),
+    PLUS        (op(" + ", (a, b) -> a + b)            .precedence(10)),
+    MINUS       (op(" - ", (a, b) -> a - b)            .precedence(10)),
+    TIMES       (op(" ", (a, b) -> a * b)              .precedence(20)),
+    DIVIDED_BY  (op(" / ", (a, b) -> divide(a, b))     .precedence(20)),
 
     ;
 

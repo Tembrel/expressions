@@ -28,16 +28,18 @@ class FormattingVisitor implements Visitor<String> {
             if (op.isPrefix()) {
                 if (op.isLeftToRight()) {
                     if (subOp.precedence() > op.precedence()) {
-                        subFmt = String.format("(%s)", subFmt);
+                        subFmt = parenthesize(subFmt);
                     }
                 }
             } else if (op.isPostfix()) {
                 if (op.isRightToLeft()) {
                     if (subOp.precedence() > op.precedence()) {
-                        subFmt = String.format("(%s)", subFmt);
+                        subFmt = parenthesize(subFmt);
                     }
                 }
             }
+        } else if (subExpr instanceof BoundExpression) {
+            subFmt = parenthesize(subFmt);
         }
         return op.format(subFmt);
     }
@@ -60,6 +62,8 @@ class FormattingVisitor implements Visitor<String> {
                         leftFmt = String.format("(%s)", leftFmt);
                     }
                 }
+            } else if (leftExpr instanceof BoundExpression) {
+                leftFmt = String.format("(%s)", leftFmt);
             }
             if (rightExpr instanceof OperationExpression) {
                 Operator rightOp = ((OperationExpression) rightExpr).operator();
@@ -69,9 +73,11 @@ class FormattingVisitor implements Visitor<String> {
                     }
                 } else if (op.isLeftToRight()) {
                     if (rightOp.precedence() < op.precedence()) {
-                        rightFmt = String.format("(%s)", rightFmt);
+                        rightFmt = parenthesize(rightFmt);
                     }
                 }
+            } else if (rightExpr instanceof BoundExpression) {
+                rightFmt = parenthesize(rightFmt);
             }
         }
         return op.format(leftFmt, rightFmt);
@@ -79,11 +85,16 @@ class FormattingVisitor implements Visitor<String> {
 
     @Override public String visit(BoundExpression expr) {
         String bindStr = EntryStream.of(expr.bindings())
-            .mapKeyValue((varName, boundExpr) ->
-                String.format("%s = %s", varName, boundExpr.accept(this)))
+            .mapKeyValue((varName, boundExpr) -> {
+                String subFmt = boundExpr.accept(this);
+                if (boundExpr instanceof BoundExpression) {
+                    subFmt = parenthesize(subFmt);
+                }
+                return String.format("%s = %s", varName, subFmt);
+            })
             .joining(", ");
         String str = expr.subExpression().accept(this);
-        return String.format("[let %s in %s]", bindStr, str);
+        return String.format("let %s in %s", bindStr, str);
     }
 
     @Override public String visitUnknown(Expression expr) {
@@ -92,5 +103,9 @@ class FormattingVisitor implements Visitor<String> {
 
     private static String formatDouble(double value) {
         return Double.toString(value).replaceFirst("\\.0", "");
+    }
+
+    private static String parenthesize(String s) {
+        return "(" + s + ")";
     }
 }

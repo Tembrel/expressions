@@ -7,7 +7,7 @@ import static com.example.expr.OperatorBuilder.op;
  * Logarithmic and exponential (power) operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum LogPowerOperator implements DelegatingOperator {
+public enum LogPowerOperator implements DelegatingOp {
 
     NATURAL_LOG (op("ln ", Math::log)    .precedence(15)),
     LOG_BASE_10 (op("log ", Math::log10) .precedence(15)),

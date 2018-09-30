@@ -4,7 +4,7 @@ package com.example.expr;
  * A partial implementation of both the unary and binary operator interfaces
  * that delegates to an underlying operator.
  */
-public interface DelegatingOperator extends UnaryOperator, BinaryOperator {
+public interface DelegatingOp extends UnaryOp, BinaryOp {
 
     /**
      * Returns the operator to which method calls can be delegated.
@@ -15,9 +15,9 @@ public interface DelegatingOperator extends UnaryOperator, BinaryOperator {
      * Returns a valid unary operator, by default the delegate().
      * @throws ClassCastException if the delegate is not a unary operator
       */
-    default UnaryOperator asUnary() {
+    default UnaryOp asUnary() {
         if (delegate().arity() == 1) {
-            return ((UnaryOperator) delegate());
+            return ((UnaryOp) delegate());
         }
         throw new ClassCastException("Attempt to evaluate binary operator as unary operator");
     }
@@ -26,9 +26,9 @@ public interface DelegatingOperator extends UnaryOperator, BinaryOperator {
      * Returns a valid binary operator, by default the delegate().
      * @throws ClassCastException if the delegate is not a binary operator
      */
-    default BinaryOperator asBinary() {
+    default BinaryOp asBinary() {
         if (delegate().arity() == 2) {
-            return ((BinaryOperator) delegate());
+            return ((BinaryOp) delegate());
         }
         throw new ClassCastException("Attempt to evaluate unary operator as binary operator");
     }

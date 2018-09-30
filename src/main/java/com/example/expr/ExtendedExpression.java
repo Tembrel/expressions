@@ -65,7 +65,7 @@ public abstract class ExtendedExpression<T extends ExtendedExpression<T>> extend
      * Returns an extended expression representing the result of
      * applying the given unary operation to this expression.
      */
-    @Override public T apply(UnaryOperator op) {
+    @Override public T apply(UnaryOp op) {
         return wrap(delegate.apply(op), type);
     }
 
@@ -73,7 +73,7 @@ public abstract class ExtendedExpression<T extends ExtendedExpression<T>> extend
      * Returns an extended expression representing the result of
      * applying the given binary operation to this expression.
      */
-    @Override public T apply(BinaryOperator op, Expression that) {
+    @Override public T apply(BinaryOp op, Expression that) {
         return wrap(delegate.apply(op, that), type);
     }
 }

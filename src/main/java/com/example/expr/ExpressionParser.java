@@ -6,12 +6,12 @@ import org.jparsec.Parser;
 /**
  * Builds parser for Expression instances.
  * Adapted from JParsec tutorial.
- * @see https://github.com/jparsec/jparsec/wiki/Tutorial
+ * @see <a href="https://github.com/jparsec/jparsec/wiki/Tutorial">JParsec tutorail</a>
  */
 public class ExpressionParser {
     
     /**
-     * Create a parse for expressions using a basic set
+     * Create a parser for expressions using a basic set
      * of operations.
      */
     public static Parser<Expression> parser() {

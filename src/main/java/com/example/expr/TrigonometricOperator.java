@@ -9,7 +9,7 @@ import static com.example.expr.OperatorBuilder.op;
  * Trigonometric operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum TrigonometricOperator implements DelegatingOperator {
+public enum TrigonometricOperator implements DelegatingOp {
 
     SINE        (op("sin ", Math::sin)       .precedence(15)),
     COSINE      (op("cos ", Math::cos)       .precedence(15)),

@@ -8,7 +8,7 @@ import java.util.function.DoubleUnaryOperator;
 /**
  *
  */
-public class OperatorBuilder implements UnaryOperator, BinaryOperator {
+public class OperatorBuilder implements UnaryOp, BinaryOp {
 
     final int arity;
     final DoubleUnaryOperator unaryOp;

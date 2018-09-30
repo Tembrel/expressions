@@ -4,7 +4,7 @@ package com.example.expr;
  * A double precision binary operator, supporting evaluation and
  * formatting (string representation).
  */
-public interface BinaryOperator extends Operator {
+public interface BinaryOp extends Operator {
 
     /**
      * Apply this operation to a double value.

@@ -99,14 +99,14 @@ public abstract class Expression {
     /**
      * Returns a unary operation expression on the given operation and subexpression.
      */
-    public Expression apply(UnaryOperator op) {
+    public Expression apply(UnaryOp op) {
         return new UnaryOperationExpression(op, this);
     }
 
     /**
      * Returns a binary operation expression on the given operation and left and right subexpressions.
      */
-    public Expression apply(BinaryOperator op, Expression right) {
+    public Expression apply(BinaryOp op, Expression right) {
         return new BinaryOperationExpression(op, this, right);
     }
 

@@ -9,10 +9,10 @@ public interface Operator {
      * The arity of this operator.
      */
     default int arity() {
-        if (this instanceof UnaryOperator) {
+        if (this instanceof UnaryOp) {
             return 1;
         }
-        if (this instanceof BinaryOperator) {
+        if (this instanceof BinaryOp) {
             return 2;
         }
         throw new IllegalStateException("Unknown arity operator");
@@ -24,7 +24,7 @@ public interface Operator {
      * bind more tightly. The standard range of values
      * is 16 (for highest precedence) to 1 (lowest precedence).
      *
-     * @see https://introcs.cs.princeton.edu/java/11precedence/
+     * @see <a href="https://introcs.cs.princeton.edu/java/11precedence/">Java operator precedence table</a>
      */
     int precedence();
 

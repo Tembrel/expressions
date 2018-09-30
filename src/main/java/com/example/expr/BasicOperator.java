@@ -9,7 +9,7 @@ import static com.example.expr.OperatorBuilder.op;
  * Logarithmic and exponential (power) operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum BasicOperator implements DelegatingOperator {
+public enum BasicOperator implements DelegatingOp {
 
     NEGATED     (op("-", a -> -a)                      .precedence(14)),
     SQUARED     (op("^2", a -> a * a) .fixity(POSTFIX) .precedence(15)),
@@ -36,7 +36,7 @@ public enum BasicOperator implements DelegatingOperator {
                 return s1 + s2;
             }
         }
-        return DelegatingOperator.super.format(s1, s2);
+        return DelegatingOp.super.format(s1, s2);
     }
 
     private static double divide(double a, double b) {

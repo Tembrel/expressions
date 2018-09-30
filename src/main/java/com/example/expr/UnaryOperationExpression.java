@@ -7,16 +7,16 @@ import java.util.Objects;
  * An expression representing the result of a unary operation on a subexpression.
  */
 public class UnaryOperationExpression extends OperationExpression {
-    private final UnaryOperator op;
+    private final UnaryOp op;
     private final Expression expr;
 
-    UnaryOperationExpression(UnaryOperator op, Expression expr) {
+    UnaryOperationExpression(UnaryOp op, Expression expr) {
         this.op = op;
         this.expr = expr;
     }
 
     /** The unary operation used in thie expression. */
-    @Override public UnaryOperator operator() {
+    @Override public UnaryOp operator() {
         return op;
     }
 

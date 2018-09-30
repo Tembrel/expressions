@@ -4,7 +4,7 @@ package com.example.expr;
  * A double precision unary operator, supporting evaluation and
  * formatting (string representation).
  */
-public interface UnaryOperator extends Operator {
+public interface UnaryOp extends Operator {
 
     /**
      * Apply this operation to a double value.

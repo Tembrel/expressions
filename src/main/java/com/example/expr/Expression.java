@@ -223,18 +223,19 @@ public abstract class Expression {
 
     /**
      * Returns an expression representing the sum of this
-     * expression and the given constant.
+     * expression and a constant expression of the given value.
      */
-    public final Expression plus(double that) {
-        return apply(PLUS, expr(that));
+    public final Expression plus(double value) {
+        return apply(PLUS, expr(value));
     }
 
     /**
      * Returns an expression representing the sum of this
-     * expression and the given variable.
+     * expression and a variable expression of the given
+     * variable name.
      */
-    public final Expression plus(String that) {
-        return apply(PLUS, expr(that));
+    public final Expression plus(String varName) {
+        return apply(PLUS, expr(varName));
     }
 
 
@@ -248,18 +249,19 @@ public abstract class Expression {
 
     /**
      * Returns an expression representing the difference between
-     * this expression and the given constant.
+     * this expression and a constant expression of the given value.
      */
-    public final Expression minus(double that) {
-        return apply(MINUS, expr(that));
+    public final Expression minus(double value) {
+        return apply(MINUS, expr(value));
     }
 
     /**
      * Returns an expression representing the difference between
-     * this expression and the given variable.
+     * this expression and a variable expression of the given
+     * variable name.
      */
-    public final Expression minus(String that) {
-        return apply(MINUS, expr(that));
+    public final Expression minus(String varName) {
+        return apply(MINUS, expr(varName));
     }
 
 
@@ -273,18 +275,19 @@ public abstract class Expression {
 
     /**
      * Returns an expression representing the product of
-     * this expression and the given constant.
+     * this expression and a constant expression of the given value.
      */
-    public final Expression times(double that) {
-        return apply(TIMES, expr(that));
+    public final Expression times(double value) {
+        return apply(TIMES, expr(value));
     }
 
     /**
      * Returns an expression representing the product of
-     * this expression and the given variable.
+     * this expression and a variable expression of the given
+     * variable name.
      */
-    public final Expression times(String that) {
-        return apply(TIMES, expr(that));
+    public final Expression times(String varName) {
+        return apply(TIMES, expr(varName));
     }
 
 
@@ -298,18 +301,19 @@ public abstract class Expression {
 
     /**
      * Returns an expression representing the quotient of
-     * this expression with the given constant.
+     * this expression with a constant expression of the given value.
      */
-    public final Expression dividedBy(double that) {
-        return apply(DIVIDED_BY, expr(that));
+    public final Expression dividedBy(double value) {
+        return apply(DIVIDED_BY, expr(value));
     }
 
     /**
      * Returns an expression representing the quotient of
-     * this expression with the given variable.
+     * this expression and a variable expression of the given
+     * variable name.
      */
-    public final Expression dividedBy(String that) {
-        return apply(DIVIDED_BY, expr(that));
+    public final Expression dividedBy(String varName) {
+        return apply(DIVIDED_BY, expr(varName));
     }
 
 

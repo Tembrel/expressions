@@ -80,6 +80,10 @@ public class OperatorBuilder implements UnaryOp, BinaryOp {
     }
 
 
+    @Override public String symbol() {
+        return symbol;
+    }
+
     @Override public int arity() {
         return arity;
     }

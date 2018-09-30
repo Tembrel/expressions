@@ -33,6 +33,7 @@ public interface DelegatingOp extends UnaryOp, BinaryOp {
         throw new ClassCastException("Attempt to evaluate unary operator as binary operator");
     }
 
+    @Override default String symbol() { return delegate().symbol(); }
     @Override default int precedence() { return delegate().precedence(); }
     @Override default Fixity fixity() { return delegate().fixity(); }
     @Override default Associativity associativity() { return delegate().associativity(); }

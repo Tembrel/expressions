@@ -4,6 +4,11 @@ package com.example.expr;
  * A double precision operator with arity, precedence, fixity, and associativity.
  */
 public interface Operator {
+    
+    /**
+     * The text symbol for this operator.
+     */
+    String symbol();
 
     /**
      * The arity of this operator.

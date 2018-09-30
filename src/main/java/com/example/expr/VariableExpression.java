@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  */
 public class VariableExpression extends Expression {
 
-    private static final Pattern VALID_VAR_NAME = Pattern.compile("[A-Za-z][A-Za-z0-9_]*");
+    private static final Pattern VALID_VAR_NAME = Pattern.compile("[A-Za-z_][A-Za-z0-9_]*");
     private final String varName;
 
     VariableExpression(String varName) {

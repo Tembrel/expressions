@@ -56,7 +56,7 @@ public abstract class Expression {
     }
 
     @SuppressWarnings("unchecked")
-    private static final Parser<Expression> BASIC_PARSER = parserFor();
+    private static final Parser<Expression> BASIC_PARSER = null; //parserFor();
 
 
     /**

@@ -16,7 +16,7 @@ public interface DelegatingOp extends UnaryOp, BinaryOp {
      * @throws ClassCastException if the delegate is not a unary operator
       */
     default UnaryOp asUnary() {
-        if (delegate().arity() == 1) {
+        if (delegate().type().arity() == 1) {
             return ((UnaryOp) delegate());
         }
         throw new ClassCastException("Attempt to evaluate binary operator as unary operator");
@@ -27,16 +27,15 @@ public interface DelegatingOp extends UnaryOp, BinaryOp {
      * @throws ClassCastException if the delegate is not a binary operator
      */
     default BinaryOp asBinary() {
-        if (delegate().arity() == 2) {
+        if (delegate().type().arity() == 2) {
             return ((BinaryOp) delegate());
         }
         throw new ClassCastException("Attempt to evaluate unary operator as binary operator");
     }
 
     @Override default String symbol() { return delegate().symbol(); }
+    @Override default Type type() { return delegate().type(); }
     @Override default int precedence() { return delegate().precedence(); }
-    @Override default Fixity fixity() { return delegate().fixity(); }
-    @Override default Associativity associativity() { return delegate().associativity(); }
 
     @Override default double evaluate(double v) { return asUnary().evaluate(v); }
     @Override default String format(String s) { return asUnary().format(s); }

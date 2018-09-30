@@ -1,27 +1,36 @@
 package com.example.expr;
 
+
 /**
  * A double precision operator with arity, precedence, fixity, and associativity.
  */
 public interface Operator {
-    
+
     /**
      * The text symbol for this operator.
      */
     String symbol();
 
+
     /**
-     * The arity of this operator.
+     * The type of operator, whether it is pre-, post-, or infix, and
+     * if the kind of associativity if infix.
      */
-    default int arity() {
-        if (this instanceof UnaryOp) {
-            return 1;
+    enum Type {
+        PREFIX(1),
+        POSTFIX(1),
+        INFIXL(2),
+        INFIXN(2),
+        INFIXR(2),
+        ;
+        final int arity;
+        Type(int arity) {
+            this.arity = arity;
         }
-        if (this instanceof BinaryOp) {
-            return 2;
-        }
-        throw new IllegalStateException("Unknown arity operator");
+        int arity() { return arity; }
     }
+
+    Type type();
 
 
     /**
@@ -31,94 +40,27 @@ public interface Operator {
 
 
     /**
-     * Where the operator is place in relation to the argument(s).
+     * Convenience method to test if this is a prefix operator.
      */
-    enum Fixity {
-        INFIX,
-        PREFIX,
-        POSTFIX,
-    }
+    default boolean isPrefix() { return type() == Type.PREFIX; }
 
     /**
-     * The fixity of this operator.
+     * Convenience method to test if this is a postfix operator.
      */
-    default Fixity fixity() {
-        switch (arity()) {
-            case 1:
-            default:
-                return Fixity.PREFIX;
-            case 2:
-                return Fixity.INFIX;
-        }
-    }
-
+    default boolean isPostfix() { return type() == Type.POSTFIX; }
 
     /**
-     * Describes how an operation associates within an expression
-     * in the absence of parentheses.
+     * Convenience method to test if this is an infix operator.
      */
-    enum Associativity {
-        LEFT_TO_RIGHT,
-        RIGHT_TO_LEFT,
-        NOT_ASSOCIATIVE,
-    }
+    default boolean isInfix() { return type() == Type.INFIXL || type() == Type.INFIXN || type() == Type.INFIXR; }
 
     /**
-     * The associativity of this operator.
+     * Convenience method to test for left-to-right associativity.
      */
-    default Associativity associativity() {
-        switch (arity()) {
-            case 1:
-                switch (fixity()) {
-                    case PREFIX:
-                        return Associativity.RIGHT_TO_LEFT;
-                    case INFIX:
-                    case POSTFIX:
-                    default:
-                        return Associativity.NOT_ASSOCIATIVE;
-                }
-            case 2:
-                switch (fixity()) {
-                    case INFIX:
-                        return Associativity.LEFT_TO_RIGHT;
-                    case PREFIX:
-                    case POSTFIX:
-                    default:
-                        return Associativity.NOT_ASSOCIATIVE;
-                }
-            default:
-                return Associativity.NOT_ASSOCIATIVE;
-        }
-    }
-
+    default boolean isLeftToRight() { return type() == Type.INFIXL; }
 
     /**
-     * Convenience method to test if this is a prefix operator,
-     * equivalent to {@code fixity() == PREFIX}.
+     * Convenience method to test for right-to-left associativity.
      */
-    default boolean isPrefix() { return fixity() == Fixity.PREFIX; }
-
-    /**
-     * Convenience method to test if this is a postfix operator,
-     * equivalent to {@code fixity() == POSTFIX}.
-     */
-    default boolean isPostfix() { return fixity() == Fixity.POSTFIX; }
-
-    /**
-     * Convenience method to test if this is an infix operator,
-     * equivalent to {@code fixity() == INFIX}.
-     */
-    default boolean isInfix() { return fixity() == Fixity.INFIX; }
-
-    /**
-     * Convenience method to test for left-to-right associativity,
-     * equivalent to {@code associativity() == LEFT_TO_RIGHT}.
-     */
-    default boolean isLeftToRight() { return associativity() == Associativity.LEFT_TO_RIGHT; }
-
-    /**
-     * Convenience method to test for right-to-left associativity,
-     * equivalent to {@code associativity() == RIGHT_TO_LEFT}.
-     */
-    default boolean isRightToLeft() { return associativity() == Associativity.RIGHT_TO_LEFT; }
+    default boolean isRightToLeft() { return type() == Type.INFIXR; }
 }

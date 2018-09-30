@@ -10,73 +10,92 @@ import java.util.function.DoubleUnaryOperator;
  */
 public class OperatorBuilder implements UnaryOp, BinaryOp {
 
-    final int arity;
     final DoubleUnaryOperator unaryOp;
     final DoubleBinaryOperator binaryOp;
     final String symbol;
     final int precedence;
-    final Fixity fixity;
-    final Associativity associativity;
+    final Type type;
 
 
-    OperatorBuilder(int arity, DoubleUnaryOperator unaryOp, DoubleBinaryOperator binaryOp,
-            String symbol, int precedence, Fixity fixity, Associativity associativity) {
-        this.arity = arity;
+    OperatorBuilder(DoubleUnaryOperator unaryOp, DoubleBinaryOperator binaryOp,
+            String symbol, int precedence, Type type) {
         this.unaryOp = unaryOp;
         this.binaryOp = binaryOp;
         this.symbol = symbol;
         this.precedence = precedence;
-        this.fixity = fixity;
-        this.associativity = associativity;
+        this.type = type;
     }
 
 
     /**
-     * Creates a builder for a unary operator.
+     * Creates a builder for a unary prefix operator.
      */
-    public static OperatorBuilder op(String symbol, DoubleUnaryOperator unaryOp) {
+    public static OperatorBuilder prefix(String symbol, DoubleUnaryOperator unaryOp) {
+        return unary(symbol, unaryOp, Type.PREFIX);
+    }
+
+    /**
+     * Creates a builder for a unary postfix operator.
+     */
+    public static OperatorBuilder postfix(String symbol, DoubleUnaryOperator unaryOp) {
+        return unary(symbol, unaryOp, Type.POSTFIX);
+    }
+
+    /**
+     * Creates a builder for a left-associative binary operator.
+     */
+    public static OperatorBuilder infixl(String symbol, DoubleBinaryOperator binaryOp) {
+        return binary(symbol, binaryOp, Type.INFIXL);
+    }
+
+    /**
+     * Creates a builder for a non-associative binary operator.
+     */
+    public static OperatorBuilder infixn(String symbol, DoubleBinaryOperator binaryOp) {
+        return binary(symbol, binaryOp, Type.INFIXN);
+    }
+
+    /**
+     * Creates a builder for a right-associative binary operator.
+     */
+    public static OperatorBuilder infixr(String symbol, DoubleBinaryOperator binaryOp) {
+        return binary(symbol, binaryOp, Type.INFIXR);
+    }
+
+    /**
+     * Creates a builder for a unary operator of the given type.
+     */
+    private static OperatorBuilder unary(String symbol, DoubleUnaryOperator unaryOp, Type type) {
         if (unaryOp == null) {
             throw new IllegalArgumentException("operator argument must not be null");
         }
+        if (type.arity() != 1) {
+            throw new IllegalArgumentException("type argument must be PREFIX or POSTFIX");
+        }
         // XXX ensure valid symbol
-        return new OperatorBuilder(1, unaryOp, null, symbol, 0, Fixity.PREFIX, Associativity.RIGHT_TO_LEFT);
+        return new OperatorBuilder(unaryOp, null, symbol, 0, type);
     }
 
     /**
-     * Creates a builder for a binary operator.
+     * Creates a builder for a binary operator of the given type.
      */
-    public static OperatorBuilder op(String symbol, DoubleBinaryOperator binaryOp) {
+    private static OperatorBuilder binary(String symbol, DoubleBinaryOperator binaryOp, Type type) {
         if (binaryOp == null) {
             throw new IllegalArgumentException("operator argument must not be null");
         }
+        if (type.arity() != 2) {
+            throw new IllegalArgumentException("type argument must be INFIXL, INFIXN, or INFIXR");
+        }
         // XXX ensure valid symbol
-        return new OperatorBuilder(2, null, binaryOp, symbol, 0, Fixity.INFIX, Associativity.LEFT_TO_RIGHT);
+        return new OperatorBuilder(null, binaryOp, symbol, 0, type);
     }
+
 
     /**
      * Sets the precedence of this operator.
      */
     public OperatorBuilder precedence(int precedence) {
-        return new OperatorBuilder(this.arity, this.unaryOp, this.binaryOp, this.symbol, precedence, this.fixity, this.associativity);
-    }
-
-    /**
-     * Sets the fixity of this operator.
-     */
-    public OperatorBuilder fixity(Fixity fixity) {
-        if (this.arity == 1 && fixity == Fixity.INFIX) {
-            throw new IllegalArgumentException("unary operators must be either prefix or postfix");
-        } else if (this.arity == 2 && fixity != Fixity.INFIX) {
-            throw new IllegalArgumentException("binary operators must be infix");
-        }
-        return new OperatorBuilder(this.arity, this.unaryOp, this.binaryOp, this.symbol, this.precedence, fixity, this.associativity);
-    }
-
-    /**
-     * Sets the associativity of this operator.
-     */
-    public OperatorBuilder associativity(Associativity associativity) {
-        return new OperatorBuilder(this.arity, this.unaryOp, this.binaryOp, this.symbol, this.precedence, this.fixity, associativity);
+        return new OperatorBuilder(this.unaryOp, this.binaryOp, this.symbol, precedence, this.type);
     }
 
 
@@ -84,20 +103,12 @@ public class OperatorBuilder implements UnaryOp, BinaryOp {
         return symbol;
     }
 
-    @Override public int arity() {
-        return arity;
-    }
-
     @Override public int precedence() {
         return precedence;
     }
 
-    @Override public Fixity fixity() {
-        return fixity;
-    }
-
-    @Override public Associativity associativity() {
-        return associativity;
+    @Override public Type type() {
+        return type;
     }
 
 
@@ -106,14 +117,13 @@ public class OperatorBuilder implements UnaryOp, BinaryOp {
     }
 
     @Override public String format(String s) {
-        switch (fixity()) {
+        switch (type()) {
             case PREFIX:
                 return String.format("%s%s", symbol, s);
             case POSTFIX:
                 return String.format("%s%s", s, symbol);
-            case INFIX:
             default:
-                return "?";
+                throw new IllegalStateException("Unary operator must be prefix or postfix");
         }
     }
 
@@ -122,13 +132,13 @@ public class OperatorBuilder implements UnaryOp, BinaryOp {
     }
 
     @Override public String format(String s1, String s2) {
-        switch (fixity()) {
-            case INFIX:
+        switch (type()) {
+            case INFIXL:
+            case INFIXN:
+            case INFIXR:
                 return String.format("%s%s%s", s1, symbol, s2);
-            case PREFIX:
-            case POSTFIX:
             default:
-                return "?";
+                throw new IllegalStateException("Binary operator must be infix");
         }
     }
 }

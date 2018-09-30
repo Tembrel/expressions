@@ -32,7 +32,6 @@ public class ExpressionParser {
     private final ImmutableList<Operator> operators;
     private final List<String> opSymbols;
     private final String[] opSymArray;
-    private final Terminals OPERATORS;
     private final Terminals TERMS;
     private final Parser<?> TOKENIZER;
     private final Parser<?> WHITESPACE_MUL;
@@ -43,12 +42,11 @@ public class ExpressionParser {
         this.opSymbols = StreamEx.of(operators)
             .map(Operator::symbol)
             .map(String::trim)
-            .distinct()
             .append("(", ")")
+            .distinct()
             .toList();
         this.opSymArray = opSymbols.toArray(new String[0]);
-        this.OPERATORS = Terminals.operators(opSymbols);
-        this.TERMS = OPERATORS
+        this.TERMS = Terminals.operators(opSymbols)
             .words(Scanners.IDENTIFIER)
             .keywords("let", "in")
             .build();
@@ -79,21 +77,14 @@ public class ExpressionParser {
 
 
     Parser<?> term(String... names) {
-        return OPERATORS.token(names);
+        return TERMS.token(names);
     }
-
-    //<T> Parser<T> op(String name, T value) {
-    //    return term(name).retn(value);
-    //}
 
 
     Parser<Expression> exprParser(Parser<Expression> atom) {
         Parser.Reference<Expression> ref = Parser.newReference();
         Parser<Expression> parenthesized = ref.lazy().between(term("("), term(")"));
-        //Parser<Expression> bracketed = ref.lazy().between(term("["), term("]"));
-        Parser<Expression> unit = parenthesized
-            //.or(bracketed)
-            .or(atom);
+        Parser<Expression> unit = parenthesized.or(atom);
         Parser<Expression> parser = StreamEx.of(operators)
             .foldLeft(new OperatorTable<Expression>(), this::add)
             .build(unit);
@@ -102,11 +93,22 @@ public class ExpressionParser {
     }
 
     private OperatorTable<Expression> add(OperatorTable<Expression> opTable, Operator op) {
+        //<T> Parser<T> op(String name, T value) {
+        //    return term(name).retn(value);
+        //}
         //.infixl(op("+", (l, r) -> l + r), 10)
         //.infixl(op("-", (l, r) -> l - r), 10)
         //.infixl(Parsers.or(term("*"), WHITESPACE_MUL).retn((l, r) -> l * r), 20)
         //.infixl(op("/", (l, r) -> l / r), 20)
         //.prefix(op("-", v -> -v), 30)
+        String symbol = op.symbol().trim();
+        switch (op.type()) {
+            case PREFIX:
+            case POSTFIX:
+            case INFIXL:
+            case INFIXN:
+            case INFIXR:
+        }
         return opTable;
     }
 }

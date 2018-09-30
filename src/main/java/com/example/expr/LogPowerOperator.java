@@ -1,6 +1,6 @@
 package com.example.expr;
 
-import static com.example.expr.OperatorBuilder.op;
+import static com.example.expr.OperatorBuilder.*;
 
 
 /**
@@ -9,10 +9,9 @@ import static com.example.expr.OperatorBuilder.op;
 @SuppressWarnings("ImmutableEnumChecker")
 public enum LogPowerOperator implements DelegatingOp {
 
-    NATURAL_LOG (op("ln ", Math::log)    .precedence(100)),
-    LOG_BASE_10 (op("log ", Math::log10) .precedence(100)),
-
-    POW         (op("^", Math::pow)      .precedence(30)),
+    NATURAL_LOG (prefix("ln ", Math::log)       .precedence(100)),
+    LOG_BASE_10 (prefix("log ", Math::log10)    .precedence(100)),
+    POW         (infixr("^", Math::pow)         .precedence(30)),
 
     ;
 

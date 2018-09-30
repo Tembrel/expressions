@@ -25,18 +25,18 @@ public class TraceVisitor implements Visitor<Stream<String>> {
     }
 
     @Override public Stream<String> visit(ConstantExpression expr) {
-        return add("constant " + expr.value());
+        return add("CONST " + expr.value());
     }
 
     @Override public Stream<String> visit(VariableExpression expr) {
-        return add("variable " + expr.varName());
+        return add("VAR " + expr.varName());
     }
 
     @Override public Stream<String> visit(UnaryOpExpression expr) {
         UnaryOp op = expr.operator();
         Expression subExpr = expr.subExpression();
-        return add(String.format("unary %s assoc=%s fix=%s prec=%s arity=%s",
-                name(op), op.associativity(), op.fixity(), op.precedence(), op.arity()))
+        return add(String.format("%s %s precedence=%s",
+                op.type(), name(op), op.precedence()))
             .append(subExpr.accept(child()));
     }
 
@@ -45,8 +45,8 @@ public class TraceVisitor implements Visitor<Stream<String>> {
         Expression leftExpr = expr.leftExpression();
         Expression rightExpr = expr.rightExpression();
         TraceVisitor child = child();
-        return add(String.format("binary %s assoc=%s fix=%s prec=%s arity=%s",
-                name(op), op.associativity(), op.fixity(), op.precedence(), op.arity()))
+        return add(String.format("%s %s precedence=%s",
+                op.type(), name(op), op.precedence()))
             .append(leftExpr.accept(child))
             .append(rightExpr.accept(child));
     }

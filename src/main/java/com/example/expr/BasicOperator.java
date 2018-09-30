@@ -1,8 +1,6 @@
 package com.example.expr;
 
-import static com.example.expr.Operator.Fixity.POSTFIX;
-
-import static com.example.expr.OperatorBuilder.op;
+import static com.example.expr.OperatorBuilder.*;
 
 
 /**
@@ -11,14 +9,14 @@ import static com.example.expr.OperatorBuilder.op;
 @SuppressWarnings("ImmutableEnumChecker")
 public enum BasicOperator implements DelegatingOp {
 
-    NEGATED     (op("-", a -> -a)                      .precedence(100)),
-    SQUARED     (op("^2", a -> a * a) .fixity(POSTFIX) .precedence(100)),
-    SQUARE_ROOT (op("sqrt ", Math::sqrt)               .precedence(100)),
+    NEGATED     (prefix("-", a -> -a)                   .precedence(100)),
+    SQUARED     (postfix("^2", a -> a * a)              .precedence(100)),
+    SQUARE_ROOT (prefix("sqrt ", Math::sqrt)            .precedence(100)),
 
-    PLUS        (op(" + ", (a, b) -> a + b)            .precedence(10)),
-    MINUS       (op(" - ", (a, b) -> a - b)            .precedence(10)),
-    TIMES       (op(" ", (a, b) -> a * b)              .precedence(20)),
-    DIVIDED_BY  (op(" / ", (a, b) -> divide(a, b))     .precedence(20)),
+    PLUS        (infixl(" + ", (a, b) -> a + b)         .precedence(10)),
+    MINUS       (infixl(" - ", (a, b) -> a - b)         .precedence(10)),
+    TIMES       (infixl(" ", (a, b) -> a * b)           .precedence(20)),
+    DIVIDED_BY  (infixl(" / ", (a, b) -> divide(a, b))  .precedence(20)),
 
     ;
 

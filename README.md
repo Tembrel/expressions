@@ -17,6 +17,9 @@ The framework is extensible in two ways:
 
 ### Basic usage
 
+See the [basic usage JUnit test](
+  /Tembrel/expressions/blob/master/src/test/java/com/example/expr/BasicUsageTest.java#L14
+).
 
 ## Building
 

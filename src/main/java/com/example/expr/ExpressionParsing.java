@@ -76,11 +76,40 @@ public class ExpressionParsing {
     /**
      * Creates a builder for a parser on the given operators.
      */
-    public static Parser<Expression> parserFor(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
-        return new ExpressionParsing(operatorsOf(operatorTypes)).parser();
+    public static Parser<Expression> parser() {
+        return parser(ImmutableList.of());
     }
 
-    static List<Operator> operatorsOf(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
+    /**
+     * Creates a builder for a parser on the given operators.
+     */
+    @SuppressWarnings("unchecked")
+    public static Parser<Expression> parser(Class<? extends Enum<? extends Operator>> firstOperatorType,
+            Class<? extends Enum<? extends Operator>>... operatorTypes) {
+        return parser(StreamEx.of(operatorTypes).prepend(firstOperatorType).toList());
+    }
+
+    /**
+     * Creates a builder for a parser on the given operators.
+     */
+    public static Parser<Expression> parser(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
+        return new ExpressionParsing(
+            operatorsOf(
+                StreamEx.of(operatorTypes)
+                    .prepend(builtInOperators())
+                    .toList()
+            )
+        ).buildParser();
+    }
+
+    private static final List<Class<? extends Enum<? extends Operator>>> builtInOperators() {
+        return ImmutableList.of(
+            BasicOperator.class,
+            TrigonometricOperator.class
+        );
+    }
+
+    private static List<Operator> operatorsOf(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
         return StreamEx.of(operatorTypes)
             .distinct()
             .map(Class::getEnumConstants)
@@ -90,7 +119,7 @@ public class ExpressionParsing {
     }
 
 
-    public Parser<Expression> parser() {
+    private Parser<Expression> buildParser() {
         return exprParser().from(TOKENIZER, IGNORED.skipMany());
     }
 

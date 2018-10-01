@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 public class ExpressionParsingTest {
 
-    Parser<Expression> parser = parserFor(ImmutableList.of(BasicOperator.class));
+    Parser<Expression> parser = parser();
 
     @Test public void parseConstant() {
         assertEquals(expr(1), parser.parse("1"));

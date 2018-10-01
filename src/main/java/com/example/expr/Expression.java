@@ -1,9 +1,7 @@
 package com.example.expr;
 
 import static com.example.expr.BasicOperator.*;
-import static com.example.expr.ExpressionParsing.parserFor;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
 
@@ -41,17 +39,8 @@ public abstract class Expression {
         return DEFAULT_PARSER.parse(exprString);
     }
 
-    @SuppressWarnings("unchecked")
-    private static final Parser<Expression> DEFAULT_PARSER =
-        parserFor(defaultOperatorTypes());
+    private static final Parser<Expression> DEFAULT_PARSER = ExpressionParsing.parser();
 
-
-    public static final ImmutableList<Class<? extends Enum<? extends Operator>>> defaultOperatorTypes() {
-        return ImmutableList.of(
-            BasicOperator.class,
-            TrigonometricOperator.class
-        );
-    }
 
     /**
      * Returns the string representation of this expression.

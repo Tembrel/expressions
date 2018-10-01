@@ -18,16 +18,30 @@ The framework is extensible in two ways:
 ### Basic usage
 
 See the [basic usage JUnit test](
-  src/test/java/com/example/expr/BasicUsageTest.java#L14
+  src/test/java/com/example/expr/BasicUsageTest.java#L10
 ).
+
+## Dependencies
+
+- Apache Ant (build-time only)
+- Guava
+- StreamEx
+- ErrorProne (compile-time only)
+- JParsec
+
 
 ## Building
 
-Compilation dependencies: Guava, StreamEx, ErrorProne, JParsec.
+Clone this repository and navigate to the top-level directory.
 
-Runtime dependencies: Guava, StreamEx.
+Type `ant test` to run the tests (Apache Ant 1.10.x or later).
 
-Not hard to remove the Guava and StreamEx dependencies.
+The Ant build will download the Apache Ivy jar that manages
+dependencies.
+By default it will not use an existing Ivy installation,
+but this can be changed.
+It uses `~/.ivy2/expr-cache` as the Ivy cache directory,
+and this, too, can be changed.
 
 
 ## Issues FAQ

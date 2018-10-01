@@ -46,6 +46,14 @@ and this, too, can be changed.
 
 ## Issues FAQ
 
+- Why does binding throw `UnreferencedVariableException` when
+  evaluating something like `let a = 3, b = 4 in b`?
+  - Because it seemed more important to prevent what is probably
+    a mistake than support a vacuous interpretation.
+- Why does binding throw `SelfReferenceException` when evaluating
+  something like `let a = b + a in a + 1`? The `a` of `b + a` becomes
+  a free variable in the result, so what's the problem?
+  - Because that's pretty confusing. Better not to allow it in the first place.
 - Why are there two ways to use trigonometric expressions: `sin(...)` and `trigExpr(...).sin()`?
   - For pedagogical purposes:
     `enum TrigonometricOperator` demonstrates how to add new operators,

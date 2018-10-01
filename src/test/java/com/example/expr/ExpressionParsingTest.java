@@ -60,8 +60,4 @@ public class ExpressionParsingTest {
         System.out.printf("trace of %s is:%n%s%n", expected, trace(expr));
         assertEquals(expected.replace(" * ", " "), expr.format());
     }
-
-    //@Test(expected=SelfReferenceException.class) public void selfReferencedVariable() {
-    //    Expression expr = expr("a").plus(1).where("a", expr("b").plus("a"));
-    //}
 }

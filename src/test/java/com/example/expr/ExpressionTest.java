@@ -30,10 +30,10 @@ public class ExpressionTest {
     }
 
     @Test(expected=UnreferencedVariableException.class) public void unreferencedVariable() {
-        Expression expr = expr(1).where("a", 2);
+        Expression e = expr("b").where("a", 3, "b", 4);
     }
 
     @Test(expected=SelfReferenceException.class) public void selfReferencedVariable() {
-        Expression expr = expr("a").plus(1).where("a", expr("b").plus("a"));
+        Expression e = expr("a").plus(1).where("a", expr("b").plus("a"));
     }
 }

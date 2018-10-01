@@ -350,4 +350,21 @@ public abstract class Expression {
     public Expression pow(Expression that) {
         return apply(POW, that);
     }
+
+    /**
+     * Returns the expression representing this expression
+     * to the power of a constant expression of the given value;
+     */
+    public Expression pow(double value) {
+        return apply(POW, expr(value));
+    }
+
+    /**
+     * Returns the expression representing this expression
+     * to the power of a variable expression of the given
+     * variable name;
+     */
+    public Expression pow(String varName) {
+        return apply(POW, expr(varName));
+    }
 }

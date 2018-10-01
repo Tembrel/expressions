@@ -18,7 +18,7 @@ import one.util.streamex.StreamEx;
 @SuppressWarnings("InconsistentCapitalization")
 public class ExpressionParsing {
 
-    private static final Parser<Expression> CONSTANT =
+    private static final Parser<ConstantExpression> CONSTANT =
         Terminals.DecimalLiteral.PARSER.map(Double::valueOf).map(Expression::expr);
 
     private static final Parser<VariableExpression> VARIABLE =

@@ -4,7 +4,7 @@ import static com.example.expr.OperatorBuilder.*;
 
 
 /**
- * Logarithmic and exponential (power) operations on expressions.
+ * Basic double-precision arithmetic operators.
  */
 @SuppressWarnings("ImmutableEnumChecker")
 public enum BasicOperator implements DelegatingOp {
@@ -21,6 +21,10 @@ public enum BasicOperator implements DelegatingOp {
         }
     },
     DIVIDED_BY  (infixl(" / ", (a, b) -> divide(a, b))  .precedence(20)),
+
+    NATURAL_LOG (prefix("ln ", Math::log)               .precedence(100)),
+    LOG_BASE_10 (prefix("log ", Math::log10)            .precedence(100)),
+    POW         (infixr("^", Math::pow)                 .precedence(30)),
 
     ;
 

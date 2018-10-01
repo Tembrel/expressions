@@ -49,8 +49,7 @@ public abstract class Expression {
     public static final ImmutableList<Class<? extends Enum<? extends Operator>>> defaultOperatorTypes() {
         return ImmutableList.of(
             BasicOperator.class,
-            TrigonometricOperator.class,
-            LogPowerOperator.class
+            TrigonometricOperator.class
         );
     }
 
@@ -337,5 +336,29 @@ public abstract class Expression {
      */
     public final Expression squareRoot() {
         return apply(SQUARE_ROOT);
+    }
+
+    /**
+     * Returns the expression representing the natural
+     * logarithm of this expression.
+     */
+    public Expression ln() {
+        return apply(NATURAL_LOG);
+    }
+
+    /**
+     * Returns the expression representing the
+     * logarithm base 10 of this expression.
+     */
+    public Expression log10() {
+        return apply(LOG_BASE_10);
+    }
+
+    /**
+     * Returns the expression representing this expression
+     * to the power of the given expression;
+     */
+    public Expression pow(Expression that) {
+        return apply(POW, that);
     }
 }

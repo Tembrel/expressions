@@ -21,7 +21,7 @@ public class ExpressionParsing {
     private static final Parser<Expression> CONSTANT =
         Terminals.DecimalLiteral.PARSER.map(Double::valueOf).map(Expression::expr);
 
-    private static final Parser<Expression> VARIABLE =
+    private static final Parser<VariableExpression> VARIABLE =
         Terminals.Identifier.PARSER.map(Expression::expr);
 
     private static final Parser<Void> IGNORED = Scanners.WHITESPACES;
@@ -158,10 +158,12 @@ public class ExpressionParsing {
     static class Binding {
         final String varName;
         final Expression boundExpr;
-        Binding(Expression varExpr, Expression boundExpr) {
-            this.varName = ((VariableExpression) varExpr).varName();
+
+        Binding(VariableExpression varExpr, Expression boundExpr) {
+            this.varName = varExpr.varName();
             this.boundExpr = boundExpr;
         }
+
         public String varName() { return varName; }
         public Expression boundExpr() { return boundExpr; }
     }
@@ -182,14 +184,6 @@ public class ExpressionParsing {
     }
 
     private OperatorTable<Expression> addOperator(OperatorTable<Expression> opTable, Operator op) {
-        // Example from tutorial:
-        // OperatorTable<Double> opTable = new OperatorTable<Double>()
-        //     .infixl(op("+", (l, r) -> l + r), 10)
-        //     .infixl(op("-", (l, r) -> l - r), 10)
-        //     .infixl(Parsers.or(term("*"), WHITESPACE_OP).retn((l, r) -> l * r), 20)
-        //     .infixl(op("/", (l, r) -> l / r), 20)
-        //     .prefix(op("-", v -> -v), 30)
-        //     .built(...);
         String symbol = op.symbol().trim();
         Parser<?> token = term(symbol);
         if (symbol.equals(WHITESPACE_ALIAS)) {

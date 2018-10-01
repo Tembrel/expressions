@@ -2,22 +2,20 @@
 
 This repository contains a Java framework for evaluating and formatting double-precision
 expressions with constants, variables, unary and binary operations, and binding variables
-to expressions, with support for evaluation and string representation.
+to expressions, with support for evaluation, formatting (string representation), and parsing.
 
 The framework is extensible in two ways:
 
 1. New operations can be added beyond the basic set provided here.
-1. New functions over composite expressions can be added beyond evaluation
-   string representation.
-
-### Parsing
-
-Parsing of string representations is planned but not yet supported.
+   Optionally, new expression subtypes can be created that add methods
+   to apply these new operations.
+1. New transformations of expressions can be added beyond evaluation
+   and formatting as string, e.g., compilation to bytecode.
 
 
 ## API usage
 
-Intended use cases and how the API can be applied to meet them.
+### Basic usage
 
 
 ## Building

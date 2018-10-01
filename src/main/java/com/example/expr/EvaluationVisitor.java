@@ -56,7 +56,7 @@ class EvaluationVisitor implements Visitor<Double> {
         );
     }
 
-    @Override public Double visit(BoundExpression expr) {
+    @Override public Double visit(LetExpression expr) {
         Expression subExpr = expr.subExpression();
         return subExpr.accept(child(expr.bindings()));
     }

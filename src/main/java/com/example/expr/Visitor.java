@@ -20,7 +20,7 @@ public interface Visitor<R> {
     R visit(BinaryOpExpression expr);
 
     /** Apply this visitor function to the given bound expression. */
-    R visit(BoundExpression expr);
+    R visit(LetExpression expr);
 
     /** Apply this visitor function to the given expression of unknown type. */
     R visitUnknown(Expression expr);

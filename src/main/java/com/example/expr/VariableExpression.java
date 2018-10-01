@@ -10,11 +10,18 @@ import java.util.regex.Pattern;
  */
 public class VariableExpression extends Expression {
 
+    /** Tests whether the given string can be used as a variable name. */
+    public static final boolean isValidVariableName(String varName) {
+        return VALID_VAR_NAME.matcher(varName).matches();
+    }
+
     private static final Pattern VALID_VAR_NAME = Pattern.compile("[A-Za-z_][A-Za-z0-9_]*");
+
+
     private final String varName;
 
     VariableExpression(String varName) {
-        if (!VALID_VAR_NAME.matcher(varName).matches()) {
+        if (!isValidVariableName(varName)) {
             throw new IllegalArgumentException(String.format(
                 "Bad variable name '%s': must start with letter then 0+ letters/digits/underscores",
                 varName

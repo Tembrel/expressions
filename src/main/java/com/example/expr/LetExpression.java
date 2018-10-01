@@ -10,11 +10,11 @@ import java.util.Objects;
  * An expression representing a subexpression with variable names
  * bound to other expressions.
  */
-public class BoundExpression extends Expression {
+public class LetExpression extends Expression {
     private final Expression expr;
     private final ImmutableMap<String, Expression> bindings;
 
-    BoundExpression(Expression expr, Map<String, Expression> bindings) {
+    LetExpression(Expression expr, Map<String, Expression> bindings) {
         this.bindings = ImmutableMap.copyOf(bindings);
         this.expr = expr;
     }
@@ -35,8 +35,8 @@ public class BoundExpression extends Expression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof BoundExpression)) return false;
-        BoundExpression that = (BoundExpression) obj;
+        if (!(this instanceof LetExpression)) return false;
+        LetExpression that = (LetExpression) obj;
         return this.bindings.equals(that.bindings)
             && this.expr.equals(that.expr);
     }

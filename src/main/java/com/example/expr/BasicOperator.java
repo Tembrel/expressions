@@ -15,7 +15,11 @@ public enum BasicOperator implements DelegatingOp {
 
     PLUS        (infixl(" + ", (a, b) -> a + b)         .precedence(10)),
     MINUS       (infixl(" - ", (a, b) -> a - b)         .precedence(10)),
-    TIMES       (infixl(" ", (a, b) -> a * b)           .precedence(20)),
+    TIMES       (infixl(" * ", (a, b) -> a * b)         .precedence(21)) {
+        @Override public String format(String s1, String s2) {
+            return String.format("%s %s", s1, s2);
+        }
+    },
     DIVIDED_BY  (infixl(" / ", (a, b) -> divide(a, b))  .precedence(20)),
 
     ;

@@ -33,7 +33,7 @@ class FreeVariablesVisitor implements Visitor<Stream<String>> {
         ).distinct();
     }
 
-    @Override public Stream<String> visit(BoundExpression expr) {
+    @Override public Stream<String> visit(LetExpression expr) {
         Map<String, Expression> bindings = expr.bindings();
         return Stream.concat(
             // All the free variables of the subexpression

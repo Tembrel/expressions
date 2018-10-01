@@ -38,7 +38,7 @@ class FormattingVisitor implements Visitor<String> {
                     }
                 }
             }
-        } else if (subExpr instanceof BoundExpression) {
+        } else if (subExpr instanceof LetExpression) {
             subFmt = parenthesize(subFmt);
         }
         return op.format(subFmt);
@@ -62,7 +62,7 @@ class FormattingVisitor implements Visitor<String> {
                         leftFmt = String.format("(%s)", leftFmt);
                     }
                 }
-            } else if (leftExpr instanceof BoundExpression) {
+            } else if (leftExpr instanceof LetExpression) {
                 leftFmt = String.format("(%s)", leftFmt);
             }
             if (rightExpr instanceof OperationExpression) {
@@ -76,18 +76,18 @@ class FormattingVisitor implements Visitor<String> {
                         rightFmt = parenthesize(rightFmt);
                     }
                 }
-            } else if (rightExpr instanceof BoundExpression) {
+            } else if (rightExpr instanceof LetExpression) {
                 rightFmt = parenthesize(rightFmt);
             }
         }
         return op.format(leftFmt, rightFmt);
     }
 
-    @Override public String visit(BoundExpression expr) {
+    @Override public String visit(LetExpression expr) {
         String bindStr = EntryStream.of(expr.bindings())
             .mapKeyValue((varName, boundExpr) -> {
                 String subFmt = boundExpr.accept(this);
-                if (boundExpr instanceof BoundExpression) {
+                if (boundExpr instanceof LetExpression) {
                     subFmt = parenthesize(subFmt);
                 }
                 return String.format("%s = %s", varName, subFmt);

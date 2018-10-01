@@ -1,7 +1,9 @@
 package com.example.expr;
 
 import static com.example.expr.BasicOperator.*;
+import static com.example.expr.ExpressionParsing.parserFor;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
 
@@ -9,7 +11,6 @@ import java.util.Map;
 import java.util.Set;
 
 import one.util.streamex.EntryStream;
-import one.util.streamex.StreamEx;
 
 import org.jparsec.Parser;
 
@@ -37,27 +38,21 @@ public abstract class Expression {
      * Turn a string representation of an expression into an Expression instance.
      */
     public static Expression parse(String exprString) {
-        return BASIC_PARSER.parse(exprString);
+        return DEFAULT_PARSER.parse(exprString);
     }
 
-    /**
-     * Returns a parser builder on basic operators to which
-     * more operators can be added fluently.
-     */
     @SuppressWarnings("unchecked")
-    public static Parser<Expression> parserFor(Class<? extends Enum<? extends Operator>>... operatorTypes) {
-        return ExpressionParser.parserFor(
-            StreamEx.of(operatorTypes)
-                .prepend(LogPowerOperator.class)
-                .prepend(TrigonometricOperator.class)
-                .prepend(BasicOperator.class)
-                .toList()
+    private static final Parser<Expression> DEFAULT_PARSER =
+        parserFor(defaultOperatorTypes());
+
+
+    public static final ImmutableList<Class<? extends Enum<? extends Operator>>> defaultOperatorTypes() {
+        return ImmutableList.of(
+            BasicOperator.class,
+            TrigonometricOperator.class,
+            LogPowerOperator.class
         );
     }
-
-    @SuppressWarnings("unchecked")
-    private static final Parser<Expression> BASIC_PARSER = null; //parserFor();
-
 
     /**
      * Returns the string representation of this expression.
@@ -144,7 +139,7 @@ public abstract class Expression {
      * @throws SelfReferenceException if a bound variable is free
      *     in the expression it is bound to.
      */
-    public final BoundExpression where(Map<String, Expression> bindings) {
+    public final LetExpression where(Map<String, Expression> bindings) {
         Set<String> freeVars = freeVariables();
 
         // Make sure that all of the bound variables are actually
@@ -164,14 +159,14 @@ public abstract class Expression {
             throw new SelfReferenceException();
         }
 
-        return new BoundExpression(this, bindings);
+        return new LetExpression(this, bindings);
     }
 
     /**
      * Returns an expression equivalent to this expression but with
      * the named variable bound to the given subexpression.
      */
-    public final BoundExpression where(String varName, Expression subExpr) {
+    public final LetExpression where(String varName, Expression subExpr) {
         return where(ImmutableMap.of(varName, subExpr));
     }
 
@@ -179,7 +174,7 @@ public abstract class Expression {
      * Returns an expression equivalent to this expression but with
      * the named variables bound to the given subexpressions.
      */
-    public final BoundExpression where(String v1, Expression e1, String v2, Expression e2) {
+    public final LetExpression where(String v1, Expression e1, String v2, Expression e2) {
         return where(ImmutableMap.of(v1, e1, v2, e2));
     }
 
@@ -187,7 +182,7 @@ public abstract class Expression {
      * Returns an expression equivalent to this expression but with
      * the named variables bound to the given subexpressions.
      */
-    public final BoundExpression where(String v1, Expression e1, String v2, Expression e2, String v3, Expression e3) {
+    public final LetExpression where(String v1, Expression e1, String v2, Expression e2, String v3, Expression e3) {
         return where(ImmutableMap.of(v1, e1, v2, e2, v3, e3));
     }
 
@@ -195,7 +190,7 @@ public abstract class Expression {
      * Returns an expression equivalent to this expression but with
      * the named variable bound to the given double precision value.
      */
-    public final BoundExpression where(String varName, double value) {
+    public final LetExpression where(String varName, double value) {
         return where(varName, expr(value));
     }
 
@@ -203,7 +198,7 @@ public abstract class Expression {
      * Returns an expression equivalent to this expression but with
      * the named variables bound to the given double precision values.
      */
-    public final BoundExpression where(String v1, double d1, String v2, double d2) {
+    public final LetExpression where(String v1, double d1, String v2, double d2) {
         return where(v1, expr(d1), v2, expr(d2));
     }
 
@@ -211,7 +206,7 @@ public abstract class Expression {
      * Returns an expression equivalent to this expression but with
      * the named variables bound to the given double precision values.
      */
-    public final BoundExpression where(String v1, double d1, String v2, double d2, String v3, double d3) {
+    public final LetExpression where(String v1, double d1, String v2, double d2, String v3, double d3) {
         return where(v1, expr(d1), v2, expr(d2), v3, expr(d3));
     }
 

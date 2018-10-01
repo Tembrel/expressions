@@ -51,7 +51,7 @@ public class TraceVisitor implements Visitor<Stream<String>> {
             .append(rightExpr.accept(child));
     }
 
-    @Override public Stream<String> visit(BoundExpression expr) {
+    @Override public Stream<String> visit(LetExpression expr) {
         TraceVisitor child = child();
         return StreamEx.of(expr.subExpression().accept(this))
             .append(

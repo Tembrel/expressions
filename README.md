@@ -40,6 +40,11 @@ other than `implements DelegatingOperator` is in
   src/main/java/com/example/expr/TrigonometricOperator.java#L24-26
 ).
 
+The expression parsing test class has [an example of parsing with
+a user-defined operator enum](
+  src/test/java/com/example/expr/ExpressionParsingTest.java#L74
+);
+
 The [`TrigonometricExpression` class](
   src/main/java/com/example/expr/TrigonometricExpression.java#L10
 ) demonstrates how to extend `Expression`

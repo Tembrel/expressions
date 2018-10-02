@@ -17,7 +17,7 @@ import one.util.streamex.StreamEx;
 /**
  * A parser for Expression instances.
  * Adapted from JParsec tutorial.
- * @see <a href="https://github.com/jparsec/jparsec/wiki/Tutorial">JParsec tutorail</a>
+ * @see <a href="https://github.com/jparsec/jparsec/wiki/Tutorial">JParsec tutorial</a>
  */
 @SuppressWarnings("InconsistentCapitalization")
 public class ExpressionParser {

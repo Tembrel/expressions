@@ -37,7 +37,7 @@ The [`TrigonometricOperator` class](
 by implementing `DelegatingOperator`. The only boilerplate,
 other than `implements DelegatingOperator` is in
 [these three lines](
-  src/main/java/net/peierls/expr/TrigonometricOperator.java#L24-26
+  src/main/java/net/peierls/expr/TrigonometricOperator.java#L24-L26
 ).
 
 The expression parsing test class has [an example of parsing with

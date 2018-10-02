@@ -31,9 +31,9 @@ public class UnaryOpExpression extends OperationExpression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof UnaryOpExpression)) return false;
+        if (!(obj instanceof UnaryOpExpression)) return false;
         UnaryOpExpression that = (UnaryOpExpression) obj;
-        return this.op == that.op
+        return this.op.equals(that.op)
             && this.expr.equals(that.expr);
     }
 

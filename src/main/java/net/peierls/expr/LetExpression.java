@@ -35,7 +35,7 @@ public class LetExpression extends Expression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof LetExpression)) return false;
+        if (!(obj instanceof LetExpression)) return false;
         LetExpression that = (LetExpression) obj;
         return this.bindings.equals(that.bindings)
             && this.expr.equals(that.expr);

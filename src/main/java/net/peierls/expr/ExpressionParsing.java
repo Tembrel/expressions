@@ -84,6 +84,7 @@ public class ExpressionParsing {
      * Creates a builder for a parser on the given operators.
      */
     @SuppressWarnings("unchecked")
+    @SafeVarargs
     public static Parser<Expression> parser(Class<? extends Enum<? extends Operator>> firstOperatorType,
             Class<? extends Enum<? extends Operator>>... operatorTypes) {
         return parser(StreamEx.of(operatorTypes).prepend(firstOperatorType).toList());

@@ -41,7 +41,7 @@ public class VariableExpression extends Expression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof VariableExpression)) return false;
+        if (!(obj instanceof VariableExpression)) return false;
         String otherVarName = ((VariableExpression) obj).varName;
         return varName.equals(otherVarName);
     }

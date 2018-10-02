@@ -39,9 +39,9 @@
 <span class="sourceLineNo">031</span><a name="line.31"></a>
 <span class="sourceLineNo">032</span>    @Override public boolean equals(Object obj) {<a name="line.32"></a>
 <span class="sourceLineNo">033</span>        if (this == obj) return true;<a name="line.33"></a>
-<span class="sourceLineNo">034</span>        if (!(this instanceof UnaryOpExpression)) return false;<a name="line.34"></a>
+<span class="sourceLineNo">034</span>        if (!(obj instanceof UnaryOpExpression)) return false;<a name="line.34"></a>
 <span class="sourceLineNo">035</span>        UnaryOpExpression that = (UnaryOpExpression) obj;<a name="line.35"></a>
-<span class="sourceLineNo">036</span>        return this.op == that.op<a name="line.36"></a>
+<span class="sourceLineNo">036</span>        return this.op.equals(that.op)<a name="line.36"></a>
 <span class="sourceLineNo">037</span>            &amp;&amp; this.expr.equals(that.expr);<a name="line.37"></a>
 <span class="sourceLineNo">038</span>    }<a name="line.38"></a>
 <span class="sourceLineNo">039</span><a name="line.39"></a>

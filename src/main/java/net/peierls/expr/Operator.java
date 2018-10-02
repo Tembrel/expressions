@@ -1,9 +1,11 @@
 package net.peierls.expr;
 
+import javax.annotation.concurrent.Immutable;
 
 /**
  * A double precision operator with arity, precedence, fixity, and associativity.
  */
+@Immutable
 public interface Operator {
 
     /**

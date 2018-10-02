@@ -38,9 +38,9 @@ public class BinaryOpExpression extends OperationExpression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof BinaryOpExpression)) return false;
+        if (!(obj instanceof BinaryOpExpression)) return false;
         BinaryOpExpression that = (BinaryOpExpression) obj;
-        return this.op == that.op
+        return this.op.equals(that.op)
             && this.left.equals(that.left)
             && this.right.equals(that.right);
     }

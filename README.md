@@ -1,13 +1,13 @@
 # Expressions
 
-This repository contains a Java framework for evaluating and formatting double-precision
-expressions with constants, variables, unary and binary operations, and binding variables
-to expressions, with support for evaluation, formatting (string representation), and parsing.
+This repository contains a Java framework for evaluating, formatting, and parsing
+double-precision expressions with constants, variables, unary and binary operations,
+and binding variables to expressions.
 
 The framework is extensible in two ways:
 
-1. New operations can be added beyond the basic set provided here.
-   Optionally, new expression subtypes can be created that add methods
+1. New operations can be added beyond the basic set provided here,
+   and (optionally) new expression subtypes can be created that add methods
    to apply these new operations.
 1. New transformations of expressions can be added beyond evaluation
    and formatting as string, e.g., compilation to bytecode.
@@ -17,6 +17,7 @@ The framework is extensible in two ways:
 
 [Javadoc](https://tembrel.github.io/expressions/javadoc/) for the most recent release.
 
+
 ### Basic usage
 
 See the [basic usage JUnit test](
@@ -25,10 +26,19 @@ See the [basic usage JUnit test](
 
 ### Adding new operator categories and extending expressions
 
+To ensure that operators are singletons, the framework uses
+the typesafe enum pattern. Following this pattern is not
+strictly required for user-defined operators, but extended
+parsing only works with enum types.
+
 The [`TrigonometricOperator` class](
   src/main/java/com/example/expr/TrigonometricOperator.java#L10
-) demonstrates how to add a new category
-of operations using `DelegatingOp`.
+) demonstrates how to add a user-defined operator enum
+by implementing `DelegatingOperator`. The only boilerplate,
+other than `implements DelegatingOperator` is in
+[these three lines](
+  src/main/java/com/example/expr/TrigonometricOperator.java#L24-26
+).
 
 The [`TrigonometricExpression` class](
   src/main/java/com/example/expr/TrigonometricExpression.java#L10
@@ -40,17 +50,18 @@ new operations.
 ### Adding new transformations of expressions
 
 The [`TraceVisitor` class](
+  src/test/java/com/example/expr/TraceVistor.java#L11
 ) demonstrates how to add a new transformation
 over expressions.
 
 
 ## Dependencies
 
-- Apache Ant (build-time only)
 - Guava
 - StreamEx
-- ErrorProne (compile-time only)
 - JParsec
+- ErrorProne (compile-time only)
+- Apache Ant (build-time only)
 
 
 ## Building
@@ -61,10 +72,11 @@ Type `ant test` to run the tests (Apache Ant 1.10.x or later).
 
 The Ant build will download the Apache Ivy jar that manages
 dependencies.
-By default it will not use an existing Ivy installation,
-but this can be changed.
-It uses `~/.ivy2/expr-cache` as the Ivy cache directory,
-and this, too, can be changed.
+By default it will not use an existing Ivy installation
+or cache, but this can be changed by overriding properties.
+See the [Ivy build properties file](
+  ivy/build-ivy.properties
+) for details.
 
 
 ## Issues FAQ

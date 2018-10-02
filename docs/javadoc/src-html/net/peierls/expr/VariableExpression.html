@@ -49,7 +49,7 @@
 <span class="sourceLineNo">041</span><a name="line.41"></a>
 <span class="sourceLineNo">042</span>    @Override public boolean equals(Object obj) {<a name="line.42"></a>
 <span class="sourceLineNo">043</span>        if (this == obj) return true;<a name="line.43"></a>
-<span class="sourceLineNo">044</span>        if (!(this instanceof VariableExpression)) return false;<a name="line.44"></a>
+<span class="sourceLineNo">044</span>        if (!(obj instanceof VariableExpression)) return false;<a name="line.44"></a>
 <span class="sourceLineNo">045</span>        String otherVarName = ((VariableExpression) obj).varName;<a name="line.45"></a>
 <span class="sourceLineNo">046</span>        return varName.equals(otherVarName);<a name="line.46"></a>
 <span class="sourceLineNo">047</span>    }<a name="line.47"></a>

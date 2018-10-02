@@ -46,9 +46,9 @@
 <span class="sourceLineNo">038</span><a name="line.38"></a>
 <span class="sourceLineNo">039</span>    @Override public boolean equals(Object obj) {<a name="line.39"></a>
 <span class="sourceLineNo">040</span>        if (this == obj) return true;<a name="line.40"></a>
-<span class="sourceLineNo">041</span>        if (!(this instanceof BinaryOpExpression)) return false;<a name="line.41"></a>
+<span class="sourceLineNo">041</span>        if (!(obj instanceof BinaryOpExpression)) return false;<a name="line.41"></a>
 <span class="sourceLineNo">042</span>        BinaryOpExpression that = (BinaryOpExpression) obj;<a name="line.42"></a>
-<span class="sourceLineNo">043</span>        return this.op == that.op<a name="line.43"></a>
+<span class="sourceLineNo">043</span>        return this.op.equals(that.op)<a name="line.43"></a>
 <span class="sourceLineNo">044</span>            &amp;&amp; this.left.equals(that.left)<a name="line.44"></a>
 <span class="sourceLineNo">045</span>            &amp;&amp; this.right.equals(that.right);<a name="line.45"></a>
 <span class="sourceLineNo">046</span>    }<a name="line.46"></a>

@@ -7,6 +7,10 @@ import java.util.Objects;
  * An expression consisting of a constant value.
  */
 public class ConstantExpression extends Expression {
+
+    private static final ConstantExpression PI = new ConstantExpression(Math.PI);
+    private static final ConstantExpression E = new ConstantExpression(Math.E);
+
     private final double value;
 
     ConstantExpression(double value) {
@@ -14,6 +18,21 @@ public class ConstantExpression extends Expression {
             throw new IllegalArgumentException("constant expressions must be finite");
         }
         this.value = value;
+    }
+
+
+    /**
+     * Constant expression for the value of pi.
+     */
+    public static ConstantExpression pi() {
+        return PI;
+    }
+
+    /**
+     * Constant expression for the value of e.
+     */
+    public static ConstantExpression e() {
+        return E;
     }
 
     /** The double precision value represented by this constant expression. */
@@ -27,7 +46,7 @@ public class ConstantExpression extends Expression {
 
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (!(this instanceof ConstantExpression)) return false;
+        if (!(obj instanceof ConstantExpression)) return false;
         double otherValue = ((ConstantExpression) obj).value;
         return Objects.equals(value, otherValue);
     }

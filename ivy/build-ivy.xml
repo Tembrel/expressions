@@ -5,7 +5,7 @@
     and provide targets for build files that import this file:
     - resolve
     - clean-lib
-    - clean-ivy-cache
+    - clean-ivy
   </description>
 
   <dirname property="ivy.basedir" file="${ant.file.ivy}" />
@@ -18,8 +18,7 @@
    !-->
 
   <target name="init-ivy"
-    depends="download-ivy-jar"
-    description="initialize Ivy tasks and settings"
+    depends="download-ivy-jar"	
   >
     <path id="ivy.classpath">
       <fileset dir="${ivy.jar.dir}" includes="${ivy.jar.name}"/>
@@ -73,14 +72,16 @@
    !-->
 
   <target name="clean-lib"
-    description="Clean the lib directory"
+    description="clean the lib directory"
   >
     <delete>
       <fileset dir="${lib.dir}" includes="*.jar" />
     </delete>
   </target>
 
-  <target name="clean-ivy">
+  <target name="clean-ivy"
+    description="clean ivy jar and cache"
+  >
     <!--
      ! Would use this but it requires Ivy jar:
      ! <ivy:cleancache />

@@ -150,7 +150,7 @@
 
   <target name="run"
     depends="compile-tests"
-    description="compile and run the project"
+    description="compile and run program named by main.class.name property"
   >
     <java
       classpathref="test.classpath"
@@ -208,7 +208,7 @@
    !-->
 
   <target name="clean"
-    description="Clean the build directories"
+    description="clean build artifacts"
   >
     <delete dir="${build.dir}"/>
   </target>

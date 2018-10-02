@@ -47,7 +47,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../net/peierls/expr/EvaluationException.html" title="class in net.peierls.expr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../net/peierls/expr/ExpressionParsing.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?net/peierls/expr/Expression.html" target="_top">Frames</a></li>
@@ -110,7 +110,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public abstract class <a href="../../../src-html/net/peierls/expr/Expression.html#line.22">Expression</a>
+<pre>public abstract class <a href="../../../src-html/net/peierls/expr/Expression.html#line.20">Expression</a>
 extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A double-precision arithmetic expression on constants, variables,
  unary and binary operations, with local binding of variables to
@@ -347,7 +347,8 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <tr id="i30" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#toString--">toString</a></span>()</code>
-<div class="block">Returns the string representation of this expression.</div>
+<div class="block">Returns the string representation of this expression, same
+ as <a href="../../../net/peierls/expr/Expression.html#format--"><code>format</code></a>.</div>
 </td>
 </tr>
 <tr id="i31" class="rowColor">
@@ -445,7 +446,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>accept</h4>
-<pre>protected&nbsp;&lt;R&gt;&nbsp;R&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.34">accept</a>(<a href="../../../net/peierls/expr/Visitor.html" title="interface in net.peierls.expr">Visitor</a>&lt;R&gt;&nbsp;visitor)</pre>
+<pre>protected&nbsp;&lt;R&gt;&nbsp;R&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.32">accept</a>(<a href="../../../net/peierls/expr/Visitor.html" title="interface in net.peierls.expr">Visitor</a>&lt;R&gt;&nbsp;visitor)</pre>
 <div class="block">Apply a visitor function to this expression.
  The default implementation is to call the <a href="../../../net/peierls/expr/Visitor.html#visitUnknown-net.peierls.expr.Expression-"><code>Visitor.visitUnknown(net.peierls.expr.Expression)</code></a>
  method, but subclasses should override to call the visit method on one
@@ -458,8 +459,11 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>parse</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.42">parse</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString)</pre>
-<div class="block">Turn a string representation of an expression into an Expression instance.</div>
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.43">parse</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString)</pre>
+<div class="block">Turn a string representation of an expression into an Expression instance.
+ This method only works with the built-in operators in <a href="../../../net/peierls/expr/BasicOperator.html" title="enum in net.peierls.expr"><code>BasicOperator</code></a>
+ and <a href="../../../net/peierls/expr/TrigonometricOperator.html" title="enum in net.peierls.expr"><code>TrigonometricOperator</code></a>. Use <a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><code>ExpressionParser</code></a> to create
+ parsers that also work with user-defined operators.</div>
 </li>
 </ul>
 <a name="toString--">
@@ -469,7 +473,8 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>toString</h4>
 <pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.52">toString</a>()</pre>
-<div class="block">Returns the string representation of this expression.</div>
+<div class="block">Returns the string representation of this expression, same
+ as <a href="../../../net/peierls/expr/Expression.html#format--"><code>format</code></a>.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
@@ -920,7 +925,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../net/peierls/expr/EvaluationException.html" title="class in net.peierls.expr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../net/peierls/expr/ExpressionParsing.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?net/peierls/expr/Expression.html" target="_top">Frames</a></li>

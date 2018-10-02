@@ -197,6 +197,10 @@
 </a>
 <h2 class="title">D</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#defaultParser--">defaultParser()</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
+<dd>
+<div class="block">Returns a parser on the built-in operators.</div>
+</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/BasicOperator.html#delegate--">delegate()</a></span> - Method in enum net.peierls.expr.<a href="net/peierls/expr/BasicOperator.html" title="enum in net.peierls.expr">BasicOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#delegate--">delegate()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
@@ -294,9 +298,9 @@
  subexpressions, supporting evaluation and formatting (string
  representation).</div>
 </dd>
-<dt><a href="net/peierls/expr/ExpressionParsing.html" title="class in net.peierls.expr"><span class="typeNameLink">ExpressionParsing</span></a> - Class in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
+<dt><a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><span class="typeNameLink">ExpressionParser</span></a> - Class in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
 <dd>
-<div class="block">Builds parser for Expression instances.</div>
+<div class="block">A parser for Expression instances.</div>
 </dd>
 <dt><a href="net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr"><span class="typeNameLink">ExtendedExpression</span></a>&lt;<a href="net/peierls/expr/ExtendedExpression.html" title="type parameter in ExtendedExpression">T</a> extends <a href="net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr">ExtendedExpression</a>&lt;<a href="net/peierls/expr/ExtendedExpression.html" title="type parameter in ExtendedExpression">T</a>&gt;&gt; - Class in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
 <dd>
@@ -457,9 +461,9 @@
 </dd>
 <dt><a href="net/peierls/expr/package-summary.html">net.peierls.expr</a> - package net.peierls.expr</dt>
 <dd>
-<div class="block">Provides an extensible framework for building, evaluating, and formatting
- double-precision expressions (constants, variables, unary and binary operations,
- and binding of variables).</div>
+<div class="block">This package provides an extensible framework for building, evaluating, formatting, and parsing
+ double-precision expressions: constants, variables, unary and binary operations,
+ and binding of variables.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/DivisionByZeroException.html#numerator--">numerator()</a></span> - Method in exception net.peierls.expr.<a href="net/peierls/expr/DivisionByZeroException.html" title="class in net.peierls.expr">DivisionByZeroException</a></dt>
 <dd>&nbsp;</dd>
@@ -508,17 +512,18 @@
 <dd>
 <div class="block">Turn a string representation of an expression into an Expression instance.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParsing.html#parser--">parser()</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParsing.html" title="class in net.peierls.expr">ExpressionParsing</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#parse-java.lang.String-">parse(String)</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
 <dd>
-<div class="block">Creates a builder for a parser on the given operators.</div>
+<div class="block">Parse an expression using whatever operators
+ this parser has been configured with.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParsing.html#parser-java.lang.Class-java.lang.Class...-">parser(Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;, Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;...)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParsing.html" title="class in net.peierls.expr">ExpressionParsing</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#parser-java.lang.Class-java.lang.Class...-">parser(Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;, Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;...)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
 <dd>
-<div class="block">Creates a builder for a parser on the given operators.</div>
+<div class="block">Creates a parser on the given operators and the built-in operators.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParsing.html#parser-java.util.List-">parser(List&lt;Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;&gt;)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParsing.html" title="class in net.peierls.expr">ExpressionParsing</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#parser-java.util.List-">parser(List&lt;Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;&gt;)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
 <dd>
-<div class="block">Creates a builder for a parser on the given operators.</div>
+<div class="block">Creates a parser on the given operators and the built-in operators.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/ConstantExpression.html#pi--">pi()</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ConstantExpression.html" title="class in net.peierls.expr">ConstantExpression</a></dt>
 <dd>
@@ -664,7 +669,8 @@
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#toString--">toString()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
 <dd>
-<div class="block">Returns the string representation of this expression.</div>
+<div class="block">Returns the string representation of this expression, same
+ as <a href="net/peierls/expr/Expression.html#format--"><code>format</code></a>.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/TrigonometricExpression.html#trigExpr-net.peierls.expr.Expression-">trigExpr(Expression)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/TrigonometricExpression.html" title="class in net.peierls.expr">TrigonometricExpression</a></dt>
 <dd>

@@ -5,18 +5,22 @@ import com.google.common.collect.ImmutableList;
 import java.util.List;
 import java.util.Map;
 
-import org.jparsec.*;
+import org.jparsec.OperatorTable;
+import org.jparsec.Parser;
+import org.jparsec.Parsers;
+import org.jparsec.Scanners;
+import org.jparsec.Terminals;
 
 import one.util.streamex.StreamEx;
 
 
 /**
- * Builds parser for Expression instances.
+ * A parser for Expression instances.
  * Adapted from JParsec tutorial.
  * @see <a href="https://github.com/jparsec/jparsec/wiki/Tutorial">JParsec tutorail</a>
  */
 @SuppressWarnings("InconsistentCapitalization")
-public class ExpressionParsing {
+public class ExpressionParser {
 
     private static final Parser<ConstantExpression> CONSTANT =
         Terminals.DecimalLiteral.PARSER.map(Double::valueOf).map(Expression::expr);
@@ -33,6 +37,8 @@ public class ExpressionParsing {
 
     private static final String[] EMPTY_STRING_ARRAY = new String[0];
 
+    private static final ExpressionParser DEFAULT_PARSER = parser(ImmutableList.of());
+
 
     private final ImmutableList<Operator> OPERATORS;
     private final String[] OP_SYMS;
@@ -40,9 +46,10 @@ public class ExpressionParsing {
     private final Terminals TERMS;
     private final Parser<?> TOKENIZER;
     private final Parser<?> WHITESPACE_OP;
+    private final Parser<Expression> parser;
 
 
-    ExpressionParsing(List<Operator> operators) {
+    ExpressionParser(List<Operator> operators) {
         this.OPERATORS = ImmutableList.copyOf(operators);
 
         this.OP_SYMS = opSymbols()
@@ -64,43 +71,38 @@ public class ExpressionParsing {
         );
 
         this.WHITESPACE_OP = term(OP_SYMS).not();
-    }
 
-    StreamEx<String> opSymbols() {
-        return StreamEx.of(OPERATORS)
-            .map(Operator::symbol)
-            .map(String::trim)
-            .distinct();
+        this.parser = buildParser();
     }
 
     /**
-     * Creates a builder for a parser on the given operators.
+     * Returns a parser on the built-in operators.
      */
-    public static Parser<Expression> parser() {
-        return parser(ImmutableList.of());
+    public static ExpressionParser defaultParser() {
+        return DEFAULT_PARSER;
     }
 
     /**
-     * Creates a builder for a parser on the given operators.
+     * Creates a parser on the given operators and the built-in operators.
      */
     @SuppressWarnings("unchecked")
     @SafeVarargs
-    public static Parser<Expression> parser(Class<? extends Enum<? extends Operator>> firstOperatorType,
+    public static ExpressionParser parser(Class<? extends Enum<? extends Operator>> firstOperatorType,
             Class<? extends Enum<? extends Operator>>... operatorTypes) {
         return parser(StreamEx.of(operatorTypes).prepend(firstOperatorType).toList());
     }
 
     /**
-     * Creates a builder for a parser on the given operators.
+     * Creates a parser on the given operators and the built-in operators.
      */
-    public static Parser<Expression> parser(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
-        return new ExpressionParsing(
+    public static ExpressionParser parser(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
+        return new ExpressionParser(
             operatorsOf(
                 StreamEx.of(operatorTypes)
                     .prepend(builtInOperators())
                     .toList()
             )
-        ).buildParser();
+        );
     }
 
     private static final List<Class<? extends Enum<? extends Operator>>> builtInOperators() {
@@ -119,6 +121,22 @@ public class ExpressionParsing {
             .toList();
     }
 
+
+    /**
+     * Parse an expression using whatever operators
+     * this parser has been configured with.
+     */
+    public Expression parse(String exprText) {
+        return parser.parse(exprText);
+    }
+
+
+    StreamEx<String> opSymbols() {
+        return StreamEx.of(OPERATORS)
+            .map(Operator::symbol)
+            .map(String::trim)
+            .distinct();
+    }
 
     private Parser<Expression> buildParser() {
         return exprParser().from(TOKENIZER, IGNORED.skipMany());

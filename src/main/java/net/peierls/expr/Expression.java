@@ -10,8 +10,6 @@ import java.util.Set;
 
 import one.util.streamex.EntryStream;
 
-import org.jparsec.Parser;
-
 
 /**
  * A double-precision arithmetic expression on constants, variables,
@@ -38,16 +36,18 @@ public abstract class Expression {
 
     /**
      * Turn a string representation of an expression into an Expression instance.
+     * This method only works with the built-in operators in {@link BasicOperator}
+     * and {@link TrigonometricOperator}. Use {@link ExpressionParser} to create
+     * parsers that also work with user-defined operators.
      */
     public static Expression parse(String exprString) {
-        return DEFAULT_PARSER.parse(exprString);
+        return ExpressionParser.defaultParser().parse(exprString);
     }
-
-    private static final Parser<Expression> DEFAULT_PARSER = ExpressionParsing.parser();
 
 
     /**
-     * Returns the string representation of this expression.
+     * Returns the string representation of this expression, same
+     * as {@link net.peierls.expr.Expression#format format}.
      */
     @Override public String toString() {
         return format();

@@ -1,7 +1,7 @@
 package net.peierls.expr;
 
 import static net.peierls.expr.Expression.*;
-import static net.peierls.expr.ExpressionParsing.*;
+import static net.peierls.expr.ExpressionParser.*;
 import static net.peierls.expr.OperatorBuilder.*;
 import static net.peierls.expr.TraceVisitor.trace;
 
@@ -11,14 +11,12 @@ import java.util.*;
 
 import one.util.streamex.*;
 
-import org.jparsec.Parser;
-
 import org.junit.*;
 import static org.junit.Assert.*;
 
-public class ExpressionParsingTest {
+public class ExpressionParserTest {
 
-    Parser<Expression> parser = parser();
+    ExpressionParser parser = defaultParser();
 
     @Test public void parseConstant() {
         assertEquals(expr(1), parser.parse("1"));
@@ -60,24 +58,5 @@ public class ExpressionParsingTest {
         Expression expr = parser.parse(expected);
         System.out.printf("trace of %s is:%n%s%n", expected, trace(expr));
         assertEquals(expected.replace(" * ", " "), expr.format());
-    }
-
-    enum MyOp implements DelegatingOperator {
-        PI_R_SQUARED(prefix("pi_r_2 ", v -> Math.PI * v * v).precedence(100)),
-        ;
-        final Operator delegate;
-        MyOp(Operator delegate) { this.delegate = delegate; }
-        @Override public Operator delegate() { return delegate; }
-    }
-
-    @Test public void parseNewOp() {
-        Parser<Expression> parser = parser(MyOp.class);
-        Expression expected = expr(2).apply(MyOp.PI_R_SQUARED);
-        assertEquals(expected, parser.parse("pi_r_2 2"));
-    }
-
-    @Test public void parseNewOpFailsWithoutEnum() {
-        Expression expected = expr("pi_r_2").times(2);
-        assertEquals(expected, parser.parse("pi_r_2 2"));
     }
 }

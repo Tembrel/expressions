@@ -20,6 +20,10 @@ import org.jparsec.Parser;
  * representation).
  */
 public abstract class Expression {
+    
+    /** Constructor for extension only */
+    protected Expression() {
+    }
 
     /**
      * Apply a visitor function to this expression.

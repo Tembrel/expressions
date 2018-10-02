@@ -21,8 +21,8 @@ import org.jparsec.Parser;
  */
 public abstract class Expression {
     
-    /** Constructor for extension only */
-    protected Expression() {
+    /** Default access constructor, use ExtendedExpression for subclasses. */
+    Expression() {
     }
 
     /**

@@ -80,10 +80,13 @@
     </delete>
   </target>
 
-  <target name="clean-ivy-cache"
-    depends="init-ivy"
-  >
-    <ivy:cleancache />
+  <target name="clean-ivy">
+    <!--
+     ! Would use this but it requires Ivy jar:
+     ! <ivy:cleancache />
+     !-->
+    <delete dir="${ivy.cache.dir}" />
+    <delete dir="${ivy.jar.dir}" />
   </target>
 
 </project>

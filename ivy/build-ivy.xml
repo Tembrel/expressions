@@ -75,7 +75,9 @@
   <target name="clean-lib"
     description="Clean the lib directory"
   >
-    <delete dir="${lib.dir}"/>
+    <delete>
+      <fileset dir="${lib.dir}" includes="*.jar" />
+    </delete>
   </target>
 
   <target name="clean-ivy-cache"

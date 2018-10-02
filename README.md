@@ -46,21 +46,51 @@ and this, too, can be changed.
 
 ## Issues FAQ
 
-- Why does binding throw `UnreferencedVariableException` when
-  evaluating something like `let a = 3, b = 4 in b`?
-  - Because it seemed more important to prevent what is probably
-    a mistake than support a vacuous interpretation.
-- Why does binding throw `SelfReferenceException` when evaluating
-  something like `let a = b + a in a + 1`? The `a` of `b + a` becomes
-  a free variable in the result, so what's the problem?
-  - Because that's pretty confusing. Better not to allow it in the first place.
-- Why are there two ways to use trigonometric expressions: `sin(...)` and `trigExpr(...).sin()`?
-  - For pedagogical purposes:
-    `enum TrigonometricOperator` demonstrates how to add new operators,
-    and `classs TrigonometricExpression` demonstrates how to create an
-    extended expression type that supports new methods.
 - Why isn't this framework parameterizable over other numeric types?
+
   - The framework is already extensible along two axes; adding a third
     would complicate the API unnecessarily. Parallel frameworks could
     be devised for other numeric types.
 
+- Why does binding throw `UnreferencedVariableException` when
+  evaluating something like `let a = 3, b = 4 in b`?
+
+  - Because it seemed more important to prevent what is probably
+    a mistake than to support a vacuous interpretation.
+
+- Why does binding throw `SelfReferenceException` when evaluating
+  something like `let a = b + a in a + 1`? The `a` of `b + a` becomes
+  a free variable in the result, so what's the problem?
+
+  - Because that's pretty confusing. Better not to allow it in the first place.
+
+- Why are there two ways to use trigonometric expressions: `sin(...)` and `trigExpr(...).sin()`?
+
+  - For pedagogical purposes:
+    `enum TrigonometricOperator` demonstrates how to add new operators,
+    and `classs TrigonometricExpression` demonstrates how to create an
+    extended expression type that supports new methods.
+
+- Could you remove the Guava and StreamEx dependencies?
+
+  - Yes, no Guava or StreamEx types appear in the API, and the implementation
+    could be rewritten without them. I used them to simplify the implementation
+    and to make it easier to reason about its correctness.
+
+- Could you remove the JParsec dependency?
+
+  - Not easily. It would very hard to write the expression parser by hand.
+    There are other Java parsing libraries, but most of them focus on
+    working from a grammar expressed in text (e.g., BNF). JParsec
+    makes it easy to build a grammar in Java dynamically, based on the
+    operations passed at parser build time.
+
+- Could you remove the ErrorProne compile-time dependency?
+
+  - Yes, but since it doesn't impose any burden on API users
+    and because it increases confidence in the correctness of
+    the implementation, I don't see a reason to remove it.
+
+- Why didn't you package this framework using Maven?
+
+  - I'm more comfortable with Ant and Ivy.

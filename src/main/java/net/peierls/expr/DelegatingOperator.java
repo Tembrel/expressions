@@ -4,7 +4,7 @@ package net.peierls.expr;
  * A partial implementation of both the unary and binary operator interfaces
  * that delegates to an underlying operator.
  */
-public interface DelegatingOp extends UnaryOp, BinaryOp {
+public interface DelegatingOperator extends UnaryOp, BinaryOp {
 
     /**
      * Returns the operator to which method calls can be delegated.

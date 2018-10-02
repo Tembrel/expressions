@@ -15,7 +15,7 @@
 <span class="sourceLineNo">007</span> * Trigonometric operations on expressions.<a name="line.7"></a>
 <span class="sourceLineNo">008</span> */<a name="line.8"></a>
 <span class="sourceLineNo">009</span>@SuppressWarnings("ImmutableEnumChecker")<a name="line.9"></a>
-<span class="sourceLineNo">010</span>public enum TrigonometricOperator implements DelegatingOp {<a name="line.10"></a>
+<span class="sourceLineNo">010</span>public enum TrigonometricOperator implements DelegatingOperator {<a name="line.10"></a>
 <span class="sourceLineNo">011</span>    /** Sine operator */<a name="line.11"></a>
 <span class="sourceLineNo">012</span>    SINE        (prefix("sin ", Math::sin)      .precedence(100)),<a name="line.12"></a>
 <span class="sourceLineNo">013</span>    /** Cosine operator */<a name="line.13"></a>

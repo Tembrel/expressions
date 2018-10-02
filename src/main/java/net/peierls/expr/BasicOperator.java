@@ -7,7 +7,7 @@ import static net.peierls.expr.OperatorBuilder.*;
  * Basic double-precision arithmetic operators.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum BasicOperator implements DelegatingOp {
+public enum BasicOperator implements DelegatingOperator {
 
     /** Negation operator */
     NEGATED     (prefix("-", a -> -a)                   .precedence(100)),

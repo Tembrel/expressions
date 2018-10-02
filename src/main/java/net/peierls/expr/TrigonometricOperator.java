@@ -7,7 +7,7 @@ import static net.peierls.expr.OperatorBuilder.*;
  * Trigonometric operations on expressions.
  */
 @SuppressWarnings("ImmutableEnumChecker")
-public enum TrigonometricOperator implements DelegatingOp {
+public enum TrigonometricOperator implements DelegatingOperator {
     /** Sine operator */
     SINE        (prefix("sin ", Math::sin)      .precedence(100)),
     /** Cosine operator */

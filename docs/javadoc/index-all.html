@@ -117,7 +117,7 @@
 <div class="block">Returns an extended expression representing the result of
  applying the given binary operation to this expression.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#asBinary--">asBinary()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#asBinary--">asBinary()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>
 <div class="block">Returns a valid binary operator, by default the delegate().</div>
 </dd>
@@ -130,7 +130,7 @@
 <div class="block">Returns an expression representing the arc sine of
  the given expression.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#asUnary--">asUnary()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#asUnary--">asUnary()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>
 <div class="block">Returns a valid unary operator, by default the delegate().</div>
 </dd>
@@ -199,13 +199,13 @@
 <dl>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/BasicOperator.html#delegate--">delegate()</a></span> - Method in enum net.peierls.expr.<a href="net/peierls/expr/BasicOperator.html" title="enum in net.peierls.expr">BasicOperator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#delegate--">delegate()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#delegate--">delegate()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>
 <div class="block">Returns the operator to which method calls can be delegated.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/TrigonometricOperator.html#delegate--">delegate()</a></span> - Method in enum net.peierls.expr.<a href="net/peierls/expr/TrigonometricOperator.html" title="enum in net.peierls.expr">TrigonometricOperator</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr"><span class="typeNameLink">DelegatingOp</span></a> - Interface in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
+<dt><a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr"><span class="typeNameLink">DelegatingOperator</span></a> - Interface in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
 <dd>
 <div class="block">A partial implementation of both the unary and binary operator interfaces
  that delegates to an underlying operator.</div>
@@ -252,9 +252,9 @@
 <dd>
 <div class="block">Apply this operation to a double value.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#evaluate-double-">evaluate(double)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#evaluate-double-">evaluate(double)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#evaluate-double-double-">evaluate(double, double)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#evaluate-double-double-">evaluate(double, double)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#evaluate--">evaluate()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
 <dd>
@@ -312,9 +312,9 @@
 <div class="block">Find the string representation of this operation given a string
  representation of its arguments.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#format-java.lang.String-">format(String)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#format-java.lang.String-">format(String)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#format-java.lang.String-java.lang.String-">format(String, String)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#format-java.lang.String-java.lang.String-">format(String, String)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#format--">format()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
 <dd>
@@ -554,7 +554,7 @@
  to the power of a variable expression of the given
  variable name;</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#precedence--">precedence()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#precedence--">precedence()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Operator.html#precedence--">precedence()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a></dt>
 <dd>
@@ -617,7 +617,7 @@
 <dd>
 <div class="block">The argument of this expression's unary operation.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#symbol--">symbol()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#symbol--">symbol()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Operator.html#symbol--">symbol()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a></dt>
 <dd>
@@ -685,7 +685,7 @@
 <dd>
 <div class="block">Trigonometric operations on expressions.</div>
 </dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOp.html#type--">type()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOp.html" title="interface in net.peierls.expr">DelegatingOp</a></dt>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#type--">type()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Operator.html#type--">type()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a></dt>
 <dd>&nbsp;</dd>

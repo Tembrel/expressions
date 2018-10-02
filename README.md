@@ -21,7 +21,7 @@ The framework is extensible in two ways:
 ### Basic usage
 
 See the [basic usage JUnit test](
-  /Tembrel/expressions/blob/master/src/test/java/com/example/expr/BasicUsageTest.java#L10
+  src/test/java/net/peierls/expr/BasicUsageTest.java#L10
 ).
 
 ### Adding new operator categories and extending expressions
@@ -32,21 +32,21 @@ strictly required for user-defined operators, but extended
 parsing only works with enum types.
 
 The [`TrigonometricOperator` class](
-  /Tembrel/expressions/blob/master/src/main/java/com/example/expr/TrigonometricOperator.java#L10
+  src/main/java/net/peierls/expr/TrigonometricOperator.java#L10
 ) demonstrates how to add a user-defined operator enum
 by implementing `DelegatingOperator`. The only boilerplate,
 other than `implements DelegatingOperator` is in
 [these three lines](
-  /Tembrel/expressions/blob/master/src/main/java/com/example/expr/TrigonometricOperator.java#L24-26
+  src/main/java/net/peierls/expr/TrigonometricOperator.java#L24-26
 ).
 
 The expression parsing test class has [an example of parsing with
 a user-defined operator enum](
-  /Tembrel/expressions/blob/master/src/test/java/com/example/expr/ExpressionParsingTest.java#L74
+  src/test/java/net/peierls/expr/ExpressionParsingTest.java#L74
 );
 
 The [`TrigonometricExpression` class](
-  /Tembrel/expressions/blob/master/src/main/java/com/example/expr/TrigonometricExpression.java#L10
+  src/main/java/net/peierls/expr/TrigonometricExpression.java#L10
 ) demonstrates how to extend `Expression`
 with convenience methods to apply these
 new operations.
@@ -55,7 +55,7 @@ new operations.
 ### Adding new transformations of expressions
 
 The [`TraceVisitor` class](
-  /Tembrel/expressions/blob/master/src/test/java/com/example/expr/TraceVistor.java#L11
+  src/test/java/net/peierls/expr/TraceVistor.java#L11
 ) demonstrates how to add a new transformation
 over expressions.
 

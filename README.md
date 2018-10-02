@@ -55,7 +55,7 @@ new operations.
 ### Adding new transformations of expressions
 
 The [`TraceVisitor` class](
-  src/test/java/net/peierls/expr/TraceVistor.java#L11
+  src/test/java/net/peierls/expr/TraceVisitor.java#L11
 ) demonstrates how to add a new transformation
 over expressions.
 

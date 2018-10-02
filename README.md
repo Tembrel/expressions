@@ -15,12 +15,12 @@ The framework is extensible in two ways:
 
 ## API usage
 
-[Javadoc](https://tembrel.github.io/expressions/javadoc/) for the most recent release.
-
-
 ### Basic usage
 
-See the [basic usage JUnit test](
+See the [package javadoc for the most recent release](
+  https://tembrel.github.io/expressions/javadoc/
+) for usage information.
+Similar code is used in a [JUnit test](
   src/test/java/net/peierls/expr/BasicUsageTest.java#L10
 ).
 

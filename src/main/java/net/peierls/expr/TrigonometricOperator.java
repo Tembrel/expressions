@@ -21,7 +21,7 @@ public enum TrigonometricOperator implements DelegatingOp {
     /** Arctangent operator */
     ARC_TANGENT (prefix("atan ", Math::atan)    .precedence(100)),
     ;
-    Operator delegate;
+    final Operator delegate;
     TrigonometricOperator(Operator delegate) { this.delegate = delegate; }
     @Override public Operator delegate() { return delegate; }
 

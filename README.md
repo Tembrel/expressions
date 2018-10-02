@@ -28,7 +28,7 @@ See the [basic usage JUnit test](
 The [`TrigonometricOperator` class](
   src/main/java/com/example/expr/TrigonometricOperator.java#L10
 ) demonstrates how to add a new category
-of operations.
+of operations using `DelegatingOp`.
 
 The [`TrigonometricExpression` class](
   src/main/java/com/example/expr/TrigonometricExpression.java#L10
@@ -40,7 +40,8 @@ new operations.
 ### Adding new transformations of expressions
 
 The [`TraceVisitor` class](
-) demonst
+) demonstrates how to add a new transformation
+over expressions.
 
 
 ## Dependencies

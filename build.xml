@@ -180,7 +180,8 @@
       breakiterator="yes"
       linksource="yes"
     >
-      <arg line="-Xdoclint:-missing"/>
+      <arg value="-Xdoclint:-missing"/>
+      <arg value="-notimestamp"/>
       <packageset dir="${src.dir}" />
       <link href="https://docs.oracle.com/javase/8/docs/api/" />
     </javadoc>

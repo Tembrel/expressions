@@ -15,11 +15,33 @@ The framework is extensible in two ways:
 
 ## API usage
 
+[Javadoc](https://tembrel.github.io/expressions/javadoc/) for the most recent release.
+
 ### Basic usage
 
 See the [basic usage JUnit test](
   src/test/java/com/example/expr/BasicUsageTest.java#L10
 ).
+
+### Adding new operator categories and extending expressions
+
+The [`TrigonometricOperator` class](
+  src/main/java/com/example/expr/TrigonometricOperator.java#L10
+) demonstrates how to add a new category
+of operations.
+
+The [`TrigonometricExpression` class](
+  src/main/java/com/example/expr/TrigonometricExpression.java#L10
+) demonstrates how to extend `Expression`
+with convenience methods to apply these
+new operations.
+
+
+### Adding new transformations of expressions
+
+The [`TraceVisitor` class](
+) demonst
+
 
 ## Dependencies
 

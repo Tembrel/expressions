@@ -198,6 +198,6 @@
  * {@link net.peierls.expr.Expression#accept accept} method of
  * an argument expression on that instance.
  * See <a href="https://github.com/Tembrel/expressions/blob/master/src/test/java/net/peierls/expr/TraceVisitor.java#L11"
- * target="_blank">TraceVisitor</a> in the test code for a full example.
+ * target="_top">TraceVisitor</a> in the test code for a full example.
  */
 package net.peierls.expr;

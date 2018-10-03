@@ -32,8 +32,7 @@ in the form of a [JUnit test](
 The [`TrigonometricOperator` class](
   src/main/java/net/peierls/expr/TrigonometricOperator.java#L10
 ) demonstrates how to add a user-defined operator enum
-by implementing `DelegatingOperator`. The only boilerplate,
-other than `implements DelegatingOperator` is in
+by implementing `DelegatingOperator`. The only other boilerplate is
 [these three lines](
   src/main/java/net/peierls/expr/TrigonometricOperator.java#L24-L26
 ).

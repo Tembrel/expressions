@@ -123,14 +123,15 @@ See the [Ivy build properties file](
 
 - Equality of expressions is defined as structural identity rather
   than equivalence. Shouldn't you provide an equivalence test:
-```java
-  assertTrue(equivalentExpressions(expr(1).plus("a"), expr("a").plus(1)));
-  assertTrue(equivalentExpressions(expr("a").times(2), expr("a").plus("a")));
-```
+  
   - That's an excellent exercise for the reader! You could do it through
     structural analysis, but it might be more fun to cheat and see if
     repeatedly randomly binding the free variables to the same values
     in both expressions produces equal values.
+  ```java
+      assertTrue(equivalentExpressions(expr(1).plus("a"), expr("a").plus(1)));
+      assertTrue(equivalentExpressions(expr("a").times(2), expr("a").plus("a")));
+  ```
 
 - Expressions that use variables that conflict with the
   reserved words `let` and `in` will format successfully as a string
@@ -192,7 +193,7 @@ See the [Ivy build properties file](
   - It's a weakness, but if you consistently use one or the other approach, it won't be a
     problem in practice. And it's not easy to fix: Trying to get wrapped classes to
     pretend they are equal to the things they wrap is a fool's game.
- ```java
+  ```java
     @Test public void differentWaysOfUsingExtendedExpressions() {
         Expression sinA1 = sin(expr("a"));
         Expression sinA2 = trigExpr("a").sin();
@@ -200,7 +201,7 @@ See the [Ivy build properties file](
         assertEquals(sinA1.toString(), sinA2.toString());
         assertFalse(sinA1.equals(sinA2));
     }
- ```
+  ```
 
 - Could you remove the Guava and StreamEx dependencies?
 

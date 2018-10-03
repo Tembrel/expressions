@@ -94,6 +94,9 @@ of the operators.
 Clone this repository and navigate to the top-level directory.
 
 Type `ant test` to run the tests (Apache Ant 1.10.x or later).
+Use `ant jar` or just `ant` to build a Jar file for the framework
+(not including dependencies) in the `build` subdirectory; this
+will also run the tests.
 
 The Ant build will download the Apache Ivy jar that manages
 dependencies.
@@ -106,11 +109,41 @@ See the [Ivy build properties file](
 
 ## Issues FAQ
 
-- Why isn't this framework parameterizable over other numeric types?
+- Expressions that use variables that conflict with the
+  reserved words `let` and `in` will format successfully
+  but will not be parseable. Shouldn't you prevent the use
+  of those variable names?
+  
+  - Not all uses of expressions involve parsing. It seems
+    draconian to prevent the use of perfectly good variable
+    names for uses that don't require parsing.
+    Anyone concerned by this could either write static `expr`
+    methods that prevent the use of these keywords, or (more
+    ambitiously) write an alternative formatting and parsing
+    scheme.
 
-  - The framework is already extensible along two axes; adding a third
-    would complicate the API unnecessarily. Parallel frameworks could
-    be devised for other numeric types.
+- Now that you mention alternative parsing schemes, how about
+  making the expression parser extensible?
+  
+  - Because it would be very hard and would have little benefit.
+
+- Could this framework be parameterized by numeric type? It would
+  be great to have `Expression<BigInteger>`, for example.
+
+  - Maybe, but the framework is already extensible along two axes; adding a third
+    would complicate the API unnecessarily by having to deal with things
+    like the fact that some operations would apply to `double` but not
+    to `BigInteger`, or vice versa.
+
+- Expressions that only use single character variable names can be
+  expressed more naturally by removing the whitespace in products,
+  e.g., `ax^2 + bx + c` instead of `a x^2 + b x + c`. Could this
+  library support that?
+  
+  - Yes, but the results would be parseable only through the
+    ugly compromise of using something like
+    quotation marks around variables with names longer than one character,
+    e.g., `'pi'r^2`. It doesn't seem important enough to do right now.
 
 - Why does binding throw `UnreferencedVariableException` when
   evaluating something like `let a = 3, b = 4 in b`?
@@ -130,20 +163,38 @@ See the [Ivy build properties file](
     `enum TrigonometricOperator` demonstrates how to add new operators,
     and `class TrigonometricExpression` demonstrates how to create an
     extended expression type that supports new methods.
+    
+- These different ways produce expressions that aren't equal. Is that an API bug?
+
+  - It's a weakness, but you consistently use one or the other approach, it won't be a
+    problem in practice. And it's not easy to fix: Trying to get wrapped classes act
+    pretend they are equal
+    to the things they wrap is a fool's game.
+ ```java
+    @Test public void differentWaysOfUsingExtendedExpressions() {
+        Expression sinA1 = sin(expr("a"));
+        Expression sinA2 = trigExpr("a").sin();
+        // They print the same, but they aren't equal.
+        assertEquals(sinA1.format(), sinA2.format());
+        assertFalse(sinA1.equals(sinA2));
+    }
+ ```
 
 - Could you remove the Guava and StreamEx dependencies?
 
-  - Yes, no Guava or StreamEx types appear in the API, and the implementation
+  - Yes. Guava and StreamEx types do not appear in the API, and the implementation
     could be rewritten without them. I used them to simplify the implementation
     and to make it easier to reason about its correctness.
 
 - Could you remove the JParsec dependency?
 
-  - Not easily. It would very hard to write the expression parser by hand.
+  - Not easily. JParsec types do not appear in the API, but it would be very
+    hard to write the expression parser by hand.
     There are other Java parsing libraries, but most of them focus on
     working from a grammar expressed in text (e.g., BNF). JParsec
     makes it easy to build a grammar in Java dynamically, based on the
-    operations passed at parser build time.
+    operations passed at parser build time. The syntax of `OperatorBuilder`
+    was taken directly from JParsec.
 
 - Could you remove the ErrorProne compile-time dependency?
 

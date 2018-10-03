@@ -2,7 +2,7 @@
 
 This repository contains a Java framework for evaluating, formatting, and parsing
 double-precision expressions with constants, variables, unary and binary operations,
-and binding variables to expressions.
+and binding of variables to expressions.
 
 The framework is extensible in two ways:
 

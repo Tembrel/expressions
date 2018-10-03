@@ -117,10 +117,10 @@
  * <h3>Parsing</h3>
  *
  * Parse expressions on the built-in operators with
- * {@link net.peierls.expr.Expression#of Expression.of()}.
+ * {@link net.peierls.expr.Expression#parseExpr parseExpr(String exprText)}.
  * <pre>
- * assertEquals(sumExpr1, Expression.of("2.5 + a"));
- * assertEquals(sumExpr1.where("a", 3), Expression.of("let a = 3 in 2.5 + a"));
+ * assertEquals(sumExpr1, parseExpr("2.5 + a"));
+ * assertEquals(sumExpr1.where("a", 3), parseExpr("let a = 3 in 2.5 + a"));
  * </pre>
  *
  * <h2>Adding operators</h2>
@@ -178,13 +178,13 @@
  * }
  * </pre>
  * To parse expressions on user-defined operators, pass the operator enum type(s) to
- * {@link net.peierls.expr.Expression#of(String,Class,Class[]) Expression.of(str, userType1,...)}.
+ * {@link net.peierls.expr.Expression#parseExpr(String,Class,Class[]) parseExpr(str, userType1,...)}.
  * <pre>
  * Expression expected1 = expr(2).apply(MyOp.PI_R_SQUARED);
- * assertEquals(expected1, Expression.of("pi_r_2 2", MyOp.class));
+ * assertEquals(expected1, parseExpr("pi_r_2 2", MyOp.class));
  *
  * Expression expected2 = expr(2).apply(MyOp.CUBED);
- * assertEquals(expected2, Expression.of("2^^^", MyOp.class));
+ * assertEquals(expected2, parseExpr("2^^^", MyOp.class));
  * </pre>
  * Note that parsing with user-defined operators always uses
  * the standard expression types, not the extended expression

@@ -110,9 +110,24 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public class <a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.11">OperatorBuilder</a>
+<pre>public class <a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.25">OperatorBuilder</a>
 extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a>
 implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in net.peierls.expr">UnaryOp</a>, <a href="../../../net/peierls/expr/BinaryOp.html" title="interface in net.peierls.expr">BinaryOp</a></pre>
+<div class="block">Fluent construction of new operators.
+ Use one of these static methods to start:
+ <ul>
+   <li><a href="../../../net/peierls/expr/OperatorBuilder.html#prefix-java.lang.String-java.util.function.DoubleUnaryOperator-"><code>prefix</code></a></li>
+   <li><a href="../../../net/peierls/expr/OperatorBuilder.html#postfix-java.lang.String-java.util.function.DoubleUnaryOperator-"><code>postfix</code></a></li>
+   <li><a href="../../../net/peierls/expr/OperatorBuilder.html#infixl-java.lang.String-java.util.function.DoubleBinaryOperator-"><code>infixl</code></a></li>
+   <li><a href="../../../net/peierls/expr/OperatorBuilder.html#infixn-java.lang.String-java.util.function.DoubleBinaryOperator-"><code>infixn</code></a></li>
+   <li><a href="../../../net/peierls/expr/OperatorBuilder.html#infixr-java.lang.String-java.util.function.DoubleBinaryOperator-"><code>infixr</code></a></li>
+ </ul>
+ and optionally set a precedence with
+ <a href="../../../net/peierls/expr/OperatorBuilder.html#precedence-int-"><code>precedence(int)</code></a>.
+ By default, unary operators will have higher precedence
+ than standard binary operators and lower precedence than
+ standard unary operators, and binary operators will have
+ the same precedence as addition.</div>
 </li>
 </ul>
 </div>
@@ -156,7 +171,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <td class="colFirst"><code>double</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/OperatorBuilder.html#evaluate-double-double-">evaluate</a></span>(double&nbsp;v1,
         double&nbsp;v2)</code>
-<div class="block">Apply this operation to a double value.</div>
+<div class="block">Apply this operation to two double values.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
@@ -205,13 +220,13 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/OperatorBuilder.html#precedence--">precedence</a></span>()</code>
-<div class="block">The precedence of this operator.</div>
+<div class="block">Returns the symbol that will be used when formatting or parsing this operator.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/OperatorBuilder.html#precedence-int-">precedence</a></span>(int&nbsp;precedence)</code>
-<div class="block">Sets the precedence of this operator.</div>
+<div class="block">Returns a new instance equivalent to this one, but with the given precedence.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -224,12 +239,15 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/OperatorBuilder.html#symbol--">symbol</a></span>()</code>
-<div class="block">The text symbol for this operator.</div>
+<div class="block">Returns the symbol that will be used when formatting or parsing this operator.</div>
 </td>
 </tr>
 <tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Operator.Type.html" title="enum in net.peierls.expr">Operator.Type</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/OperatorBuilder.html#type--">type</a></span>()</code>&nbsp;</td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/OperatorBuilder.html#type--">type</a></span>()</code>
+<div class="block">Returns the type of operator: prefix, postfix, infix (and, if infix, whether
+ it is left-, right, or non-associative).</div>
+</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -266,7 +284,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>prefix</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.33">prefix</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.47">prefix</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
                                      <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/DoubleUnaryOperator.html?is-external=true" title="class or interface in java.util.function">DoubleUnaryOperator</a>&nbsp;unaryOp)</pre>
 <div class="block">Creates a builder for a unary prefix operator.</div>
 </li>
@@ -277,7 +295,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>postfix</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.40">postfix</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.54">postfix</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
                                       <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/DoubleUnaryOperator.html?is-external=true" title="class or interface in java.util.function">DoubleUnaryOperator</a>&nbsp;unaryOp)</pre>
 <div class="block">Creates a builder for a unary postfix operator.</div>
 </li>
@@ -288,7 +306,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>infixl</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.47">infixl</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.61">infixl</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
                                      <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/DoubleBinaryOperator.html?is-external=true" title="class or interface in java.util.function">DoubleBinaryOperator</a>&nbsp;binaryOp)</pre>
 <div class="block">Creates a builder for a left-associative binary operator.</div>
 </li>
@@ -299,7 +317,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>infixn</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.54">infixn</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.68">infixn</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
                                      <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/DoubleBinaryOperator.html?is-external=true" title="class or interface in java.util.function">DoubleBinaryOperator</a>&nbsp;binaryOp)</pre>
 <div class="block">Creates a builder for a non-associative binary operator.</div>
 </li>
@@ -310,7 +328,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>infixr</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.61">infixr</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.75">infixr</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;symbol,
                                      <a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/DoubleBinaryOperator.html?is-external=true" title="class or interface in java.util.function">DoubleBinaryOperator</a>&nbsp;binaryOp)</pre>
 <div class="block">Creates a builder for a right-associative binary operator.</div>
 </li>
@@ -321,8 +339,8 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>precedence</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.97">precedence</a>(int&nbsp;precedence)</pre>
-<div class="block">Sets the precedence of this operator.</div>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.111">precedence</a>(int&nbsp;precedence)</pre>
+<div class="block">Returns a new instance equivalent to this one, but with the given precedence.</div>
 </li>
 </ul>
 <a name="symbol--">
@@ -331,9 +349,8 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>symbol</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.102">symbol</a>()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../net/peierls/expr/Operator.html#symbol--">Operator</a></code></span></div>
-<div class="block">The text symbol for this operator.</div>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.119">symbol</a>()</pre>
+<div class="block">Returns the symbol that will be used when formatting or parsing this operator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../net/peierls/expr/Operator.html#symbol--">symbol</a></code>&nbsp;in interface&nbsp;<code><a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a></code></dd>
@@ -346,9 +363,8 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>precedence</h4>
-<pre>public&nbsp;int&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.106">precedence</a>()</pre>
-<div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../net/peierls/expr/Operator.html#precedence--">Operator</a></code></span></div>
-<div class="block">The precedence of this operator. Higher numbers bind more tightly.</div>
+<pre>public&nbsp;int&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.126">precedence</a>()</pre>
+<div class="block">Returns the symbol that will be used when formatting or parsing this operator.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../net/peierls/expr/Operator.html#precedence--">precedence</a></code>&nbsp;in interface&nbsp;<code><a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a></code></dd>
@@ -361,7 +377,9 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>type</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Operator.Type.html" title="enum in net.peierls.expr">Operator.Type</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.110">type</a>()</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Operator.Type.html" title="enum in net.peierls.expr">Operator.Type</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.134">type</a>()</pre>
+<div class="block">Returns the type of operator: prefix, postfix, infix (and, if infix, whether
+ it is left-, right, or non-associative).</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../net/peierls/expr/Operator.html#type--">type</a></code>&nbsp;in interface&nbsp;<code><a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a></code></dd>
@@ -374,7 +392,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluate</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.115">evaluate</a>(double&nbsp;v)</pre>
+<pre>public&nbsp;double&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.139">evaluate</a>(double&nbsp;v)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../net/peierls/expr/UnaryOp.html#evaluate-double-">UnaryOp</a></code></span></div>
 <div class="block">Apply this operation to a double value.</div>
 <dl>
@@ -389,7 +407,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>format</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.119">format</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</pre>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.143">format</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../net/peierls/expr/UnaryOp.html#format-java.lang.String-">UnaryOp</a></code></span></div>
 <div class="block">Find the string representation of this operation given a string
  representation of its argument.</div>
@@ -405,10 +423,10 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluate</h4>
-<pre>public&nbsp;double&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.130">evaluate</a>(double&nbsp;v1,
+<pre>public&nbsp;double&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.154">evaluate</a>(double&nbsp;v1,
                        double&nbsp;v2)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../net/peierls/expr/BinaryOp.html#evaluate-double-double-">BinaryOp</a></code></span></div>
-<div class="block">Apply this operation to a double value.</div>
+<div class="block">Apply this operation to two double values.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../../../net/peierls/expr/BinaryOp.html#evaluate-double-double-">evaluate</a></code>&nbsp;in interface&nbsp;<code><a href="../../../net/peierls/expr/BinaryOp.html" title="interface in net.peierls.expr">BinaryOp</a></code></dd>
@@ -421,7 +439,7 @@ implements <a href="../../../net/peierls/expr/UnaryOp.html" title="interface in 
 <ul class="blockListLast">
 <li class="blockList">
 <h4>format</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.134">format</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s1,
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/OperatorBuilder.html#line.158">format</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s1,
                      <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;s2)</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../../../net/peierls/expr/BinaryOp.html#format-java.lang.String-java.lang.String-">BinaryOp</a></code></span></div>
 <div class="block">Find the string representation of this operation given a string

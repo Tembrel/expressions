@@ -169,13 +169,13 @@ See the [Ivy build properties file](
     quotation marks around variables with names longer than one character,
     e.g., `'pi'r^2`. It doesn't seem important enough to do right now.
 
-- Why does binding throw `UnreferencedVariableException` when
-  evaluating something like `let a = 3, b = 4 in b`?
+- Why does constructing a binding throw `UnreferencedVariableException` for
+  something like `let a = 3, b = 4 in b`?
 
   - Because it seemed more important to prevent what is probably
     a mistake than to support a vacuous interpretation.
 
-- Why does binding throw `SelfReferenceException` when evaluating
+- Why does constructing a binding expression throw `SelfReferenceException` for
   something like `let a = b + a in a + 1`? The `a` of `b + a` becomes
   a free variable in the result, so what's the problem?
 
@@ -203,8 +203,8 @@ See the [Ivy build properties file](
     }
   ```
 
-- `a^23` is interpreted as `a^2 * 3` by `Expression.of(...)`. Isn't that
-  a bug?
+- `assertEquals(parseExpr(a^23`), parseExpr(a^2 * 3));` does not fail.
+  Isn't that a bug?
 
   - Well... You can always write `a ^ 23` to get the parser to behave,
     but [I should probably remove `BasicOperator.SQUARED`](

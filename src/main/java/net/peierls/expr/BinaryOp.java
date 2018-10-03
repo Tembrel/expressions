@@ -7,7 +7,7 @@ package net.peierls.expr;
 public interface BinaryOp extends Operator {
 
     /**
-     * Apply this operation to a double value.
+     * Apply this operation to two double values.
      */
     double evaluate(double v1, double v2);
 

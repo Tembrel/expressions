@@ -1,6 +1,7 @@
 package net.peierls.expr;
 
 import static net.peierls.expr.Expression.expr;
+import static net.peierls.expr.Expression.parseExpr;
 import com.google.common.collect.*;
 import java.util.*;
 import org.junit.*;
@@ -97,9 +98,9 @@ public class BasicUsageTest {
 
         // Parsing expressions
 
-        // Parse expressions on the built-in operators with `Expression.of`.
+        // Parse expressions on the built-in operators with `parseExpr`.
 
-        assertEquals(sumExpr1, Expression.of("2.5 + a"));
-        assertEquals(sumExpr1.where("a", 3), Expression.of("let a = 3 in 2.5 + a"));
+        assertEquals(sumExpr1, parseExpr("2.5 + a"));
+        assertEquals(sumExpr1.where("a", 3), parseExpr("let a = 3 in 2.5 + a"));
     }
 }

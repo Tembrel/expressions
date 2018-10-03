@@ -63,20 +63,20 @@ public class ExtendedExpressionTest {
 
     @Test public void parsePiRSquared() {
         Expression expected = expr(2).apply(MyOp.PI_R_SQUARED);
-        assertEquals(expected, Expression.of("pi_r_2 2", MyOp.class));
+        assertEquals(expected, parseExpr("pi_r_2 2", MyOp.class));
     }
 
     @Test public void parsePiRSquaredTreatedAsVariableWhenUnknownToParser() {
         Expression expected = expr("pi_r_2").times(2);
-        assertEquals(expected, Expression.of("pi_r_2 2"));
+        assertEquals(expected, parseExpr("pi_r_2 2"));
     }
 
     @Test public void parseCubed() {
         Expression expected = expr(2).apply(MyOp.CUBED);
-        assertEquals(expected, Expression.of("2^^^", MyOp.class));
+        assertEquals(expected, parseExpr("2^^^", MyOp.class));
     }
 
     @Test(expected=ExpressionParsingException.class) public void parseCubedThrowsExceptionWhenUnknownToParser() {
-        Expression.of("2^^^");
+        parseExpr("2^^^");
     }
 }

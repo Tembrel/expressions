@@ -151,42 +151,50 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></td>
+<td class="colLast">
+<div class="block">A parser for Expression instances.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr">ExtendedExpression</a>&lt;T extends <a href="../../../net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr">ExtendedExpression</a>&lt;T&gt;&gt;</td>
 <td class="colLast">
 <div class="block">Abstract base for expression subtypes that wrap existing
  expressions to provide new methods.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></td>
 <td class="colLast">
 <div class="block">An expression representing a subexpression with variable names
  bound to other expressions.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/OperationExpression.html" title="class in net.peierls.expr">OperationExpression</a></td>
 <td class="colLast">
 <div class="block">An expression representing the result of a unary operation on a subexpression.</div>
 </td>
 </tr>
-<tr class="altColor">
-<td class="colFirst"><a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></td>
-<td class="colLast">&nbsp;</td>
-</tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></td>
+<td class="colLast">
+<div class="block">Fluent construction of new operators.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/TrigonometricExpression.html" title="class in net.peierls.expr">TrigonometricExpression</a></td>
 <td class="colLast">
 <div class="block">Extends expressions with trigonometric operations.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/UnaryOpExpression.html" title="class in net.peierls.expr">UnaryOpExpression</a></td>
 <td class="colLast">
 <div class="block">An expression representing the result of a unary operation on a subexpression.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/VariableExpression.html" title="class in net.peierls.expr">VariableExpression</a></td>
 <td class="colLast">
 <div class="block">An expression consisting of a single variable.</div>
@@ -407,10 +415,10 @@
  <h3>Parsing</h3>
 
  Parse expressions on the built-in operators with
- <a href="../../../net/peierls/expr/Expression.html#of-java.lang.String-"><code>Expression.of()</code></a>.
+ <a href="../../../net/peierls/expr/Expression.html#parseExpr-java.lang.String-"><code>parseExpr(String exprText)</code></a>.
  <pre>
- assertEquals(sumExpr1, Expression.of("2.5 + a"));
- assertEquals(sumExpr1.where("a", 3), Expression.of("let a = 3 in 2.5 + a"));
+ assertEquals(sumExpr1, parseExpr("2.5 + a"));
+ assertEquals(sumExpr1.where("a", 3), parseExpr("let a = 3 in 2.5 + a"));
  </pre>
 
  <h2>Adding operators</h2>
@@ -468,13 +476,13 @@
  }
  </pre>
  To parse expressions on user-defined operators, pass the operator enum type(s) to
- <a href="../../../net/peierls/expr/Expression.html#of-java.lang.String-java.lang.Class-java.lang.Class...-"><code>Expression.of(str, userType1,...)</code></a>.
+ <a href="../../../net/peierls/expr/Expression.html#parseExpr-java.lang.String-java.lang.Class-java.lang.Class...-"><code>parseExpr(str, userType1,...)</code></a>.
  <pre>
  Expression expected1 = expr(2).apply(MyOp.PI_R_SQUARED);
- assertEquals(expected1, Expression.of("pi_r_2 2", MyOp.class));
+ assertEquals(expected1, parseExpr("pi_r_2 2", MyOp.class));
 
  Expression expected2 = expr(2).apply(MyOp.CUBED);
- assertEquals(expected2, Expression.of("2^^^", MyOp.class));
+ assertEquals(expected2, parseExpr("2^^^", MyOp.class));
  </pre>
  Note that parsing with user-defined operators always uses
  the standard expression types, not the extended expression

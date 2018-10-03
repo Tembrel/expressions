@@ -6,7 +6,21 @@ import java.util.function.DoubleBinaryOperator;
 import java.util.function.DoubleUnaryOperator;
 
 /**
- *
+ * Fluent construction of new operators.
+ * Use one of these static methods to start:
+ * <ul>
+ *   <li>{@link OperatorBuilder#prefix prefix}</li>
+ *   <li>{@link OperatorBuilder#postfix postfix}</li>
+ *   <li>{@link OperatorBuilder#infixl infixl}</li>
+ *   <li>{@link OperatorBuilder#infixn infixn}</li>
+ *   <li>{@link OperatorBuilder#infixr infixr}</li>
+ * </ul>
+ * and optionally set a precedence with
+ * {@link OperatorBuilder#precedence(int) precedence(int)}.
+ * By default, unary operators will have higher precedence
+ * than standard binary operators and lower precedence than
+ * standard unary operators, and binary operators will have
+ * the same precedence as addition.
  */
 public class OperatorBuilder implements UnaryOp, BinaryOp {
 
@@ -73,7 +87,7 @@ public class OperatorBuilder implements UnaryOp, BinaryOp {
             throw new IllegalArgumentException("type argument must be PREFIX or POSTFIX");
         }
         // XXX ensure valid symbol
-        return new OperatorBuilder(unaryOp, null, symbol, 0, type);
+        return new OperatorBuilder(unaryOp, null, symbol, 90, type);
     }
 
     /**
@@ -87,26 +101,36 @@ public class OperatorBuilder implements UnaryOp, BinaryOp {
             throw new IllegalArgumentException("type argument must be INFIXL, INFIXN, or INFIXR");
         }
         // XXX ensure valid symbol
-        return new OperatorBuilder(null, binaryOp, symbol, 0, type);
+        return new OperatorBuilder(null, binaryOp, symbol, 10, type);
     }
 
 
     /**
-     * Sets the precedence of this operator.
+     * Returns a new instance equivalent to this one, but with the given precedence.
      */
     public OperatorBuilder precedence(int precedence) {
         return new OperatorBuilder(this.unaryOp, this.binaryOp, this.symbol, precedence, this.type);
     }
 
 
+    /**
+     * Returns the symbol that will be used when formatting or parsing this operator.
+     */
     @Override public String symbol() {
         return symbol;
     }
 
+    /**
+     * Returns the symbol that will be used when formatting or parsing this operator.
+     */
     @Override public int precedence() {
         return precedence;
     }
 
+    /**
+     * Returns the type of operator: prefix, postfix, infix (and, if infix, whether
+     * it is left-, right, or non-associative).
+     */
     @Override public Type type() {
         return type;
     }

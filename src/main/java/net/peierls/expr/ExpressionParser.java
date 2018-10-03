@@ -21,7 +21,7 @@ import one.util.streamex.StreamEx;
  * @see <a href="https://github.com/jparsec/jparsec/wiki/Tutorial">JParsec tutorial</a>
  */
 @SuppressWarnings("InconsistentCapitalization")
-class ExpressionParser {
+public class ExpressionParser {
 
     private static final Parser<ConstantExpression> CONSTANT =
         Terminals.DecimalLiteral.PARSER.map(Double::valueOf).map(Expression::expr);
@@ -84,7 +84,7 @@ class ExpressionParser {
     }
 
     /**
-     * Creates a parser on the given operators and the built-in operators.
+     * Creates a parser on the built-in operators and the operators of the given types.
      */
     @SuppressWarnings("unchecked")
     @SafeVarargs
@@ -94,7 +94,7 @@ class ExpressionParser {
     }
 
     /**
-     * Creates a parser on the given operators and the built-in operators.
+     * Creates a parser on the built-in operators and the operators of the given types.
      */
     public static ExpressionParser parser(List<Class<? extends Enum<? extends Operator>>> operatorTypes) {
         return new ExpressionParser(

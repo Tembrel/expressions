@@ -39,17 +39,19 @@ public abstract class Expression {
      * Turn a string representation of an expression into an Expression instance.
      * This method only works with the built-in operators in {@link BasicOperator}
      * and {@link TrigonometricOperator}.
+     * @throws ExpressionParsingException if an error is encountered during parsing
      */
-    public static Expression of(String exprString) {
+    public static Expression parseExpr(String exprString) {
         return ExpressionParser.defaultParser().parse(exprString);
     }
 
     /**
      * Turn a string representation of an expression into an Expression instance,
      * using the build-in operators and any operators from the given enum types.
+     * @throws ExpressionParsingException if an error is encountered during parsing
      */
     @SafeVarargs
-    public static Expression of(String exprString,
+    public static Expression parseExpr(String exprString,
             Class<? extends Enum<? extends Operator>> firstOperatorType,
             Class<? extends Enum<? extends Operator>>... operatorTypes) {
         return ExpressionParser.parser(firstOperatorType, operatorTypes)

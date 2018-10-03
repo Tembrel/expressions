@@ -27,7 +27,7 @@ Similar code is used in a [JUnit test](
 ### Adding new operator categories and extending expressions
 
 To ensure that operators are singletons, the framework uses
-the typesafe enum pattern. Following this pattern is not
+the emulated extensible enum pattern. Following this pattern is not
 strictly required for user-defined operators, but extended
 parsing only works with enum types.
 

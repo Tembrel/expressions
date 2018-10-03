@@ -203,6 +203,13 @@ See the [Ivy build properties file](
     }
   ```
 
+- It looks like `parseExpr` with user-defined operator types constructs
+  a new parser for each call. This could be expensive when parsing in
+  an inner loop.
+
+  - The `ExpressionParser` class lets you create a parser instance once
+    and then use it repeatedly.
+
 - `assertEquals(parseExpr(a^23`), parseExpr(a^2 * 3));` does not fail.
   Isn't that a bug?
 

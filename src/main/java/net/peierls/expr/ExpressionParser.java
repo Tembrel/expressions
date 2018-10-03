@@ -126,7 +126,7 @@ public class ExpressionParser {
     /**
      * Parse an expression using whatever operators
      * this parser has been configured with.
-     * @throws ExpressionParserException if the parsing fails for some reason
+     * @throws ExpressionParserException if an error is encountered during parsing
      */
     public Expression parse(String exprText) {
         try {

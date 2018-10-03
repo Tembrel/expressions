@@ -39,7 +39,7 @@ by implementing `DelegatingOperator`. The only other boilerplate is
 
 The expression parsing test class has [an example of parsing with
 a user-defined operator enum](
-  src/test/java/net/peierls/expr/ExtendedExpressionTest.java#L28-L63
+  src/test/java/net/peierls/expr/ExtendedExpressionTest.java#L64-L81
 );
 
 The [`TrigonometricExpression` class](

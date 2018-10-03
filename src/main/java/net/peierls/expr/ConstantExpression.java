@@ -36,7 +36,7 @@ public class ConstantExpression extends Expression {
     }
 
     /** The double precision value represented by this constant expression. */
-    public double value() {
+    @Override public double value() {
         return value;
     }
 

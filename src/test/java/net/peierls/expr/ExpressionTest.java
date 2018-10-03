@@ -16,8 +16,8 @@ public class ExpressionTest {
     @Test public void constantExpression() {
         double value = 3.5;
         Expression e = expr(value);
-        assertEquals(value, e.evaluate(), 0);
-        assertEquals(Double.toString(value), e.format());
+        assertEquals(value, e.value(), 0);
+        assertEquals(Double.toString(value), e.toString());
     }
 
     @Test public void variableExpression() {
@@ -25,8 +25,8 @@ public class ExpressionTest {
         double value = 3.5;
         Expression e = expr(var);
         Expression bound = e.where(var, value);
-        assertEquals(value, bound.evaluate(), 0);
-        assertEquals(var, e.format());
+        assertEquals(value, bound.value(), 0);
+        assertEquals(var, e.toString());
     }
 
     @Test(expected=UnreferencedVariableException.class) public void unreferencedVariable() {

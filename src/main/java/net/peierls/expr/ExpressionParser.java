@@ -21,7 +21,7 @@ import one.util.streamex.StreamEx;
  * @see <a href="https://github.com/jparsec/jparsec/wiki/Tutorial">JParsec tutorial</a>
  */
 @SuppressWarnings("InconsistentCapitalization")
-public class ExpressionParser {
+class ExpressionParser {
 
     private static final Parser<ConstantExpression> CONSTANT =
         Terminals.DecimalLiteral.PARSER.map(Double::valueOf).map(Expression::expr);
@@ -132,7 +132,7 @@ public class ExpressionParser {
         try {
             return parser.parse(exprText);
         } catch (ParserException ex) {
-            throw new ExpressionParserException(ex.getMessage(), ex);
+            throw new ExpressionParsingException(ex.getMessage(), ex);
         }
     }
 

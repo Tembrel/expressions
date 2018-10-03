@@ -19,6 +19,6 @@ public class TrigonometricOperationTest {
         Expression v = expr(val);
         Expression e1 = sin(v);
         Expression e2 = asin(e1);
-        assertEquals(val, e2.evaluate(), 0.0001);
+        assertEquals(val, e2.value(), 0.0001);
     }
 }

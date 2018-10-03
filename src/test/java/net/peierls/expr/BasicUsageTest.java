@@ -62,7 +62,11 @@ public class BasicUsageTest {
         Expression quadFullyBound2 = quadWithBoundCoefficients.where("x", 1);
 
         assertFalse(quadFullyBound.equals(quadFullyBound2));
-        assertEquals(quadFullyBound.evaluate(), quadFullyBound2.evaluate(), 0);
+        assertEquals(quadFullyBound.value(), quadFullyBound2.value(), 0);
+
+        // optValue returns empty value instead of throwing:
+        assertEquals(42.0, expr(1).dividedBy(0).optValue().orElse(42), 0);
+        assertEquals(66.6, expr(1).plus("a").optValue().orElse(66.6), 0);
 
 
         // Free variables of an expression
@@ -81,22 +85,21 @@ public class BasicUsageTest {
         // You can test whether an expression has no free variables with `evaluable`.
 
         assertTrue(quadFullyBound.evaluable());
-        assertEquals(9.0, quadFullyBound.evaluate(), 0);
+        assertEquals(9.0, quadFullyBound.value(), 0);
 
         // Formatting expressions
 
-        // Format an expression to a string representation with `format()`.
-        // `Expression.toString` is an alias for `format()`.
+        // Format an expression to a string representation with `toString()`.
 
-        assertEquals("2.5 + a", sumExpr1.format());
+        assertEquals("2.5 + a", sumExpr1.toString());
         assertEquals("let a = 3 in 2.5 + a", sumExpr1.where("a", 3).toString());
 
 
         // Parsing expressions
 
-        // Parse expressions on the built-in operators with `Expression.parse`.
+        // Parse expressions on the built-in operators with `Expression.of`.
 
-        assertEquals(sumExpr1, Expression.parse("2.5 + a"));
-        assertEquals(sumExpr1.where("a", 3), Expression.parse("let a = 3 in 2.5 + a"));
+        assertEquals(sumExpr1, Expression.of("2.5 + a"));
+        assertEquals(sumExpr1.where("a", 3), Expression.of("let a = 3 in 2.5 + a"));
     }
 }

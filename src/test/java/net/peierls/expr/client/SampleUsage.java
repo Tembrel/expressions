@@ -19,7 +19,7 @@ public class SampleUsage {
         Expression expr1 = expr(1).plus(expr(2.5))
             .dividedBy(expr(3).plus(expr(4)));
 
-        double value1 = expr1.evaluate();
+        double value1 = expr1.value();
 
         System.out.printf("expr1 = %s%nvalue1 = %f%n", expr1, value1);
 
@@ -33,7 +33,7 @@ public class SampleUsage {
             .where("a", 2, "b", 3, "c", 4)
             .where("x", 5);
 
-        double value2 = expr2.evaluate();
+        double value2 = expr2.value();
 
         System.out.printf("expr2 = %s%nvalue2 = %f%ntrace expr2:%n%s%n", expr2, value2, trace(expr2));
 
@@ -45,7 +45,7 @@ public class SampleUsage {
         Expression expr3 = expr(2).times(trigExpr(expr("a")).sin())
             .where("a", 1);
 
-        double value3 = expr3.evaluate();
+        double value3 = expr3.value();
 
         System.out.printf("expr3 = %s%nvalue3 = %f%n", expr3, value3);
 
@@ -65,7 +65,7 @@ public class SampleUsage {
 
         double value4 = expr4
             .where("a", 1, "b", 1, "c", -2)
-            .evaluate();
+            .value();
 
         System.out.printf("expr4 = %s%nvalue4 = %f%ntrace expr4:%n%s%n", expr4, value4, trace(expr4));
 
@@ -75,7 +75,7 @@ public class SampleUsage {
         // usage 5
 
         Expression expr5 = expr("x").pow(expr("y"));
-        double value5 = expr5.where("x", 3, "y", 4).evaluate();
+        double value5 = expr5.where("x", 3, "y", 4).value();
 
         System.out.printf("expr5 = %s, where x=3, y=4%nvalue5 = %f%n", expr5, value5);
 

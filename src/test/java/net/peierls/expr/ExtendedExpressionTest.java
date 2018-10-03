@@ -21,7 +21,7 @@ public class ExtendedExpressionTest {
         Expression sinA1 = sin(expr("a"));
         Expression sinA2 = trigExpr("a").sin();
         // They print the same, but they aren't equal.
-        assertEquals(sinA1.format(), sinA2.format());
+        assertEquals(sinA1.toString(), sinA2.toString());
         assertFalse(sinA1.equals(sinA2));
     }
 
@@ -62,25 +62,21 @@ public class ExtendedExpressionTest {
     }
 
     @Test public void parsePiRSquared() {
-        ExpressionParser parser = parser(MyOp.class);
         Expression expected = expr(2).apply(MyOp.PI_R_SQUARED);
-        assertEquals(expected, parser.parse("pi_r_2 2"));
+        assertEquals(expected, Expression.of("pi_r_2 2", MyOp.class));
     }
 
     @Test public void parsePiRSquaredTreatedAsVariableWhenUnknownToParser() {
-        ExpressionParser parser = defaultParser();
         Expression expected = expr("pi_r_2").times(2);
-        assertEquals(expected, parser.parse("pi_r_2 2"));
+        assertEquals(expected, Expression.of("pi_r_2 2"));
     }
 
     @Test public void parseCubed() {
-        ExpressionParser parser = parser(MyOp.class);
         Expression expected = expr(2).apply(MyOp.CUBED);
-        assertEquals(expected, parser.parse("2^^^"));
+        assertEquals(expected, Expression.of("2^^^", MyOp.class));
     }
 
-    @Test(expected=ExpressionParserException.class) public void parseCubedThrowsExceptionWhenUnknownToParser() {
-        ExpressionParser parser = defaultParser();
-        parser.parse("2^^^");
+    @Test(expected=ExpressionParsingException.class) public void parseCubedThrowsExceptionWhenUnknownToParser() {
+        Expression.of("2^^^");
     }
 }

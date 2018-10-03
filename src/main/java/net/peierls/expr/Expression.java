@@ -6,6 +6,7 @@ import com.google.common.collect.ImmutableMap;
 import static com.google.common.collect.ImmutableSet.toImmutableSet;
 
 import java.util.Map;
+import java.util.OptionalDouble;
 import java.util.Set;
 
 import one.util.streamex.EntryStream;
@@ -37,25 +38,29 @@ public abstract class Expression {
     /**
      * Turn a string representation of an expression into an Expression instance.
      * This method only works with the built-in operators in {@link BasicOperator}
-     * and {@link TrigonometricOperator}. Use {@link ExpressionParser} to create
-     * parsers that also work with user-defined operators.
+     * and {@link TrigonometricOperator}.
      */
-    public static Expression parse(String exprString) {
+    public static Expression of(String exprString) {
         return ExpressionParser.defaultParser().parse(exprString);
+    }
+
+    /**
+     * Turn a string representation of an expression into an Expression instance,
+     * using the build-in operators and any operators from the given enum types.
+     */
+    @SafeVarargs
+    public static Expression of(String exprString,
+            Class<? extends Enum<? extends Operator>> firstOperatorType,
+            Class<? extends Enum<? extends Operator>>... operatorTypes) {
+        return ExpressionParser.parser(firstOperatorType, operatorTypes)
+            .parse(exprString);
     }
 
 
     /**
-     * Returns the string representation of this expression, same
-     * as {@link net.peierls.expr.Expression#format format}.
+     * Returns the string representation of this expression.
      */
     @Override public String toString() {
-        return format();
-    }
-
-
-    /** Returns a string representation of this expression. */
-    public final String format() {
         return accept(FormattingVisitor.instance());
     }
 
@@ -67,8 +72,20 @@ public abstract class Expression {
      * @throws DivisionByZeroException if a division reults in positive or negative infinity or NaN
      * @throws UnboundVariableException if the expression has a free variable
      */
-    public final double evaluate() {
+    public double value() {
         return accept(EvaluationVisitor.instance());
+    }
+
+    /**
+     * Returns an optional with the value of this expression, if it has no free variables
+     * or divisions by zero, or the empty value otherwise.
+     */
+    public final OptionalDouble optValue() {
+        try {
+            return OptionalDouble.of(value());
+        } catch (UnboundVariableException | DivisionByZeroException ex) {
+            return OptionalDouble.empty();
+        }
     }
 
 

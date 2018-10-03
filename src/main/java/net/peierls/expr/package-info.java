@@ -74,7 +74,7 @@
  * Expression quadFullyBound2 = quadWithBoundCoefficients.where("x", 1);
  *
  * assertFalse(quadFullyBound.equals(quadFullyBound2));
- * assertEquals(quadFullyBound.evaluate(), quadFullyBound2.evaluate(), 0);
+ * assertEquals(quadFullyBound.value(), quadFullyBound2.value(), 0);
  * </pre>
  *
  * <h3>Free variables</h3>
@@ -88,33 +88,39 @@
  *
  * <h3>Evaluation</h3>
  *
- * Calling {@link net.peierls.expr.Expression#evaluate evaluate} on an expression with no free variables,
+ * Calling {@link net.peierls.expr.Expression#value value} on an expression with no free variables,
  * throws {@link net.peierls.expr.DivisionByZeroException} if a division by zero is encountered during
  * the evaluation, otherwise it produces the value of the expression as a {@code double}.
  *
  * Evaluating an expression with free variables throws {@link net.peierls.expr.UnboundVariableException}.
  * You can test whether an expression has no free variables with
  * {@link net.peierls.expr.Expression#evaluable evaluable}.
+ *
+ * The {@link net.peierls.expr.Expression#optValue optValue} method does not throw these exceptions,
+ * but rather returns an empty value in those cases.
  * <pre>
  * assertTrue(quadFullyBound.evaluable());
- * assertEquals(9.0, quadFullyBound.evaluate(), 0);
+ * assertEquals(9.0, quadFullyBound.value(), 0);
+ * assertEquals(42.0, expr(1).dividedBy(0).optValue().orElse(42));
+ * assertEquals(66.6, expr(1).plus("a").optValue().orElse(66.6));
  * </pre>
  *
  * <h3>String representation</h3>
  *
- * Format an expression to a string representation with {@link net.peierls.expr.Expression#format format}
- * or, equivalently, with {@link net.peierls.expr.Expression#toString toString}.
+ * Format an expression to a string representation with
+ * {@link net.peierls.expr.Expression#toString toString}.
  * <pre>
- * assertEquals("2.5 + a", sumExpr1.format());
+ * assertEquals("2.5 + a", sumExpr1.toString());
  * assertEquals("let a = 3 in 2.5 + a", sumExpr1.where("a", 3).toString());
  * </pre>
  *
  * <h3>Parsing</h3>
  *
- * Parse expressions on the built-in operators with {@link net.peierls.expr.Expression#parse parse}.
+ * Parse expressions on the built-in operators with
+ * {@link net.peierls.expr.Expression#of Expression.of()}.
  * <pre>
- * assertEquals(sumExpr1, Expression.parse("2.5 + a"));
- * assertEquals(sumExpr1.where("a", 3), Expression.parse("let a = 3 in 2.5 + a"));
+ * assertEquals(sumExpr1, Expression.of("2.5 + a"));
+ * assertEquals(sumExpr1.where("a", 3), Expression.of("let a = 3 in 2.5 + a"));
  * </pre>
  *
  * <h2>Adding operators</h2>
@@ -171,17 +177,14 @@
  *     }
  * }
  * </pre>
- * To parse expressions on user-defined operators, create a parser by passing the operator enum type(s) to
- * {@link net.peierls.expr.ExpressionParser#parser(List) ExpressionParser.parser(...)}, and call
- * {@link net.peierls.expr.ExpressionParser#parse parse()} on the result.
+ * To parse expressions on user-defined operators, pass the operator enum type(s) to
+ * {@link net.peierls.expr.Expression#of(String,Class,Class[]) Expression.of(str, userType1,...)}.
  * <pre>
- * ExpressionParser parser = parser(MyOp.class);
- *
  * Expression expected1 = expr(2).apply(MyOp.PI_R_SQUARED);
- * assertEquals(expected1, parser.parse("pi_r_2 2"));
+ * assertEquals(expected1, Expression.of("pi_r_2 2", MyOp.class));
  *
  * Expression expected2 = expr(2).apply(MyOp.CUBED);
- * assertEquals(expected2, parser.parse("2^^^"));
+ * assertEquals(expected2, Expressoin.of("2^^^", MyOp.class));
  * </pre>
  * Note that parsing with user-defined operators always uses
  * the standard expression types, not the extended expression

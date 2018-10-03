@@ -12,8 +12,8 @@
 <span class="sourceLineNo">004</span> * Thrown when expression parsing fails for some reason.<a name="line.4"></a>
 <span class="sourceLineNo">005</span> * @impl.note The cause is the underlying JParsec {@code ParserException}.<a name="line.5"></a>
 <span class="sourceLineNo">006</span> */<a name="line.6"></a>
-<span class="sourceLineNo">007</span>public class ExpressionParserException extends RuntimeException {<a name="line.7"></a>
-<span class="sourceLineNo">008</span>    ExpressionParserException(String message, Throwable cause) {<a name="line.8"></a>
+<span class="sourceLineNo">007</span>public class ExpressionParsingException extends RuntimeException {<a name="line.7"></a>
+<span class="sourceLineNo">008</span>    ExpressionParsingException(String message, Throwable cause) {<a name="line.8"></a>
 <span class="sourceLineNo">009</span>        super(message, cause);<a name="line.9"></a>
 <span class="sourceLineNo">010</span>    }<a name="line.10"></a>
 <span class="sourceLineNo">011</span>}<a name="line.11"></a>

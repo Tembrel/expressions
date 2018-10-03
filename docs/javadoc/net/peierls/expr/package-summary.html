@@ -151,48 +151,42 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></td>
-<td class="colLast">
-<div class="block">A parser for Expression instances.</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr">ExtendedExpression</a>&lt;T extends <a href="../../../net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr">ExtendedExpression</a>&lt;T&gt;&gt;</td>
 <td class="colLast">
 <div class="block">Abstract base for expression subtypes that wrap existing
  expressions to provide new methods.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></td>
 <td class="colLast">
 <div class="block">An expression representing a subexpression with variable names
  bound to other expressions.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/OperationExpression.html" title="class in net.peierls.expr">OperationExpression</a></td>
 <td class="colLast">
 <div class="block">An expression representing the result of a unary operation on a subexpression.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></td>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/TrigonometricExpression.html" title="class in net.peierls.expr">TrigonometricExpression</a></td>
 <td class="colLast">
 <div class="block">Extends expressions with trigonometric operations.</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/UnaryOpExpression.html" title="class in net.peierls.expr">UnaryOpExpression</a></td>
 <td class="colLast">
 <div class="block">An expression representing the result of a unary operation on a subexpression.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/VariableExpression.html" title="class in net.peierls.expr">VariableExpression</a></td>
 <td class="colLast">
 <div class="block">An expression consisting of a single variable.</div>
@@ -258,7 +252,7 @@
 </td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><a href="../../../net/peierls/expr/ExpressionParserException.html" title="class in net.peierls.expr">ExpressionParserException</a></td>
+<td class="colFirst"><a href="../../../net/peierls/expr/ExpressionParsingException.html" title="class in net.peierls.expr">ExpressionParsingException</a></td>
 <td class="colLast">
 <div class="block">Thrown when expression parsing fails for some reason.</div>
 </td>
@@ -370,7 +364,7 @@
  Expression quadFullyBound2 = quadWithBoundCoefficients.where("x", 1);
 
  assertFalse(quadFullyBound.equals(quadFullyBound2));
- assertEquals(quadFullyBound.evaluate(), quadFullyBound2.evaluate(), 0);
+ assertEquals(quadFullyBound.value(), quadFullyBound2.value(), 0);
  </pre>
 
  <h3>Free variables</h3>
@@ -384,33 +378,39 @@
 
  <h3>Evaluation</h3>
 
- Calling <a href="../../../net/peierls/expr/Expression.html#evaluate--"><code>evaluate</code></a> on an expression with no free variables,
+ Calling <a href="../../../net/peierls/expr/Expression.html#value--"><code>value</code></a> on an expression with no free variables,
  throws <a href="../../../net/peierls/expr/DivisionByZeroException.html" title="class in net.peierls.expr"><code>DivisionByZeroException</code></a> if a division by zero is encountered during
  the evaluation, otherwise it produces the value of the expression as a <code>double</code>.
 
  Evaluating an expression with free variables throws <a href="../../../net/peierls/expr/UnboundVariableException.html" title="class in net.peierls.expr"><code>UnboundVariableException</code></a>.
  You can test whether an expression has no free variables with
  <a href="../../../net/peierls/expr/Expression.html#evaluable--"><code>evaluable</code></a>.
+
+ The <a href="../../../net/peierls/expr/Expression.html#optValue--"><code>optValue</code></a> method does not throw these exceptions,
+ but rather returns an empty value in those cases.
  <pre>
  assertTrue(quadFullyBound.evaluable());
- assertEquals(9.0, quadFullyBound.evaluate(), 0);
+ assertEquals(9.0, quadFullyBound.value(), 0);
+ assertEquals(42.0, expr(1).dividedBy(0).optValue().orElse(42));
+ assertEquals(66.6, expr(1).plus("a").optValue().orElse(66.6));
  </pre>
 
  <h3>String representation</h3>
 
- Format an expression to a string representation with <a href="../../../net/peierls/expr/Expression.html#format--"><code>format</code></a>
- or, equivalently, with <a href="../../../net/peierls/expr/Expression.html#toString--"><code>toString</code></a>.
+ Format an expression to a string representation with
+ <a href="../../../net/peierls/expr/Expression.html#toString--"><code>toString</code></a>.
  <pre>
- assertEquals("2.5 + a", sumExpr1.format());
+ assertEquals("2.5 + a", sumExpr1.toString());
  assertEquals("let a = 3 in 2.5 + a", sumExpr1.where("a", 3).toString());
  </pre>
 
  <h3>Parsing</h3>
 
- Parse expressions on the built-in operators with <a href="../../../net/peierls/expr/Expression.html#parse-java.lang.String-"><code>parse</code></a>.
+ Parse expressions on the built-in operators with
+ <a href="../../../net/peierls/expr/Expression.html#of-java.lang.String-"><code>Expression.of()</code></a>.
  <pre>
- assertEquals(sumExpr1, Expression.parse("2.5 + a"));
- assertEquals(sumExpr1.where("a", 3), Expression.parse("let a = 3 in 2.5 + a"));
+ assertEquals(sumExpr1, Expression.of("2.5 + a"));
+ assertEquals(sumExpr1.where("a", 3), Expression.of("let a = 3 in 2.5 + a"));
  </pre>
 
  <h2>Adding operators</h2>
@@ -467,17 +467,14 @@
      }
  }
  </pre>
- To parse expressions on user-defined operators, create a parser by passing the operator enum type(s) to
- <a href="../../../net/peierls/expr/ExpressionParser.html#parser-java.util.List-"><code>ExpressionParser.parser(...)</code></a>, and call
- <a href="../../../net/peierls/expr/ExpressionParser.html#parse-java.lang.String-"><code>parse()</code></a> on the result.
+ To parse expressions on user-defined operators, pass the operator enum type(s) to
+ <a href="../../../net/peierls/expr/Expression.html#of-java.lang.String-java.lang.Class-java.lang.Class...-"><code>Expression.of(str, userType1,...)</code></a>.
  <pre>
- ExpressionParser parser = parser(MyOp.class);
-
  Expression expected1 = expr(2).apply(MyOp.PI_R_SQUARED);
- assertEquals(expected1, parser.parse("pi_r_2 2"));
+ assertEquals(expected1, Expression.of("pi_r_2 2", MyOp.class));
 
  Expression expected2 = expr(2).apply(MyOp.CUBED);
- assertEquals(expected2, parser.parse("2^^^"));
+ assertEquals(expected2, Expressoin.of("2^^^", MyOp.class));
  </pre>
  Note that parsing with user-defined operators always uses
  the standard expression types, not the extended expression

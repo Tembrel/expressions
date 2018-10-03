@@ -197,10 +197,6 @@
 </a>
 <h2 class="title">D</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#defaultParser--">defaultParser()</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
-<dd>
-<div class="block">Returns a parser on the built-in operators.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/BasicOperator.html#delegate--">delegate()</a></span> - Method in enum net.peierls.expr.<a href="net/peierls/expr/BasicOperator.html" title="enum in net.peierls.expr">BasicOperator</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#delegate--">delegate()</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
@@ -268,11 +264,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#evaluate-double-double-">evaluate(double, double)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#evaluate--">evaluate()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
-<dd>
-<div class="block">Returns the value of this expression, if it has no free variables
- or divisions by zero.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/OperatorBuilder.html#evaluate-double-">evaluate(double)</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/OperatorBuilder.html#evaluate-double-double-">evaluate(double, double)</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></dt>
@@ -302,11 +293,7 @@
  subexpressions, supporting evaluation and formatting (string
  representation).</div>
 </dd>
-<dt><a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><span class="typeNameLink">ExpressionParser</span></a> - Class in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
-<dd>
-<div class="block">A parser for Expression instances.</div>
-</dd>
-<dt><a href="net/peierls/expr/ExpressionParserException.html" title="class in net.peierls.expr"><span class="typeNameLink">ExpressionParserException</span></a> - Exception in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
+<dt><a href="net/peierls/expr/ExpressionParsingException.html" title="class in net.peierls.expr"><span class="typeNameLink">ExpressionParsingException</span></a> - Exception in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
 <dd>
 <div class="block">Thrown when expression parsing fails for some reason.</div>
 </dd>
@@ -330,10 +317,6 @@
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/DelegatingOperator.html#format-java.lang.String-java.lang.String-">format(String, String)</a></span> - Method in interface net.peierls.expr.<a href="net/peierls/expr/DelegatingOperator.html" title="interface in net.peierls.expr">DelegatingOperator</a></dt>
 <dd>&nbsp;</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#format--">format()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
-<dd>
-<div class="block">Returns a string representation of this expression.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/OperatorBuilder.html#format-java.lang.String-">format(String)</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></dt>
 <dd>&nbsp;</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/OperatorBuilder.html#format-java.lang.String-java.lang.String-">format(String, String)</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr">OperatorBuilder</a></dt>
@@ -477,6 +460,15 @@
 </a>
 <h2 class="title">O</h2>
 <dl>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#of-java.lang.String-">of(String)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
+<dd>
+<div class="block">Turn a string representation of an expression into an Expression instance.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#of-java.lang.String-java.lang.Class-java.lang.Class...-">of(String, Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;, Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;...)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
+<dd>
+<div class="block">Turn a string representation of an expression into an Expression instance,
+ using the build-in operators and any operators from the given enum types.</div>
+</dd>
 <dt><a href="net/peierls/expr/OperationExpression.html" title="class in net.peierls.expr"><span class="typeNameLink">OperationExpression</span></a> - Class in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
 <dd>
 <div class="block">An expression representing the result of a unary operation on a subexpression.</div>
@@ -506,29 +498,17 @@
 </dd>
 <dt><a href="net/peierls/expr/OperatorBuilder.html" title="class in net.peierls.expr"><span class="typeNameLink">OperatorBuilder</span></a> - Class in <a href="net/peierls/expr/package-summary.html">net.peierls.expr</a></dt>
 <dd>&nbsp;</dd>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#optValue--">optValue()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
+<dd>
+<div class="block">Returns an optional with the value of this expression, if it has no free variables
+ or divisions by zero, or the empty value otherwise.</div>
+</dd>
 </dl>
 <a name="I:P">
 <!--   -->
 </a>
 <h2 class="title">P</h2>
 <dl>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#parse-java.lang.String-">parse(String)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
-<dd>
-<div class="block">Turn a string representation of an expression into an Expression instance.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#parse-java.lang.String-">parse(String)</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
-<dd>
-<div class="block">Parse an expression using whatever operators
- this parser has been configured with.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#parser-java.lang.Class-java.lang.Class...-">parser(Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;, Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;...)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
-<dd>
-<div class="block">Creates a parser on the given operators and the built-in operators.</div>
-</dd>
-<dt><span class="memberNameLink"><a href="net/peierls/expr/ExpressionParser.html#parser-java.util.List-">parser(List&lt;Class&lt;? extends Enum&lt;? extends Operator&gt;&gt;&gt;)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a></dt>
-<dd>
-<div class="block">Creates a parser on the given operators and the built-in operators.</div>
-</dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/ConstantExpression.html#pi--">pi()</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/ConstantExpression.html" title="class in net.peierls.expr">ConstantExpression</a></dt>
 <dd>
 <div class="block">Constant expression for the value of pi.</div>
@@ -673,8 +653,7 @@
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#toString--">toString()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
 <dd>
-<div class="block">Returns the string representation of this expression, same
- as <a href="net/peierls/expr/Expression.html#format--"><code>format</code></a>.</div>
+<div class="block">Returns the string representation of this expression.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/TrigonometricExpression.html#trigExpr-net.peierls.expr.Expression-">trigExpr(Expression)</a></span> - Static method in class net.peierls.expr.<a href="net/peierls/expr/TrigonometricExpression.html" title="class in net.peierls.expr">TrigonometricExpression</a></dt>
 <dd>
@@ -741,6 +720,11 @@
 <dt><span class="memberNameLink"><a href="net/peierls/expr/ConstantExpression.html#value--">value()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/ConstantExpression.html" title="class in net.peierls.expr">ConstantExpression</a></dt>
 <dd>
 <div class="block">The double precision value represented by this constant expression.</div>
+</dd>
+<dt><span class="memberNameLink"><a href="net/peierls/expr/Expression.html#value--">value()</a></span> - Method in class net.peierls.expr.<a href="net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></dt>
+<dd>
+<div class="block">Returns the value of this expression, if it has no free variables
+ or divisions by zero.</div>
 </dd>
 <dt><span class="memberNameLink"><a href="net/peierls/expr/BasicOperator.html#valueOf-java.lang.String-">valueOf(String)</a></span> - Static method in enum net.peierls.expr.<a href="net/peierls/expr/BasicOperator.html" title="enum in net.peierls.expr">BasicOperator</a></dt>
 <dd>

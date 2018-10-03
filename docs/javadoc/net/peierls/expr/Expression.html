@@ -17,7 +17,7 @@
     catch(err) {
     }
 //-->
-var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":9,"i9":9,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":9,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10};
+var methods = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":9,"i8":9,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":9,"i17":9,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10};
 var tabs = {65535:["t0","All Methods"],1:["t1","Static Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -47,7 +47,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../net/peierls/expr/EvaluationException.html" title="class in net.peierls.expr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../net/peierls/expr/ExpressionParsingException.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?net/peierls/expr/Expression.html" target="_top">Frames</a></li>
@@ -110,7 +110,7 @@ var activeTableTab = "activeTableTab";
 </dl>
 <hr>
 <br>
-<pre>public abstract class <a href="../../../src-html/net/peierls/expr/Expression.html#line.20">Expression</a>
+<pre>public abstract class <a href="../../../src-html/net/peierls/expr/Expression.html#line.21">Expression</a>
 extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A double-precision arithmetic expression on constants, variables,
  unary and binary operations, with local binding of variables to
@@ -185,65 +185,52 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </td>
 </tr>
 <tr id="i7" class="rowColor">
-<td class="colFirst"><code>double</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#evaluate--">evaluate</a></span>()</code>
-<div class="block">Returns the value of this expression, if it has no free variables
- or divisions by zero.</div>
-</td>
-</tr>
-<tr id="i8" class="altColor">
 <td class="colFirst"><code>static <a href="../../../net/peierls/expr/ConstantExpression.html" title="class in net.peierls.expr">ConstantExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#expr-double-">expr</a></span>(double&nbsp;value)</code>
 <div class="block">Returns a constant expression with the given value.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>static <a href="../../../net/peierls/expr/VariableExpression.html" title="class in net.peierls.expr">VariableExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#expr-java.lang.String-">expr</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</code>
 <div class="block">Returns a variable expression with the given variable name.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
-<td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#format--">format</a></span>()</code>
-<div class="block">Returns a string representation of this expression.</div>
-</td>
-</tr>
-<tr id="i11" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#freeVariables--">freeVariables</a></span>()</code>
 <div class="block">Returns the set of free variables in this expression.</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#ln--">ln</a></span>()</code>
 <div class="block">Returns the expression representing the natural
  logarithm of this expression.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#log10--">log10</a></span>()</code>
 <div class="block">Returns the expression representing the
  logarithm base 10 of this expression.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#minus-double-">minus</a></span>(double&nbsp;value)</code>
 <div class="block">Returns an expression representing the difference between
  this expression and a constant expression of the given value.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#minus-net.peierls.expr.Expression-">minus</a></span>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</code>
 <div class="block">Returns an expression representing the difference between
  this expression and the given argument expression.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#minus-java.lang.String-">minus</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</code>
 <div class="block">Returns an expression representing the difference between
@@ -251,17 +238,33 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  variable name.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#negated--">negated</a></span>()</code>
 <div class="block">Returns an expression representing the negation
  of this expression.</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>static <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#parse-java.lang.String-">parse</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#of-java.lang.String-">of</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString)</code>
 <div class="block">Turn a string representation of an expression into an Expression instance.</div>
+</td>
+</tr>
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>static <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#of-java.lang.String-java.lang.Class-java.lang.Class...-">of</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString,
+  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;&nbsp;firstOperatorType,
+  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;...&nbsp;operatorTypes)</code>
+<div class="block">Turn a string representation of an expression into an Expression instance,
+ using the build-in operators and any operators from the given enum types.</div>
+</td>
+</tr>
+<tr id="i18" class="altColor">
+<td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalDouble.html?is-external=true" title="class or interface in java.util">OptionalDouble</a></code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#optValue--">optValue</a></span>()</code>
+<div class="block">Returns an optional with the value of this expression, if it has no free variables
+ or divisions by zero, or the empty value otherwise.</div>
 </td>
 </tr>
 <tr id="i19" class="rowColor">
@@ -347,18 +350,24 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <tr id="i30" class="altColor">
 <td class="colFirst"><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#toString--">toString</a></span>()</code>
-<div class="block">Returns the string representation of this expression, same
- as <a href="../../../net/peierls/expr/Expression.html#format--"><code>format</code></a>.</div>
+<div class="block">Returns the string representation of this expression.</div>
 </td>
 </tr>
 <tr id="i31" class="rowColor">
+<td class="colFirst"><code>double</code></td>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#value--">value</a></span>()</code>
+<div class="block">Returns the value of this expression, if it has no free variables
+ or divisions by zero.</div>
+</td>
+</tr>
+<tr id="i32" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.util.Map-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&gt;&nbsp;bindings)</code>
 <div class="block">Returns an expression equivalent to this expression but with
  the bindings of the given map of variable names to subexpressions.</div>
 </td>
 </tr>
-<tr id="i32" class="altColor">
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.lang.String-double-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName,
      double&nbsp;value)</code>
@@ -366,7 +375,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  the named variable bound to the given double precision value.</div>
 </td>
 </tr>
-<tr id="i33" class="rowColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.lang.String-double-java.lang.String-double-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
      double&nbsp;d1,
@@ -376,7 +385,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  the named variables bound to the given double precision values.</div>
 </td>
 </tr>
-<tr id="i34" class="altColor">
+<tr id="i35" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.lang.String-double-java.lang.String-double-java.lang.String-double-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
      double&nbsp;d1,
@@ -388,7 +397,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  the named variables bound to the given double precision values.</div>
 </td>
 </tr>
-<tr id="i35" class="rowColor">
+<tr id="i36" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.lang.String-net.peierls.expr.Expression-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName,
      <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;subExpr)</code>
@@ -396,7 +405,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  the named variable bound to the given subexpression.</div>
 </td>
 </tr>
-<tr id="i36" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.lang.String-net.peierls.expr.Expression-java.lang.String-net.peierls.expr.Expression-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
      <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;e1,
@@ -406,7 +415,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
  the named variables bound to the given subexpressions.</div>
 </td>
 </tr>
-<tr id="i37" class="rowColor">
+<tr id="i38" class="altColor">
 <td class="colFirst"><code><a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../net/peierls/expr/Expression.html#where-java.lang.String-net.peierls.expr.Expression-java.lang.String-net.peierls.expr.Expression-java.lang.String-net.peierls.expr.Expression-">where</a></span>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
      <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;e1,
@@ -446,24 +455,37 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>accept</h4>
-<pre>protected&nbsp;&lt;R&gt;&nbsp;R&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.32">accept</a>(<a href="../../../net/peierls/expr/Visitor.html" title="interface in net.peierls.expr">Visitor</a>&lt;R&gt;&nbsp;visitor)</pre>
+<pre>protected&nbsp;&lt;R&gt;&nbsp;R&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.33">accept</a>(<a href="../../../net/peierls/expr/Visitor.html" title="interface in net.peierls.expr">Visitor</a>&lt;R&gt;&nbsp;visitor)</pre>
 <div class="block">Apply a visitor function to this expression.
  The default implementation is to call the <a href="../../../net/peierls/expr/Visitor.html#visitUnknown-net.peierls.expr.Expression-"><code>Visitor.visitUnknown(net.peierls.expr.Expression)</code></a>
  method, but subclasses should override to call the visit method on one*
  of the concrete subclasses known to the visitor interface.</div>
 </li>
 </ul>
-<a name="parse-java.lang.String-">
+<a name="of-java.lang.String-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>parse</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.43">parse</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString)</pre>
+<h4>of</h4>
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.43">of</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString)</pre>
 <div class="block">Turn a string representation of an expression into an Expression instance.
  This method only works with the built-in operators in <a href="../../../net/peierls/expr/BasicOperator.html" title="enum in net.peierls.expr"><code>BasicOperator</code></a>
- and <a href="../../../net/peierls/expr/TrigonometricOperator.html" title="enum in net.peierls.expr"><code>TrigonometricOperator</code></a>. Use <a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><code>ExpressionParser</code></a> to create
- parsers that also work with user-defined operators.</div>
+ and <a href="../../../net/peierls/expr/TrigonometricOperator.html" title="enum in net.peierls.expr"><code>TrigonometricOperator</code></a>.</div>
+</li>
+</ul>
+<a name="of-java.lang.String-java.lang.Class-java.lang.Class...-">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>of</h4>
+<pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/SafeVarargs.html?is-external=true" title="class or interface in java.lang">@SafeVarargs</a>
+public static&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.52">of</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprString,
+                                          <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;&nbsp;firstOperatorType,
+                                          <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;...&nbsp;operatorTypes)</pre>
+<div class="block">Turn a string representation of an expression into an Expression instance,
+ using the build-in operators and any operators from the given enum types.</div>
 </li>
 </ul>
 <a name="toString--">
@@ -472,32 +494,21 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>toString</h4>
-<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.52">toString</a>()</pre>
-<div class="block">Returns the string representation of this expression, same
- as <a href="../../../net/peierls/expr/Expression.html#format--"><code>format</code></a>.</div>
+<pre>public&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.63">toString</a>()</pre>
+<div class="block">Returns the string representation of this expression.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
 <dd><code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true#toString--" title="class or interface in java.lang">toString</a></code>&nbsp;in class&nbsp;<code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></code></dd>
 </dl>
 </li>
 </ul>
-<a name="format--">
+<a name="value--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>format</h4>
-<pre>public final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.58">format</a>()</pre>
-<div class="block">Returns a string representation of this expression.</div>
-</li>
-</ul>
-<a name="evaluate--">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>evaluate</h4>
-<pre>public final&nbsp;double&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.70">evaluate</a>()</pre>
+<h4>value</h4>
+<pre>public&nbsp;double&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.75">value</a>()</pre>
 <div class="block">Returns the value of this expression, if it has no free variables
  or divisions by zero.</div>
 <dl>
@@ -507,13 +518,24 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 </dl>
 </li>
 </ul>
+<a name="optValue--">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>optValue</h4>
+<pre>public final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/OptionalDouble.html?is-external=true" title="class or interface in java.util">OptionalDouble</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.83">optValue</a>()</pre>
+<div class="block">Returns an optional with the value of this expression, if it has no free variables
+ or divisions by zero, or the empty value otherwise.</div>
+</li>
+</ul>
 <a name="evaluable--">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>evaluable</h4>
-<pre>public final&nbsp;boolean&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.78">evaluable</a>()</pre>
+<pre>public final&nbsp;boolean&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.95">evaluable</a>()</pre>
 <div class="block">Returns true if this expression has no free variables.</div>
 </li>
 </ul>
@@ -523,7 +545,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>freeVariables</h4>
-<pre>public final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.86">freeVariables</a>()</pre>
+<pre>public final&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Set.html?is-external=true" title="class or interface in java.util">Set</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&gt;&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.103">freeVariables</a>()</pre>
 <div class="block">Returns the set of free variables in this expression.</div>
 </li>
 </ul>
@@ -533,7 +555,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>expr</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/ConstantExpression.html" title="class in net.peierls.expr">ConstantExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.96">expr</a>(double&nbsp;value)</pre>
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/ConstantExpression.html" title="class in net.peierls.expr">ConstantExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.113">expr</a>(double&nbsp;value)</pre>
 <div class="block">Returns a constant expression with the given value.</div>
 </li>
 </ul>
@@ -543,7 +565,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>expr</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/VariableExpression.html" title="class in net.peierls.expr">VariableExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.103">expr</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/VariableExpression.html" title="class in net.peierls.expr">VariableExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.120">expr</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
 <div class="block">Returns a variable expression with the given variable name.</div>
 </li>
 </ul>
@@ -553,7 +575,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>apply</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.111">apply</a>(<a href="../../../net/peierls/expr/UnaryOp.html" title="interface in net.peierls.expr">UnaryOp</a>&nbsp;op)</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.128">apply</a>(<a href="../../../net/peierls/expr/UnaryOp.html" title="interface in net.peierls.expr">UnaryOp</a>&nbsp;op)</pre>
 <div class="block">Returns a unary operation expression for the given operation applied
  to this expression as the operand.</div>
 </li>
@@ -564,7 +586,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>apply</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.120">apply</a>(<a href="../../../net/peierls/expr/BinaryOp.html" title="interface in net.peierls.expr">BinaryOp</a>&nbsp;op,
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.137">apply</a>(<a href="../../../net/peierls/expr/BinaryOp.html" title="interface in net.peierls.expr">BinaryOp</a>&nbsp;op,
                         <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;right)</pre>
 <div class="block">Returns a binary operation expression for the given operation applied
  to this expression (as the left operand) and the given right operand
@@ -577,7 +599,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.134">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&gt;&nbsp;bindings)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.151">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&gt;&nbsp;bindings)</pre>
 <div class="block">Returns an expression equivalent to this expression but with
  the bindings of the given map of variable names to subexpressions.</div>
 <dl>
@@ -595,7 +617,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.161">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName,
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.178">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName,
                                  <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;subExpr)</pre>
 <div class="block">Returns an expression equivalent to this expression but with
  the named variable bound to the given subexpression.</div>
@@ -607,7 +629,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.169">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.186">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
                                  <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;e1,
                                  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v2,
                                  <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;e2)</pre>
@@ -621,7 +643,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.177">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.194">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
                                  <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;e1,
                                  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v2,
                                  <a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;e2,
@@ -637,7 +659,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.185">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName,
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.202">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName,
                                  double&nbsp;value)</pre>
 <div class="block">Returns an expression equivalent to this expression but with
  the named variable bound to the given double precision value.</div>
@@ -649,7 +671,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.193">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.210">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
                                  double&nbsp;d1,
                                  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v2,
                                  double&nbsp;d2)</pre>
@@ -663,7 +685,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>where</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.201">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/LetExpression.html" title="class in net.peierls.expr">LetExpression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.218">where</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v1,
                                  double&nbsp;d1,
                                  <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;v2,
                                  double&nbsp;d2,
@@ -679,7 +701,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>plus</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.210">plus</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.227">plus</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
 <div class="block">Returns an expression representing the sum of this
  expression and the given argument expression.</div>
 </li>
@@ -690,7 +712,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>plus</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.218">plus</a>(double&nbsp;value)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.235">plus</a>(double&nbsp;value)</pre>
 <div class="block">Returns an expression representing the sum of this
  expression and a constant expression of the given value.</div>
 </li>
@@ -701,7 +723,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>plus</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.227">plus</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.244">plus</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
 <div class="block">Returns an expression representing the sum of this
  expression and a variable expression of the given
  variable name.</div>
@@ -713,7 +735,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>minus</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.236">minus</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.253">minus</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
 <div class="block">Returns an expression representing the difference between
  this expression and the given argument expression.</div>
 </li>
@@ -724,7 +746,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>minus</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.244">minus</a>(double&nbsp;value)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.261">minus</a>(double&nbsp;value)</pre>
 <div class="block">Returns an expression representing the difference between
  this expression and a constant expression of the given value.</div>
 </li>
@@ -735,7 +757,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>minus</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.253">minus</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.270">minus</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
 <div class="block">Returns an expression representing the difference between
  this expression and a variable expression of the given
  variable name.</div>
@@ -747,7 +769,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>times</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.262">times</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.279">times</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
 <div class="block">Returns an expression representing the product of
  this expression and the given argument expression.</div>
 </li>
@@ -758,7 +780,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>times</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.270">times</a>(double&nbsp;value)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.287">times</a>(double&nbsp;value)</pre>
 <div class="block">Returns an expression representing the product of
  this expression and a constant expression of the given value.</div>
 </li>
@@ -769,7 +791,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>times</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.279">times</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.296">times</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
 <div class="block">Returns an expression representing the product of
  this expression and a variable expression of the given
  variable name.</div>
@@ -781,7 +803,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>dividedBy</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.288">dividedBy</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.305">dividedBy</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
 <div class="block">Returns an expression representing the quotient of
  this expression with the given argument expression.</div>
 </li>
@@ -792,7 +814,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>dividedBy</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.296">dividedBy</a>(double&nbsp;value)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.313">dividedBy</a>(double&nbsp;value)</pre>
 <div class="block">Returns an expression representing the quotient of
  this expression with a constant expression of the given value.</div>
 </li>
@@ -803,7 +825,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>dividedBy</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.305">dividedBy</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.322">dividedBy</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
 <div class="block">Returns an expression representing the quotient of
  this expression and a variable expression of the given
  variable name.</div>
@@ -815,7 +837,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>negated</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.314">negated</a>()</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.331">negated</a>()</pre>
 <div class="block">Returns an expression representing the negation
  of this expression.</div>
 </li>
@@ -826,7 +848,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>squared</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.322">squared</a>()</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.339">squared</a>()</pre>
 <div class="block">Returns an expression representing the square
  of this expression.</div>
 </li>
@@ -837,7 +859,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>squareRoot</h4>
-<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.330">squareRoot</a>()</pre>
+<pre>public final&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.347">squareRoot</a>()</pre>
 <div class="block">Returns an expression representing the square root
  of this expression.</div>
 </li>
@@ -848,7 +870,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>ln</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.338">ln</a>()</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.355">ln</a>()</pre>
 <div class="block">Returns the expression representing the natural
  logarithm of this expression.</div>
 </li>
@@ -859,7 +881,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>log10</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.346">log10</a>()</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.363">log10</a>()</pre>
 <div class="block">Returns the expression representing the
  logarithm base 10 of this expression.</div>
 </li>
@@ -870,7 +892,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>pow</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.354">pow</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.371">pow</a>(<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;that)</pre>
 <div class="block">Returns the expression representing this expression
  to the power of the given expression;</div>
 </li>
@@ -881,7 +903,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>pow</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.362">pow</a>(double&nbsp;value)</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.379">pow</a>(double&nbsp;value)</pre>
 <div class="block">Returns the expression representing this expression
  to the power of a constant expression of the given value;</div>
 </li>
@@ -892,7 +914,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockListLast">
 <li class="blockList">
 <h4>pow</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.371">pow</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/Expression.html#line.388">pow</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;varName)</pre>
 <div class="block">Returns the expression representing this expression
  to the power of a variable expression of the given
  variable name;</div>
@@ -925,7 +947,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../net/peierls/expr/EvaluationException.html" title="class in net.peierls.expr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../net/peierls/expr/ExpressionParsingException.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?net/peierls/expr/Expression.html" target="_top">Frames</a></li>

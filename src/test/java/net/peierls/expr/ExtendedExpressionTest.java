@@ -27,6 +27,7 @@ public class ExtendedExpressionTest {
 
     enum MyOp implements DelegatingOperator {
         PI_R_SQUARED(prefix("pi_r_2 ", v -> Math.PI * v * v).precedence(100)),
+        CUBED(postfix("^^^", v -> v * v * v).precedence(100)),
         ;
         final Operator delegate;
         MyOp(Operator delegate) { this.delegate = delegate; }
@@ -54,17 +55,32 @@ public class ExtendedExpressionTest {
         public final MyExpression piRSquared() {
             return apply(MyOp.PI_R_SQUARED);
         }
+        // Operation instance method, the reason for extending
+        public final MyExpression cubed() {
+            return apply(MyOp.CUBED);
+        }
     }
 
-    @Test public void parseNewOp() {
+    @Test public void parsePiRSquared() {
         ExpressionParser parser = parser(MyOp.class);
         Expression expected = expr(2).apply(MyOp.PI_R_SQUARED);
         assertEquals(expected, parser.parse("pi_r_2 2"));
     }
 
-    @Test public void parseNewOpFailsWithoutEnum() {
+    @Test public void parsePiRSquaredTreatedAsVariableWhenUnknownToParser() {
         ExpressionParser parser = defaultParser();
         Expression expected = expr("pi_r_2").times(2);
         assertEquals(expected, parser.parse("pi_r_2 2"));
+    }
+
+    @Test public void parseCubed() {
+        ExpressionParser parser = parser(MyOp.class);
+        Expression expected = expr(2).apply(MyOp.CUBED);
+        assertEquals(expected, parser.parse("2^^^"));
+    }
+
+    @Test(expected=ExpressionParserException.class) public void parseCubedThrowsExceptionWhenUnknownToParser() {
+        ExpressionParser parser = defaultParser();
+        parser.parse("2^^^");
     }
 }

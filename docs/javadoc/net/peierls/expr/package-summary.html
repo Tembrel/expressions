@@ -258,24 +258,30 @@
 </td>
 </tr>
 <tr class="rowColor">
+<td class="colFirst"><a href="../../../net/peierls/expr/ExpressionParserException.html" title="class in net.peierls.expr">ExpressionParserException</a></td>
+<td class="colLast">
+<div class="block">Thrown when expression parsing fails for some reason.</div>
+</td>
+</tr>
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/SelfReferenceException.html" title="class in net.peierls.expr">SelfReferenceException</a></td>
 <td class="colLast">
 <div class="block">Thrown a bound variable is used in its own binding expression.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/UnboundVariableException.html" title="class in net.peierls.expr">UnboundVariableException</a></td>
 <td class="colLast">
 <div class="block">Thrown when a variable is not bound to a value during evaluation</div>
 </td>
 </tr>
-<tr class="rowColor">
+<tr class="altColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/UnreferencedVariableException.html" title="class in net.peierls.expr">UnreferencedVariableException</a></td>
 <td class="colLast">
 <div class="block">Thrown when attempting to bind a variable that is not referenced by a subexpression.</div>
 </td>
 </tr>
-<tr class="altColor">
+<tr class="rowColor">
 <td class="colFirst"><a href="../../../net/peierls/expr/WrapException.html" title="class in net.peierls.expr">WrapException</a></td>
 <td class="colLast">
 <div class="block">Base for exceptions thrown during expression evaluation.</div>
@@ -327,10 +333,10 @@
  assertEquals(sumExpr1, sumExpr2);
  </pre>
 
- <h4>Special rule for multiplication<h4>
+ <h4>Special rule for multiplication</h4>
 
- The built-in multiplication operator is formatted as whitespace, but the
- parser will accept an asterisk, e.g., <code>a * b</code>.
+ The built-in multiplication operator is formatted as whitespace;
+ the parser will accept either whitespace or an asterisk, e.g., <code>a * b</code>.
 
  <h3>Bound expressions</h3>
 
@@ -402,7 +408,6 @@
  <h3>Parsing</h3>
 
  Parse expressions on the built-in operators with <a href="../../../net/peierls/expr/Expression.html#parse-java.lang.String-"><code>parse</code></a>.
- To parse expressions on user-defined operators, create a parser.
  <pre>
  assertEquals(sumExpr1, Expression.parse("2.5 + a"));
  assertEquals(sumExpr1.where("a", 3), Expression.parse("let a = 3 in 2.5 + a"));
@@ -462,6 +467,18 @@
      }
  }
  </pre>
+ To parse expressions on user-defined operators, create a parser by passing the operator enum type(s) to
+ <a href="../../../net/peierls/expr/ExpressionParser.html#parser-java.util.List-"><code>ExpressionParser.parser(...)</code></a>, and call
+ <a href="../../../net/peierls/expr/ExpressionParser.html#parse-java.lang.String-"><code>parse()</code></a> on the result.
+ <pre>
+ ExpressionParser parser = parser(MyOp.class);
+
+ Expression expected1 = expr(2).apply(MyOp.PI_R_SQUARED);
+ assertEquals(expected1, parser.parse("pi_r_2 2"));
+
+ Expression expected2 = expr(2).apply(MyOp.CUBED);
+ assertEquals(expected2, parser.parse("2^^^"));
+ </pre>
  Note that parsing with user-defined operators always uses
  the standard expression types, not the extended expression
  types, so it is possible that the parsed expression will
@@ -476,7 +493,7 @@
  of the concrete visitor and call the
  <a href="../../../net/peierls/expr/Expression.html#accept-net.peierls.expr.Visitor-"><code>accept</code></a> method of
  an argument expression on that instance.
- See <code>TraceVisitor</code> in the test code.</div>
+ See <code>TraceVisitor</code> in the test code for a full example.</div>
 </div>
 <!-- ======= START OF BOTTOM NAVBAR ====== -->
 <div class="bottomNav"><a name="navbar.bottom">

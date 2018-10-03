@@ -10,6 +10,7 @@ import org.jparsec.Parser;
 import org.jparsec.Parsers;
 import org.jparsec.Scanners;
 import org.jparsec.Terminals;
+import org.jparsec.error.ParserException;
 
 import one.util.streamex.StreamEx;
 
@@ -125,23 +126,28 @@ public class ExpressionParser {
     /**
      * Parse an expression using whatever operators
      * this parser has been configured with.
+     * @throws ExpressionParserException if the parsing fails for some reason
      */
     public Expression parse(String exprText) {
-        return parser.parse(exprText);
+        try {
+            return parser.parse(exprText);
+        } catch (ParserException ex) {
+            throw new ExpressionParserException(ex.getMessage(), ex);
+        }
     }
 
-
-    StreamEx<String> opSymbols() {
-        return StreamEx.of(OPERATORS)
-            .map(Operator::symbol)
-            .map(String::trim)
-            .distinct();
-    }
 
     private Parser<Expression> buildParser() {
         return exprParser().from(TOKENIZER, IGNORED.skipMany());
     }
 
+
+    private StreamEx<String> opSymbols() {
+        return StreamEx.of(OPERATORS)
+            .map(Operator::symbol)
+            .map(String::trim)
+            .distinct();
+    }
 
     Parser<?> term(String... names) {
         return TERMS.token(names);

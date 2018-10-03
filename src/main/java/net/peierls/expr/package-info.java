@@ -37,10 +37,10 @@
  * assertEquals(sumExpr1, sumExpr2);
  * </pre>
  *
- * <h4>Special rule for multiplication<h4>
+ * <h4>Special rule for multiplication</h4>
  *
- * The built-in multiplication operator is formatted as whitespace, but the
- * parser will accept an asterisk, e.g., {@code a * b}.
+ * The built-in multiplication operator is formatted as whitespace;
+ * the parser will accept either whitespace or an asterisk, e.g., {@code a * b}.
  *
  * <h3>Bound expressions</h3>
  *
@@ -112,7 +112,6 @@
  * <h3>Parsing</h3>
  *
  * Parse expressions on the built-in operators with {@link net.peierls.expr.Expression#parse parse}.
- * To parse expressions on user-defined operators, create a parser.
  * <pre>
  * assertEquals(sumExpr1, Expression.parse("2.5 + a"));
  * assertEquals(sumExpr1.where("a", 3), Expression.parse("let a = 3 in 2.5 + a"));
@@ -172,6 +171,18 @@
  *     }
  * }
  * </pre>
+ * To parse expressions on user-defined operators, create a parser by passing the operator enum type(s) to
+ * {@link net.peierls.expr.ExpressionParser#parser(List) ExpressionParser.parser(...)}, and call
+ * {@link net.peierls.expr.ExpressionParser#parse parse()} on the result.
+ * <pre>
+ * ExpressionParser parser = parser(MyOp.class);
+ *
+ * Expression expected1 = expr(2).apply(MyOp.PI_R_SQUARED);
+ * assertEquals(expected1, parser.parse("pi_r_2 2"));
+ *
+ * Expression expected2 = expr(2).apply(MyOp.CUBED);
+ * assertEquals(expected2, parser.parse("2^^^"));
+ * </pre>
  * Note that parsing with user-defined operators always uses
  * the standard expression types, not the extended expression
  * types, so it is possible that the parsed expression will
@@ -186,6 +197,6 @@
  * of the concrete visitor and call the
  * {@link net.peierls.expr.Expression#accept accept} method of
  * an argument expression on that instance.
- * See {@code TraceVisitor} in the test code.
+ * See {@code TraceVisitor} in the test code for a full example.
  */
 package net.peierls.expr;

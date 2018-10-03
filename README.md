@@ -109,6 +109,18 @@ See the [Ivy build properties file](
 
 ## Issues FAQ
 
+- Constant and variable expressions compare equal if the
+  wrapped values compare equal; their identities are not
+  meaningful. Should they be?
+  
+  - It would be possible to give variable expressions their
+    onw identity, so that two instances of `expr("a")` would
+    not be equal to each other, but it would add a burden to
+    the user to keep track of variables in a symbol table,
+    and it would mean that string forms of unequal expressions
+    could themselves be equal.
+    It's much simpler to take advantage of Java's string interning.
+    
 - Expressions that use variables that conflict with the
   reserved words `let` and `in` will format successfully
   but will not be parseable. Shouldn't you prevent the use

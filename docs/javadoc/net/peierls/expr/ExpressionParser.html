@@ -47,7 +47,7 @@ var activeTableTab = "activeTableTab";
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../net/peierls/expr/ExpressionParserException.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?net/peierls/expr/ExpressionParser.html" target="_top">Frames</a></li>
@@ -106,7 +106,7 @@ var activeTableTab = "activeTableTab";
 <li class="blockList">
 <hr>
 <br>
-<pre>public class <a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.23">ExpressionParser</a>
+<pre>public class <a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.24">ExpressionParser</a>
 extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html?is-external=true" title="class or interface in java.lang">Object</a></pre>
 <div class="block">A parser for Expression instances.
  Adapted from JParsec tutorial.</div>
@@ -186,7 +186,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <ul class="blockList">
 <li class="blockList">
 <h4>defaultParser</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.81">defaultParser</a>()</pre>
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.82">defaultParser</a>()</pre>
 <div class="block">Returns a parser on the built-in operators.</div>
 </li>
 </ul>
@@ -197,7 +197,7 @@ extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html
 <li class="blockList">
 <h4>parser</h4>
 <pre><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/SafeVarargs.html?is-external=true" title="class or interface in java.lang">@SafeVarargs</a>
-public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.90">parser</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;&nbsp;firstOperatorType,
+public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.91">parser</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;&nbsp;firstOperatorType,
                                                     <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;...&nbsp;operatorTypes)</pre>
 <div class="block">Creates a parser on the given operators and the built-in operators.</div>
 </li>
@@ -208,7 +208,7 @@ public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" tit
 <ul class="blockList">
 <li class="blockList">
 <h4>parser</h4>
-<pre>public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.98">parser</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;&gt;&nbsp;operatorTypes)</pre>
+<pre>public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" title="class in net.peierls.expr">ExpressionParser</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.99">parser</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html?is-external=true" title="class or interface in java.util">List</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html?is-external=true" title="class or interface in java.lang">Class</a>&lt;? extends <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Enum.html?is-external=true" title="class or interface in java.lang">Enum</a>&lt;? extends <a href="../../../net/peierls/expr/Operator.html" title="interface in net.peierls.expr">Operator</a>&gt;&gt;&gt;&nbsp;operatorTypes)</pre>
 <div class="block">Creates a parser on the given operators and the built-in operators.</div>
 </li>
 </ul>
@@ -218,9 +218,13 @@ public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" tit
 <ul class="blockListLast">
 <li class="blockList">
 <h4>parse</h4>
-<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.129">parse</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprText)</pre>
+<pre>public&nbsp;<a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr">Expression</a>&nbsp;<a href="../../../src-html/net/peierls/expr/ExpressionParser.html#line.131">parse</a>(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;exprText)</pre>
 <div class="block">Parse an expression using whatever operators
  this parser has been configured with.</div>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code><a href="../../../net/peierls/expr/ExpressionParserException.html" title="class in net.peierls.expr">ExpressionParserException</a></code> - if the parsing fails for some reason</dd>
+</dl>
 </li>
 </ul>
 </li>
@@ -250,7 +254,7 @@ public static&nbsp;<a href="../../../net/peierls/expr/ExpressionParser.html" tit
 <div class="subNav">
 <ul class="navList">
 <li><a href="../../../net/peierls/expr/Expression.html" title="class in net.peierls.expr"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../../../net/peierls/expr/ExtendedExpression.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../../../net/peierls/expr/ExpressionParserException.html" title="class in net.peierls.expr"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../../../index.html?net/peierls/expr/ExpressionParser.html" target="_top">Frames</a></li>

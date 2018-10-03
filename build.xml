@@ -195,6 +195,7 @@
       breakiterator="yes"
       linksource="yes"
     >
+      <tag name="impl.note" description="Implementation note:" />
       <arg value="-Xdoclint:-missing"/>
       <arg value="-notimestamp"/>
       <packageset dir="${src.dir}" />

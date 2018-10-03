@@ -62,14 +62,14 @@ parsing only works with enum types.
 The current implementation uses the [Visitor pattern](
   https://drive.google.com/file/d/1k76P9Kl7__hXwp2FVAbvOcwATcphB3gm/view
 ) to implement the
-[evaluate](
-  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#evaluate--
+[value](
+  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#value--
 ),
 [freeVariables](
   https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#freeVariables--
 ), and
-[format](
-  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#format--
+[toString](
+  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#toString--
 ) methods.
 Users of this API can take advantage of this to create their
 own transformations of expressions.
@@ -122,7 +122,7 @@ See the [Ivy build properties file](
     It's much simpler to take advantage of Java's string interning.
     
 - Expressions that use variables that conflict with the
-  reserved words `let` and `in` will format successfully
+  reserved words `let` and `in` will format successfully as a string
   but will not be parseable. Shouldn't you prevent the use
   of those variable names?
   
@@ -186,7 +186,7 @@ See the [Ivy build properties file](
         Expression sinA1 = sin(expr("a"));
         Expression sinA2 = trigExpr("a").sin();
         // They print the same, but they aren't equal.
-        assertEquals(sinA1.format(), sinA2.format());
+        assertEquals(sinA1.toString(), sinA2.toString());
         assertFalse(sinA1.equals(sinA2));
     }
  ```

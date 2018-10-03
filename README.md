@@ -168,7 +168,7 @@ See the [Ivy build properties file](
     quotation marks around variables with names longer than one character,
     e.g., `'pi'r^2`. It doesn't seem important enough to do right now.
 
-- Why does constructing a binding throw `UnreferencedVariableException` for
+- Why does constructing a binding expression throw `UnreferencedVariableException` for
   something like `let a = 3, b = 4 in b`?
 
   - Because it seemed more important to prevent what is probably

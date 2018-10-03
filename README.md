@@ -167,9 +167,8 @@ See the [Ivy build properties file](
 - These different ways produce expressions that aren't equal. Is that an API bug?
 
   - It's a weakness, but if you consistently use one or the other approach, it won't be a
-    problem in practice. And it's not easy to fix: Trying to get wrapped classes act
-    pretend they are equal
-    to the things they wrap is a fool's game.
+    problem in practice. And it's not easy to fix: Trying to get wrapped classes to
+    pretend they are equal to the things they wrap is a fool's game.
  ```java
     @Test public void differentWaysOfUsingExtendedExpressions() {
         Expression sinA1 = sin(expr("a"));

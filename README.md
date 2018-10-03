@@ -112,7 +112,7 @@ See the [Ivy build properties file](
 - Constant and variable expressions compare equal if the
   wrapped values compare equal; their identities are not
   meaningful. Should they be?
-  
+
   - It would be possible to use the identity of variable
     expressions as equality, so that two instances of `expr("a")` would
     not be equal to each other, but it would add a burden to
@@ -120,12 +120,23 @@ See the [Ivy build properties file](
     and it would mean that string forms of unequal expressions
     could themselves be equal.
     It's much simpler to take advantage of Java's string interning.
-    
+
+- Equality of expressions is defined as structural identity rather
+  than equivalence. Shouldn't you provide an equivalence test:
+```java
+  assertTrue(equivalentExpressions(expr(1).plus("a"), expr("a").plus(1)));
+  assertTrue(equivalentExpressions(expr("a").times(2), expr("a").plus("a")));
+```
+  - That's an excellent exercise for the reader! You could do it through
+    structural analysis, but it might be more fun to cheat and see if
+    repeatedly randomly binding the free variables to the same values
+    in both expressions produces equal values.
+
 - Expressions that use variables that conflict with the
   reserved words `let` and `in` will format successfully as a string
   but will not be parseable. Shouldn't you prevent the use
   of those variable names?
-  
+
   - Not all uses of expressions involve parsing. It seems
     draconian to prevent the use of perfectly good variable
     names for uses that don't require parsing.
@@ -136,7 +147,7 @@ See the [Ivy build properties file](
 
 - Now that you mention alternative parsing schemes, how about
   making the expression parser extensible?
-  
+
   - Because it would be very hard and would have little benefit.
 
 - Could this framework be parameterized by numeric type? It would
@@ -151,7 +162,7 @@ See the [Ivy build properties file](
   expressed more naturally by removing the whitespace in products,
   e.g., `ax^2 + bx + c` instead of `a x^2 + b x + c`. Could this
   library support that?
-  
+
   - Yes, but the results would be parseable only through the
     ugly compromise of using something like
     quotation marks around variables with names longer than one character,
@@ -175,7 +186,7 @@ See the [Ivy build properties file](
     `enum TrigonometricOperator` demonstrates how to add new operators,
     and `class TrigonometricExpression` demonstrates how to create an
     extended expression type that supports new methods.
-    
+
 - These different ways produce expressions that aren't equal. Is that an API bug?
 
   - It's a weakness, but if you consistently use one or the other approach, it won't be a

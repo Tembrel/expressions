@@ -56,11 +56,20 @@ new operations.
 
 ### Adding new transformations of expressions
 
-The [`TraceVisitor` class](
+The current implementation uses the [Visitor pattern](
+  https://drive.google.com/file/d/1k76P9Kl7__hXwp2FVAbvOcwATcphB3gm/view
+) to implement the
+{@link net.peierls.expr.Expression#evaluate evaluate},
+{@link net.peierls.expr.Expression#freeVariables freeVariables}, and
+{@link net.peierls.expr.Expression#format format} methods.
+Users of this API can take advantage of this to create their
+own transformations of expressions.
+As an example, the [`TraceVisitor` class](
   src/test/java/net/peierls/expr/TraceVisitor.java#L11
 ) demonstrates how to add a new transformation
-over expressions.
-
+over expressions into an indented pseudo-AST (abstract syntax tree)
+that displays the fixity, associativity, arity, and precedence
+of the operators.
 
 ## Dependencies
 
@@ -110,7 +119,7 @@ See the [Ivy build properties file](
 
   - For pedagogical purposes:
     `enum TrigonometricOperator` demonstrates how to add new operators,
-    and `classs TrigonometricExpression` demonstrates how to create an
+    and `class TrigonometricExpression` demonstrates how to create an
     extended expression type that supports new methods.
 
 - Could you remove the Guava and StreamEx dependencies?

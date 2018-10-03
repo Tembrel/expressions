@@ -113,8 +113,8 @@ See the [Ivy build properties file](
   wrapped values compare equal; their identities are not
   meaningful. Should they be?
   
-  - It would be possible to give variable expressions their
-    onw identity, so that two instances of `expr("a")` would
+  - It would be possible to use the identity of variable
+    expressions as equality, so that two instances of `expr("a")` would
     not be equal to each other, but it would add a burden to
     the user to keep track of variables in a symbol table,
     and it would mean that string forms of unequal expressions

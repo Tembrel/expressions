@@ -59,9 +59,15 @@ new operations.
 The current implementation uses the [Visitor pattern](
   https://drive.google.com/file/d/1k76P9Kl7__hXwp2FVAbvOcwATcphB3gm/view
 ) to implement the
-{@link net.peierls.expr.Expression#evaluate evaluate},
-{@link net.peierls.expr.Expression#freeVariables freeVariables}, and
-{@link net.peierls.expr.Expression#format format} methods.
+[evaluate](
+  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#evaluate--
+),
+[freeVariables](
+  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#freeVariables--
+), and
+[format](
+  https://tembrel.github.io/expressions/javadoc/net/peierls/expr/Expression.html#format--
+) methods.
 Users of this API can take advantage of this to create their
 own transformations of expressions.
 As an example, the [`TraceVisitor` class](

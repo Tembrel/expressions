@@ -209,7 +209,7 @@ See the [Ivy build properties file](
   - The `ExpressionParser` class lets you create a parser instance once
     and then use it repeatedly.
 
-- `assertEquals(parseExpr(a^23`), parseExpr(a^2 * 3));` does not fail.
+- `assertEquals(parseExpr("a^23"), parseExpr("a^2 * 3"));` does not fail.
   Isn't that a bug?
 
   - Well... You can always write `a ^ 23` to get the parser to behave,

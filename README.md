@@ -32,7 +32,7 @@ in the form of a [JUnit test](
 To ensure that operators are singletons, the framework uses
 the [emulated extensible enum](
   https://drive.google.com/file/d/1qhEaShHhq5-0y4aQMByKzx9SOsKFu6oq/view
-)pattern. Following this pattern is not
+) pattern. Following this pattern is not
 strictly required for user-defined operators, but extended
 parsing only works with enum types.
 

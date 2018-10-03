@@ -197,6 +197,7 @@
  * of the concrete visitor and call the
  * {@link net.peierls.expr.Expression#accept accept} method of
  * an argument expression on that instance.
- * See {@code TraceVisitor} in the test code for a full example.
+ * See <a href="https://github.com/Tembrel/expressions/blob/master/src/test/java/net/peierls/expr/TraceVisitor.java#L11"
+ * target="_blank">TraceVisitor</a> in the test code for a full example.
  */
 package net.peierls.expr;

@@ -17,14 +17,17 @@ The framework is extensible in two ways:
 
 ### Basic usage
 
-See the [package javadoc for the most recent release](
+See the [javadoc for the `net.peierls.expr` package](
   https://tembrel.github.io/expressions/javadoc/
-) for usage information.
-Similar code is used in a [JUnit test](
+) for how to use the API.
+The code from this package documentation is also available
+in the form of a [JUnit test](
   src/test/java/net/peierls/expr/BasicUsageTest.java#L10
 ).
 
-### Adding new operator categories and extending expressions
+### Extended usage
+
+#### Add new operators
 
 To ensure that operators are singletons, the framework uses
 the [emulated extensible enum](
@@ -54,7 +57,7 @@ with convenience methods to apply these
 new operations.
 
 
-### Adding new transformations of expressions
+#### Add new transformations of expressions
 
 The current implementation uses the [Visitor pattern](
   https://drive.google.com/file/d/1k76P9Kl7__hXwp2FVAbvOcwATcphB3gm/view

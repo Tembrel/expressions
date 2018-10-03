@@ -129,8 +129,8 @@ See the [Ivy build properties file](
     repeatedly randomly binding the free variables to the same values
     in both expressions produces equal values.
   ```java
-      assertTrue(equivalentExpressions(expr(1).plus("a"), expr("a").plus(1)));
-      assertTrue(equivalentExpressions(expr("a").times(2), expr("a").plus("a")));
+    assertTrue(equivalentExpressions(expr(1).plus("a"), expr("a").plus(1)));
+    assertTrue(equivalentExpressions(expr("a").times(2), expr("a").plus("a")));
   ```
 
 - Expressions that use variables that conflict with the

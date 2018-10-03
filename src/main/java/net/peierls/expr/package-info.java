@@ -184,7 +184,7 @@
  * assertEquals(expected1, Expression.of("pi_r_2 2", MyOp.class));
  *
  * Expression expected2 = expr(2).apply(MyOp.CUBED);
- * assertEquals(expected2, Expressoin.of("2^^^", MyOp.class));
+ * assertEquals(expected2, Expression.of("2^^^", MyOp.class));
  * </pre>
  * Note that parsing with user-defined operators always uses
  * the standard expression types, not the extended expression

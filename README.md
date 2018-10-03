@@ -29,13 +29,6 @@ in the form of a [JUnit test](
 
 #### Add new operators
 
-To ensure that operators are singletons, the framework uses
-the [emulated extensible enum](
-  https://drive.google.com/file/d/1qhEaShHhq5-0y4aQMByKzx9SOsKFu6oq/view
-) pattern. Following this pattern is not
-strictly required for user-defined operators, but extended
-parsing only works with enum types.
-
 The [`TrigonometricOperator` class](
   src/main/java/net/peierls/expr/TrigonometricOperator.java#L10
 ) demonstrates how to add a user-defined operator enum
@@ -55,6 +48,13 @@ The [`TrigonometricExpression` class](
 ) demonstrates how to extend `Expression`
 with convenience methods to apply these
 new operations.
+
+To ensure that operators are singletons, the framework uses
+the [emulated extensible enum](
+  https://drive.google.com/file/d/1qhEaShHhq5-0y4aQMByKzx9SOsKFu6oq/view
+) pattern. Following this pattern is not
+strictly required for user-defined operators, but extended
+parsing only works with enum types.
 
 
 #### Add new transformations of expressions

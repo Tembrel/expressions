@@ -78,9 +78,9 @@ public class BasicUsageTest {
         // is encountered during the evaluation.
         //
         // Evaluating an expression with free variables throws `UnboundVariableException`.
-        // You can test whether an expression has no free variables with `isEvaluable`.
+        // You can test whether an expression has no free variables with `evaluable`.
 
-        assertTrue(quadFullyBound.isEvaluable());
+        assertTrue(quadFullyBound.evaluable());
         assertEquals(9.0, quadFullyBound.evaluate(), 0);
 
         // Formatting expressions

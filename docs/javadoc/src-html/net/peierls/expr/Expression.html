@@ -34,7 +34,7 @@
 <span class="sourceLineNo">026</span>    /**<a name="line.26"></a>
 <span class="sourceLineNo">027</span>     * Apply a visitor function to this expression.<a name="line.27"></a>
 <span class="sourceLineNo">028</span>     * The default implementation is to call the {@link Visitor#visitUnknown}<a name="line.28"></a>
-<span class="sourceLineNo">029</span>     * method, but subclasses should override to call the visit method on one<a name="line.29"></a>
+<span class="sourceLineNo">029</span>     * method, but subclasses should override to call the visit method on one*<a name="line.29"></a>
 <span class="sourceLineNo">030</span>     * of the concrete subclasses known to the visitor interface.<a name="line.30"></a>
 <span class="sourceLineNo">031</span>     */<a name="line.31"></a>
 <span class="sourceLineNo">032</span>    protected &lt;R&gt; R accept(Visitor&lt;R&gt; visitor) {<a name="line.32"></a>
@@ -83,7 +83,7 @@
 <span class="sourceLineNo">075</span>    /**<a name="line.75"></a>
 <span class="sourceLineNo">076</span>     * Returns true if this expression has no free variables.<a name="line.76"></a>
 <span class="sourceLineNo">077</span>     */<a name="line.77"></a>
-<span class="sourceLineNo">078</span>    public final boolean isEvaluable() {<a name="line.78"></a>
+<span class="sourceLineNo">078</span>    public final boolean evaluable() {<a name="line.78"></a>
 <span class="sourceLineNo">079</span>        return freeVariables().isEmpty();<a name="line.79"></a>
 <span class="sourceLineNo">080</span>    }<a name="line.80"></a>
 <span class="sourceLineNo">081</span><a name="line.81"></a>

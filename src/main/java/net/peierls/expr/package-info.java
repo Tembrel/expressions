@@ -94,9 +94,9 @@
  *
  * Evaluating an expression with free variables throws {@link net.peierls.expr.UnboundVariableException}.
  * You can test whether an expression has no free variables with
- * {@link net.peierls.expr.Expression#isEvaluable isEvaluable}.
+ * {@link net.peierls.expr.Expression#evaluable evaluable}.
  * <pre>
- * assertTrue(quadFullyBound.isEvaluable());
+ * assertTrue(quadFullyBound.evaluable());
  * assertEquals(9.0, quadFullyBound.evaluate(), 0);
  * </pre>
  *

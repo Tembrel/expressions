@@ -384,9 +384,9 @@
 
  Evaluating an expression with free variables throws <a href="../../../net/peierls/expr/UnboundVariableException.html" title="class in net.peierls.expr"><code>UnboundVariableException</code></a>.
  You can test whether an expression has no free variables with
- <a href="../../../net/peierls/expr/Expression.html#isEvaluable--"><code>isEvaluable</code></a>.
+ <a href="../../../net/peierls/expr/Expression.html#evaluable--"><code>evaluable</code></a>.
  <pre>
- assertTrue(quadFullyBound.isEvaluable());
+ assertTrue(quadFullyBound.evaluable());
  assertEquals(9.0, quadFullyBound.evaluate(), 0);
  </pre>
 

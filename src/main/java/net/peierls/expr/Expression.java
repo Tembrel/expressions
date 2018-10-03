@@ -26,7 +26,7 @@ public abstract class Expression {
     /**
      * Apply a visitor function to this expression.
      * The default implementation is to call the {@link Visitor#visitUnknown}
-     * method, but subclasses should override to call the visit method on one
+     * method, but subclasses should override to call the visit method on one*
      * of the concrete subclasses known to the visitor interface.
      */
     protected <R> R accept(Visitor<R> visitor) {
@@ -75,7 +75,7 @@ public abstract class Expression {
     /**
      * Returns true if this expression has no free variables.
      */
-    public final boolean isEvaluable() {
+    public final boolean evaluable() {
         return freeVariables().isEmpty();
     }
 

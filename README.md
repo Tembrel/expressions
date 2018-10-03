@@ -123,7 +123,7 @@ See the [Ivy build properties file](
 
 - Equality of expressions is defined as structural identity rather
   than equivalence. Shouldn't you provide an equivalence test:
-  
+
   - That's an excellent exercise for the reader! You could do it through
     structural analysis, but it might be more fun to cheat and see if
     repeatedly randomly binding the free variables to the same values
@@ -202,6 +202,15 @@ See the [Ivy build properties file](
         assertFalse(sinA1.equals(sinA2));
     }
   ```
+
+- `a^23` is interpreted as `a^2 * 3` by `Expression.of(...)`. Isn't that
+  a bug?
+
+  - Well... You can always write `a ^ 23` to get the parser to behave,
+    but [I should probably remove `BasicOperator.SQUARED`](
+      /Tembrel/expressions/issues/3
+    ), as it doesn't
+    buy us much, other than providing an example of a postfix operator.
 
 - Could you remove the Guava and StreamEx dependencies?
 

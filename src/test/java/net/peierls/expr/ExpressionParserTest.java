@@ -59,4 +59,13 @@ public class ExpressionParserTest {
         System.out.printf("trace of %s is:%n%s%n", expected, trace(expr));
         assertEquals(expected.replace(" * ", " "), expr.toString());
     }
+
+    @Test public void parsingAmbiguityBetweenSquaredAndPow() {
+        VariableExpression a = expr("a");
+        assertEquals(a.squared(), Expression.of("a^2"));
+        assertEquals(a.pow(3), Expression.of("a^3"));
+        // Surprise! a^23 is parsed as a^2 * 3
+        assertEquals(a.squared().times(3), Expression.of("a^23"));
+        assertEquals(a.pow(23), Expression.of("a ^ 23"));
+    }
 }

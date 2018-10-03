@@ -122,7 +122,7 @@ See the [Ivy build properties file](
     It's much simpler to take advantage of Java's string interning.
 
 - Equality of expressions is defined as structural identity rather
-  than equivalence. Shouldn't you provide an equivalence test:
+  than equivalence. Shouldn't you provide an equivalence test?
 
   - That's an excellent exercise for the reader! You could do it through
     structural analysis, but it might be more fun to cheat and see if

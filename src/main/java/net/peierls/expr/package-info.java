@@ -139,14 +139,20 @@
  * public enum MyOp implements DelegatingOperator {
  *     // Space at end of symbol used when formatting, but ignored by parser.
  *     PI_R_SQUARED(prefix("pi_r_2 ", v -> Math.PI * v * v).precedence(100)),
+ *     CUBED(postfix("^^^", v -> v * v * v).precedence(100)),
  *     ;
  *     final Operator delegate;
  *     MyOp(Operator delegate) { this.delegate = delegate; }
  *    {@literal @}Override public Operator delegate() { return delegate; }
  *
- *     // Convenience method
+ *     // Convenience methods
+ *
  *     public static final UnaryOpExpression piRSquared(Expression e) {
  *         return e.apply(PI_R_SQUARED);
+ *     }
+ *
+ *     public static final UnaryOpExpression cubed(Expression e) {
+ *         return e.apply(CUBED);
  *     }
  * }
  * </pre>
@@ -163,17 +169,19 @@
  *     public static MyExpression myExpr(Expression expr) {
  *         return wrap(expr, MyExpression.class);
  *     }
- *     // Convenience static factory, recommended
+ *     // Convenience static factories, recommended
  *     public static MyExpression myExpr(double val) {
  *         return wrap(val, MyExpression.class);
  *     }
- *     // Convenience static factory, recommended
  *     public static MyExpression myExpr(String var) {
  *         return wrap(var, MyExpression.class);
  *     }
- *     // Operation instance method, the reason for extending
+ *     // Operation instance methods, the reason for extending
  *     public final MyExpression piRSquared() {
  *         return apply(MyOp.PI_R_SQUARED);
+ *     }
+ *     public final MyExpression cubed() {
+ *         return apply(MyOp.CUBED);
  *     }
  * }
  * </pre>

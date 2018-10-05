@@ -88,7 +88,7 @@
  *
  * <h3>Evaluation</h3>
  *
- * Calling {@link net.peierls.expr.Expression#value value} on an expression with no free variables,
+ * Calling {@link net.peierls.expr.Expression#value value} on an expression with no free variables
  * throws {@link net.peierls.expr.DivisionByZeroException} if a division by zero is encountered during
  * the evaluation, otherwise it produces the value of the expression as a {@code double}.
  *
@@ -154,7 +154,7 @@
  * user-defined operators, extend
  * {@link net.peierls.expr.ExtendedExpression ExtendedExpression}.
  * <pre>
- * static class MyExpression extends ExtendedExpression<MyExpression> {
+ * static class MyExpression extends ExtendedExpression&lt;MyExpression&gt; {
  *     // Constructor, required
  *     public MyExpression(Expression expr) {
  *         super(expr, MyExpression.class);
